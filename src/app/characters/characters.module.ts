@@ -8,6 +8,8 @@ import { SidenavCharacterListComponent } from "./sidenav-character-list.componen
 import { SidenavNoteListComponent } from "./sidenav-note-list.component";
 import { NoteEditorComponent } from "./note-editor.component";
 import { CharacterSheetComponent } from "./character-sheet.component";
+import { ReactiveFormsModule } from "@angular/forms";
+import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
 
 @NgModule({
   declarations: [
@@ -17,6 +19,12 @@ import { CharacterSheetComponent } from "./character-sheet.component";
     NoteEditorComponent,
     CharacterSheetComponent
   ],
-  imports: [CommonModule, CharactersRoutingModule, CommonMaterialModule]
+  imports: [
+    CommonModule,
+    CharactersRoutingModule,
+    CommonMaterialModule,
+    ReactiveFormsModule,
+    CKEditorModule
+  ]
 })
 export class CharactersModule {}
