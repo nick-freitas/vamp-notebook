@@ -1,1 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  height: 100vh;
+}
+
+.content-block {
+  overflow-y: auto;
+  padding: 32px 64px;
+  display: grid;
+  height: calc(100vh - 128px);
+  box-sizing: border-box;
+}
+
+.selected-menu-item {
+  &,
+  &.mat-list-item {
+    background: #c60055;
+    color: white;
+
+    &:hover {
+      background: #ff79b0;
+      color: black;
+    }
+  }
+}
