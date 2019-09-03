@@ -137,9 +137,15 @@ export class StateService {
         }
       });
 
-    // todo: add check if mobile auto-close sidenav, reopen on not mobile
-    this.isCharacterListSidenavOpen$.next(true);
-    this.isNoteListSidenavOpen$.next(true);
+    this.breakpointObserver
+      .observe(["(min-width: 840px)"])
+      .pipe(map(result => result.matches))
+      .subscribe(showSidenavs => {
+        this.isCharacterListSidenavOpen$.next(showSidenavs);
+        this.isNoteListSidenavOpen$.next(showSidenavs);
+
+        console.log(showSidenavs);
+      });
   }
 
   changeSelectedNote(note: StateTypes.Note) {

@@ -7,14 +7,14 @@ import { StateService } from "../state.service";
     <mat-sidenav-container autosize>
       <mat-sidenav
         mode="side"
-        opened="this.state.isCharacterListSidenavOpen$ | async"
+        [opened]="this.state.isCharacterListSidenavOpen$ | async"
       >
         <app-sidenav-character-list></app-sidenav-character-list>
       </mat-sidenav>
       <mat-sidenav
         mode="side"
         position="end"
-        opened="this.state.isNoteListSidenavOpen$ | async"
+        [opened]="this.state.isNoteListSidenavOpen$ | async"
       >
         <app-sidenav-note-list></app-sidenav-note-list>
       </mat-sidenav>
