@@ -5,8 +5,43 @@ import { StateService } from "./state.service";
   selector: "app-nav-bar",
   template: `
     <mat-toolbar color="primary" class="mat-elevation-z6">
-      <mat-toolbar-row id="top-row">
+      <div id="page-actions-container">
+        <ng-container *ngIf="this.state.selectedRouteIsUserPage$ | async">
+          <button
+            mat-icon-button
+            class="workspace-button"
+            [routerLink]="['/characters']"
+          >
+            <mat-icon>arrow_back</mat-icon>
+          </button>
+        </ng-container>
+        <ng-container *ngIf="this.state.selectedRouteIsCharactersPage$ | async">
+          <button
+            *ngIf="this.state.isMobile$ | async"
+            mat-icon-button
+            (click)="this.state.toggleCharacterListSidenav()"
+          >
+            <mat-icon>menu</mat-icon>
+          </button>
+          <button
+            mat-flat-button
+            color="accent"
+            class="workspace-button"
+            (click)="openChorniclePicker()"
+          >
+            {{ ((this.state.selectedChronicle$ | async)?.name)[0] }}
+          </button>
+          <h2 class="workspace-name" *ngIf="!(this.state.isMobile$ | async)">
+            {{ (this.state.selectedChronicle$ | async)?.name }}
+          </h2>
+        </ng-container>
+      </div>
+
+      <div id="app-name-container">
         <h1>Vamp Notebook</h1>
+      </div>
+
+      <div id="user-actions-container">
         <button
           mat-icon-button
           aria-label="User Account"
@@ -14,36 +49,17 @@ import { StateService } from "./state.service";
         >
           <mat-icon>account_circle</mat-icon>
         </button>
-      </mat-toolbar-row>
-
-      <mat-toolbar-row id="page-row">
-        <ng-container *ngIf="this.state.selectedRouteIsUserPage$ | async">
-          <button
-            mat-icon-button
-            color="accent"
-            class="workspace-button"
-            [routerLink]="['/characters']"
-          >
-            <mat-icon>arrow_back</mat-icon>
-          </button>
-          <h2 class="workspace-name">Go Back to Characters</h2>
-        </ng-container>
-        <ng-container *ngIf="this.state.selectedRouteIsCharactersPage$ | async">
-          <ng-container
-            *ngIf="this.state.selectedChronicle$ | async as selectedChronicle"
-          >
-            <button
-              mat-flat-button
-              color="accent"
-              class="workspace-button"
-              (click)="openChorniclePicker()"
-            >
-              {{ (selectedChronicle?.name)[0] }}
-            </button>
-            <h2 class="workspace-name">{{ selectedChronicle?.name }}</h2>
-          </ng-container>
-        </ng-container>
-      </mat-toolbar-row>
+        <button
+          *ngIf="
+            (this.state.isMobile$ | async) &&
+            (this.state.selectedRouteIsCharactersPage$ | async)
+          "
+          mat-icon-button
+          (click)="this.state.toggleNoteListSidenav()"
+        >
+          <mat-icon>list</mat-icon>
+        </button>
+      </div>
     </mat-toolbar>
   `,
   styles: [
@@ -52,6 +68,7 @@ import { StateService } from "./state.service";
         z-index: 999;
         display: grid;
       }
+
       .nav-item.disabled[routerLink] a {
         cursor: inherit;
       }
@@ -67,9 +84,13 @@ import { StateService } from "./state.service";
         padding-left: 8px;
       }
 
-      #top-row {
+      mat-toolbar {
         display: flex;
         justify-content: space-between;
+      }
+
+      mat-toolbar div {
+        display: flex;
       }
     `
   ],

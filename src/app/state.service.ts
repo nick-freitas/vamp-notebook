@@ -20,11 +20,14 @@ export class StateService {
   readonly selectedRouteIsCharactersPage$: Subject<boolean>;
   readonly isCharacterListSidenavOpen$: Subject<boolean>;
   readonly isNoteListSidenavOpen$: Subject<boolean>;
+  readonly isMobile$: Subject<boolean>;
 
   private user: StateTypes.User;
   private selectedChronicle: StateTypes.Chronicle;
   private selectedCharacter: StateTypes.Character;
   private selectedNote: StateTypes.Note;
+  private isCharacterListSidenavOpen: boolean;
+  private isNoteListSidenavOpen: boolean;
 
   constructor(
     private router: Router,
@@ -40,6 +43,7 @@ export class StateService {
 
     this.isCharacterListSidenavOpen$ = new BehaviorSubject(null);
     this.isNoteListSidenavOpen$ = new BehaviorSubject(null);
+    this.isMobile$ = new BehaviorSubject(null);
 
     this.user = initialState.users[0];
 
@@ -137,14 +141,18 @@ export class StateService {
         }
       });
 
+    // * is mobile
     this.breakpointObserver
       .observe(["(min-width: 840px)"])
       .pipe(map(result => result.matches))
-      .subscribe(showSidenavs => {
-        this.isCharacterListSidenavOpen$.next(showSidenavs);
-        this.isNoteListSidenavOpen$.next(showSidenavs);
+      .subscribe(isDesktop => {
+        this.isCharacterListSidenavOpen = isDesktop;
+        this.isNoteListSidenavOpen = isDesktop;
 
-        console.log(showSidenavs);
+        this.isCharacterListSidenavOpen$.next(this.isCharacterListSidenavOpen);
+        this.isNoteListSidenavOpen$.next(this.isNoteListSidenavOpen);
+
+        this.isMobile$.next(!isDesktop);
       });
   }
 
@@ -205,22 +213,6 @@ export class StateService {
     this.updateUserState();
   }
 
-  closeCharacterListSidenav() {
-    this.isCharacterListSidenavOpen$.next(false);
-  }
-
-  openCharacterListSidenav() {
-    this.isCharacterListSidenavOpen$.next(true);
-  }
-
-  closeNoteListSidenav() {
-    this.isNoteListSidenavOpen$.next(false);
-  }
-
-  openNoteSidenav() {
-    this.isNoteListSidenavOpen$.next(true);
-  }
-
   changeCharacterStats(characterStats) {
     this.changeSelectedCharacter(
       Object.assign({}, this.selectedCharacter, characterStats)
@@ -229,5 +221,35 @@ export class StateService {
 
   changeNoteFields(noteFields) {
     this.changeSelectedNote(Object.assign({}, this.selectedNote, noteFields));
+  }
+
+  openCharacterListSidenav() {
+    this.isCharacterListSidenavOpen = true;
+    this.isCharacterListSidenavOpen$.next(this.isCharacterListSidenavOpen);
+  }
+
+  closeCharacterListSidenav() {
+    this.isCharacterListSidenavOpen = false;
+    this.isCharacterListSidenavOpen$.next(this.isCharacterListSidenavOpen);
+  }
+
+  toggleCharacterListSidenav() {
+    this.isCharacterListSidenavOpen = !this.isCharacterListSidenavOpen;
+    this.isCharacterListSidenavOpen$.next(this.isCharacterListSidenavOpen);
+  }
+
+  openNoteListSidenav() {
+    this.isNoteListSidenavOpen = true;
+    this.isNoteListSidenavOpen$.next(this.isNoteListSidenavOpen);
+  }
+
+  closeNoteListSidenav() {
+    this.isNoteListSidenavOpen = false;
+    this.isNoteListSidenavOpen$.next(this.isNoteListSidenavOpen);
+  }
+
+  toggleNoteListSidenav() {
+    this.isNoteListSidenavOpen = !this.isNoteListSidenavOpen;
+    this.isNoteListSidenavOpen$.next(this.isNoteListSidenavOpen);
   }
 }

@@ -5,15 +5,17 @@ import { StateService } from "../state.service";
   template: `
     <mat-sidenav-container autosize>
       <mat-sidenav
-        mode="side"
+        [mode]="(this.state.isMobile$ | async) ? 'over' : 'side'"
         [opened]="this.state.isCharacterListSidenavOpen$ | async"
+        (closed)="this.state.closeCharacterListSidenav()"
       >
         <app-sidenav-character-list></app-sidenav-character-list>
       </mat-sidenav>
       <mat-sidenav
-        mode="side"
-        position="end"
+        [mode]="(this.state.isMobile$ | async) ? 'over' : 'side'"
         [opened]="this.state.isNoteListSidenavOpen$ | async"
+        (closed)="this.state.closeNoteListSidenav()"
+        position="end"
       >
         <app-sidenav-note-list></app-sidenav-note-list>
       </mat-sidenav>
@@ -68,5 +70,6 @@ import { StateService } from "../state.service";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CharactersComponent {
+  public characterListOpened: boolean;
   constructor(public state: StateService) {}
 }

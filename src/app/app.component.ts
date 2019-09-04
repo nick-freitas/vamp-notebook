@@ -12,18 +12,20 @@ import { Component, ChangeDetectionStrategy } from "@angular/core";
     `
       :host {
         display: grid;
+        height: 100%;
 
+       /* this isnt going to work on mobile */
         grid:
-          "nav-bar" 128px
+          "nav-bar" 64px
           "main";
       }
 
       main {
-        grid-area: "main";
+        grid-area: main;
       }
 
       app-nav-bar {
-        grid-area: "nav-bar";
+        grid-area: nav-bar;
       }
     `
   ],

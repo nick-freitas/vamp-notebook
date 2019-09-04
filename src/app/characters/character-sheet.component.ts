@@ -35,9 +35,19 @@ import { Component, ChangeDetectionStrategy } from "@angular/core";
         grid-gap: 16px;
 
         grid-template-areas:
-          "char-portrait sheet-header sheet-header"
-          "sheet-attributes sheet-attributes sheet-attributes"
-          "sheet-abilities sheet-abilities sheet-abilities";
+          "char-portrait "
+          "sheet-header"
+          "sheet-attributes"
+          "sheet-abilities";
+      }
+
+      @media (min-width: 840px) {
+        :host {
+          grid-template-areas:
+            "char-portrait sheet-header sheet-header"
+            "sheet-attributes sheet-attributes sheet-attributes"
+            "sheet-abilities sheet-abilities sheet-abilities";
+        }
       }
 
       .upload-character-portrait-card {
