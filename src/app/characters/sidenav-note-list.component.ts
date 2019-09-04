@@ -17,7 +17,7 @@ import { StateService } from "src/app/state.service";
           *ngFor="let note of (this.state.selectedCharacter$ | async)?.notes"
           mat-list-item
           [class.selected-menu-item]="
-            note === (this.state.selectedNote$ | async)
+            note?.id === (this.state.selectedNote$ | async)?.id
           "
           (click)="this.state.changeSelectedNote(note)"
         >

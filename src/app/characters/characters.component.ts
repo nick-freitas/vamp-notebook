@@ -2,7 +2,6 @@ import { Component, ChangeDetectionStrategy } from "@angular/core";
 import { StateService } from "../state.service";
 
 @Component({
-  selector: "app-characters",
   template: `
     <mat-sidenav-container autosize>
       <mat-sidenav

@@ -18,7 +18,7 @@ import { StateService } from "src/app/state.service";
           *ngFor="let character of clan?.characters"
           mat-list-item
           [class.selected-menu-item]="
-            character === (this.state.selectedCharacter$ | async)
+            character.id === (this.state.selectedCharacter$ | async).id
           "
           (click)="this.state.changeSelectedCharacter(character)"
         >

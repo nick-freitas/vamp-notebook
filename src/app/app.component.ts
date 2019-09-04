@@ -19,11 +19,11 @@ import { Component, ChangeDetectionStrategy } from "@angular/core";
       }
 
       main {
-        grid-area-label: "main";
+        grid-area: "main";
       }
 
       app-nav-bar {
-        grid-area-label: "nav-bar";
+        grid-area: "nav-bar";
       }
     `
   ],

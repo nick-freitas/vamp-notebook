@@ -6,6 +6,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { CommonMaterialModule } from "./common-material.module";
 import { AppComponent } from "./app.component";
 import { NavBarComponent } from "./nav-bar.component";
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [AppComponent, NavBarComponent],
@@ -13,7 +14,8 @@ import { NavBarComponent } from "./nav-bar.component";
     BrowserModule,
     AppRoutingModule,
     CommonMaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

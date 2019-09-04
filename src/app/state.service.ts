@@ -148,19 +148,61 @@ export class StateService {
       });
   }
 
+  updateUserState() {
+    // * Notes
+    if (this.selectedNote) {
+      this.selectedCharacter.notes = this.selectedCharacter.notes.map(
+        charNote =>
+          charNote.id === this.selectedNote.id ? this.selectedNote : charNote
+      );
+    }
+
+    this.selectedCharacter.lastSelectedNote =
+      this.selectedNote && this.selectedNote.id;
+
+    // * Characters
+    this.selectedChronicle.clans = this.selectedChronicle.clans.map(clan =>
+      Object.assign({}, clan, {
+        characters: clan.characters.map(character =>
+          character.id === this.selectedCharacter.id
+            ? this.selectedCharacter
+            : character
+        )
+      })
+    );
+
+    this.selectedChronicle.lastSelectedCharacter = this.selectedCharacter.id;
+
+    // * Chronicles
+    this.user = Object.assign({}, this.user, {
+      chronicles: this.user.chronicles.map(chronicle =>
+        chronicle.id === this.selectedChronicle.id
+          ? this.selectedChronicle
+          : chronicle
+      )
+    });
+
+    this.user.lastSelectedChronicle = this.selectedChronicle.id;
+
+    // push changes out
+    this.selectedNote$.next(this.selectedNote);
+    this.selectedCharacter$.next(this.selectedCharacter);
+    this.selectedChronicle$.next(this.selectedChronicle);
+  }
+
   changeSelectedNote(note: StateTypes.Note) {
-    this.selectedNote$.next(note);
-    this.selectedCharacter.lastSelectedNote = note.id;
+    this.selectedNote = note;
+    this.updateUserState();
   }
 
   changeSelectedCharacter(character: StateTypes.Character) {
-    this.selectedCharacter$.next(character);
-    this.selectedChronicle.lastSelectedCharacter = character.id;
+    this.selectedCharacter = character;
+    this.updateUserState();
   }
 
   changeSelectedChronicle(chronicle: StateTypes.Chronicle) {
-    this.selectedChronicle$.next(chronicle);
-    this.user.lastSelectedChronicle = chronicle.id;
+    this.selectedChronicle = chronicle;
+    this.updateUserState();
   }
 
   closeCharacterListSidenav() {
@@ -177,5 +219,15 @@ export class StateService {
 
   openNoteSidenav() {
     this.isNoteListSidenavOpen$.next(true);
+  }
+
+  changeCharacterStats(characterStats) {
+    this.changeSelectedCharacter(
+      Object.assign({}, this.selectedCharacter, characterStats)
+    );
+  }
+
+  changeNoteFields(noteFields) {
+    this.changeSelectedNote(Object.assign({}, this.selectedNote, noteFields));
   }
 }
