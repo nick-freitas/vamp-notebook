@@ -42,16 +42,17 @@ export interface CharacterSheetFields {
 
 export interface AbilitiesFieldList {
   type: string;
-  abilities: Ability[];
+  abilities: SubHeaderFieldList[];
 }
 
-export interface Ability {
+export interface SubHeaderFieldList {
   name: string;
+  text: string;
 }
 
 export interface AttributesFieldList {
   type: string;
-  attributes: Ability[];
+  attributes: SubHeaderFieldList[];
 }
 
 export interface HeaderFieldList {
@@ -59,11 +60,6 @@ export interface HeaderFieldList {
   text: string;
   inputType?: string;
   editWarning?: string;
-}
-
-export interface SubHeaderFieldList {
-  name: string;
-  text: string;
 }
 
 export interface Defaults {
@@ -100,6 +96,7 @@ export interface Character {
   generation: number;
   concept: string;
   lastSelectedNote: null | string;
+  stats?: Stats;
   notes: Note[];
 }
 
@@ -108,4 +105,14 @@ export interface Note {
   title: string;
   subtitle: string;
   content: string;
+}
+
+export interface Stats {
+  strength: Dexterity;
+  dexterity: Dexterity;
+}
+
+export interface Dexterity {
+  value: number;
+  advantage: null | string;
 }

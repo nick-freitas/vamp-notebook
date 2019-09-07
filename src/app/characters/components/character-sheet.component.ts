@@ -19,29 +19,29 @@ import { StateService } from "src/app/core/state.service";
     <app-sheet-header
       id="core-header"
       [headerFieldList]="
-        (this.state.characterSheetFields$ | async).coreHeaderFieldList
+        (state.characterSheetFields$ | async).coreHeaderFieldList
       "
     ></app-sheet-header>
     <app-sheet-header
       id="sub-header"
       [headerFieldList]="
-        (this.state.characterSheetFields$ | async).subHeaderFieldList
+        (state.characterSheetFields$ | async).subHeaderFieldList
       "
     ></app-sheet-header>
     <app-sheet-header
       id="concept-header"
       [headerFieldList]="
-        (this.state.characterSheetFields$ | async).conceptHeaderFieldList
+        (state.characterSheetFields$ | async).conceptHeaderFieldList
       "
     ></app-sheet-header>
     <app-sheet-attributes
       [attributesFieldList]="
-        (this.state.characterSheetFields$ | async).attributesFieldList
+        (state.characterSheetFields$ | async).attributesFieldList
       "
     ></app-sheet-attributes>
     <app-sheet-abilities
       [abilitiesFieldList]="
-        (this.state.characterSheetFields$ | async).abilitiesFieldList
+        (state.characterSheetFields$ | async).abilitiesFieldList
       "
     ></app-sheet-abilities>
   `,

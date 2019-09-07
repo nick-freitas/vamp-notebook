@@ -5,16 +5,16 @@ import { StateService } from "../core/state.service";
   template: `
     <mat-sidenav-container autosize>
       <mat-sidenav
-        [mode]="(this.state.isMobile$ | async) ? 'over' : 'side'"
-        [opened]="this.state.isCharacterListSidenavOpen$ | async"
-        (closed)="this.state.closeCharacterListSidenav()"
+        [mode]="(state.isMobile$ | async) ? 'over' : 'side'"
+        [opened]="state.isCharacterListSidenavOpen$ | async"
+        (closed)="state.closeCharacterListSidenav()"
       >
         <app-sidenav-character-list></app-sidenav-character-list>
       </mat-sidenav>
       <mat-sidenav
-        [mode]="(this.state.isMobile$ | async) ? 'over' : 'side'"
-        [opened]="this.state.isNoteListSidenavOpen$ | async"
-        (closed)="this.state.closeNoteListSidenav()"
+        [mode]="(state.isMobile$ | async) ? 'over' : 'side'"
+        [opened]="state.isNoteListSidenavOpen$ | async"
+        (closed)="state.closeNoteListSidenav()"
         position="end"
       >
         <app-sidenav-note-list></app-sidenav-note-list>
@@ -23,10 +23,10 @@ import { StateService } from "../core/state.service";
       <mat-sidenav-content class="main-sidenav-content">
         <div class="content-block">
           <app-character-sheet
-            *ngIf="!(this.state.selectedNote$ | async)"
+            *ngIf="!(state.selectedNote$ | async)"
           ></app-character-sheet>
           <app-note-editor
-            *ngIf="this.state.selectedNote$ | async"
+            *ngIf="state.selectedNote$ | async"
           ></app-note-editor>
         </div>
       </mat-sidenav-content>

@@ -6,7 +6,7 @@ import { StateService } from "../state.service";
   template: `
     <mat-toolbar color="primary" class="mat-elevation-z6">
       <div id="page-actions-container">
-        <ng-container *ngIf="this.state.selectedRouteIsUserPage$ | async">
+        <ng-container *ngIf="state.selectedRouteIsUserPage$ | async">
           <button
             mat-icon-button
             class="workspace-button"
@@ -15,11 +15,11 @@ import { StateService } from "../state.service";
             <mat-icon>arrow_back</mat-icon>
           </button>
         </ng-container>
-        <ng-container *ngIf="this.state.selectedRouteIsCharactersPage$ | async">
+        <ng-container *ngIf="state.selectedRouteIsCharactersPage$ | async">
           <button
-            *ngIf="this.state.isMobile$ | async"
+            *ngIf="state.isMobile$ | async"
             mat-icon-button
-            (click)="this.state.toggleCharacterListSidenav()"
+            (click)="state.toggleCharacterListSidenav()"
           >
             <mat-icon>menu</mat-icon>
           </button>
@@ -29,10 +29,10 @@ import { StateService } from "../state.service";
             class="workspace-button"
             (click)="openChorniclePicker()"
           >
-            {{ ((this.state.selectedChronicle$ | async)?.name)[0] }}
+            {{ ((state.selectedChronicle$ | async)?.name)[0] }}
           </button>
-          <h2 class="workspace-name" *ngIf="!(this.state.isMobile$ | async)">
-            {{ (this.state.selectedChronicle$ | async)?.name }}
+          <h2 class="workspace-name" *ngIf="!(state.isMobile$ | async)">
+            {{ (state.selectedChronicle$ | async)?.name }}
           </h2>
         </ng-container>
       </div>
@@ -51,11 +51,11 @@ import { StateService } from "../state.service";
         </button>
         <button
           *ngIf="
-            (this.state.isMobile$ | async) &&
-            (this.state.selectedRouteIsCharactersPage$ | async)
+            (state.isMobile$ | async) &&
+            (state.selectedRouteIsCharactersPage$ | async)
           "
           mat-icon-button
-          (click)="this.state.toggleNoteListSidenav()"
+          (click)="state.toggleNoteListSidenav()"
         >
           <mat-icon>list</mat-icon>
         </button>

@@ -223,6 +223,21 @@ export class StateService {
     );
   }
 
+  changeStatDots(statName: string, dots: number) {
+    const oldStat = this.selectedCharacter.stats[statName] || {};
+    const newStat = Object.assign({}, oldStat, {
+      value: oldStat.value === dots ? 0 : dots
+    });
+
+    const stats = Object.assign({}, this.selectedCharacter.stats, {
+      [statName]: newStat
+    });
+
+    this.changeSelectedCharacter(
+      Object.assign({}, this.selectedCharacter, { stats })
+    );
+  }
+
   changeNoteFields(noteFields) {
     this.changeSelectedNote(Object.assign({}, this.selectedNote, noteFields));
   }

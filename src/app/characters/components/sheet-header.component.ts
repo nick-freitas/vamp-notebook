@@ -13,8 +13,8 @@ import { SheetHeaderFields } from "src/app/core/state.types";
         [type]="headerField.inputType || 'text'"
         [selectionOptionList]="headerField.selectionOptionList"
         [editWarning]="headerField.editWarning"
-        [value]="(this.state.selectedCharacter$ | async)[headerField.name]"
-        (valueChanged)="this.state.changeCharacterStats($event)"
+        [value]="(state.selectedCharacter$ | async)[headerField.name]"
+        (valueChanged)="state.changeCharacterStats($event)"
       ></app-inline-input-editor>
     </mat-card>
   `,

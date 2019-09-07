@@ -8,18 +8,18 @@ import { StateService } from "src/app/core/state.service";
       <mat-nav-list>
         <a
           mat-list-item
-          [class.selected-menu-item]="!(this.state.selectedNote$ | async)"
-          (click)="this.state.changeSelectedNote(null)"
+          [class.selected-menu-item]="!(state.selectedNote$ | async)"
+          (click)="state.changeSelectedNote(null)"
         >
           Character Sheet
         </a>
         <a
-          *ngFor="let note of (this.state.selectedCharacter$ | async)?.notes"
+          *ngFor="let note of (state.selectedCharacter$ | async)?.notes"
           mat-list-item
           [class.selected-menu-item]="
-            note?.id === (this.state.selectedNote$ | async)?.id
+            note?.id === (state.selectedNote$ | async)?.id
           "
-          (click)="this.state.changeSelectedNote(note)"
+          (click)="state.changeSelectedNote(note)"
         >
           {{ note.title }}
         </a>

@@ -20,7 +20,8 @@ import {
   MatProgressBarModule,
   MatToolbarModule,
   MatCardModule,
-  MatDividerModule
+  MatDividerModule,
+  MatCheckboxModule
 } from "@angular/material";
 
 @NgModule({
@@ -48,7 +49,8 @@ import {
     MatProgressBarModule,
     MatToolbarModule,
     MatCardModule,
-    MatDividerModule
+    MatDividerModule,
+    MatCheckboxModule
   ],
   exports: [
     // cdk
@@ -72,7 +74,8 @@ import {
     MatProgressBarModule,
     MatToolbarModule,
     MatCardModule,
-    MatDividerModule
+    MatDividerModule,
+    MatCheckboxModule
   ]
 })
 export class CommonMaterialModule {}

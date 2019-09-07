@@ -7,7 +7,7 @@ import { StateService } from "src/app/core/state.service";
     <div class="existing-character-list">
       <ng-container
         *ngFor="
-          let clan of (this.state.selectedChronicle$ | async)?.clans;
+          let clan of (state.selectedChronicle$ | async)?.clans;
           let index = index
         "
       >
@@ -19,9 +19,9 @@ import { StateService } from "src/app/core/state.service";
             *ngFor="let character of clan?.characters"
             mat-list-item
             [class.selected-menu-item]="
-              character.id === (this.state.selectedCharacter$ | async).id
+              character.id === (state.selectedCharacter$ | async).id
             "
-            (click)="this.state.changeSelectedCharacter(character)"
+            (click)="state.changeSelectedCharacter(character)"
           >
             {{ character.name }}
           </a>
