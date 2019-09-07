@@ -101,6 +101,8 @@ THE SOFTWARE.
 
 @angular/material/list
 
+@angular/material/radio
+
 @angular/material/sidenav
 
 @angular/material/snack-bar
