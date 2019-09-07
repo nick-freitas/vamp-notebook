@@ -1,4 +1,130 @@
 {
+  "defaults": {
+    "clans": [
+      "Clan Assamite",
+      "Clan Brujah",
+      "Followers of Set",
+      "Clan Gangrel",
+      "Clan Giovanni",
+      "Clan Lasombra",
+      "Clan Malkavian",
+      "Clan Nosferatu",
+      "Clan Ravnos",
+      "Clan Toreador",
+      "Clan Tremere",
+      "Clan Tzimisce",
+      "Clan Ventrue"
+    ]
+  },
+  "characterSheetFields": {
+    "coreHeaderFieldList": [
+      {
+        "name": "name",
+        "text": "Name"
+      },
+      {
+        "name": "generation",
+        "text": "Generation",
+        "editWarning": "Changing this might cause abilities to reset",
+        "inputType": "number"
+      },
+      {
+        "name": "clan",
+        "text": "Clan",
+        "editWarning": "Changing this will cause Disciplines to reset"
+      }
+    ],
+    "subHeaderFieldList": [
+      {
+        "name": "demeanor",
+        "text": "Demeanor"
+      },
+      {
+        "name": "nature",
+        "text": "Nature"
+      },
+      {
+        "name": "sire",
+        "text": "Sire"
+      }
+    ],
+    "conceptHeaderFieldList": [
+      { "name": "concept", "text": "Concept", "inputType": "textarea" }
+    ],
+    "attributesFieldList": [
+      {
+        "type": "Physical",
+        "attributes": [
+          { "name": "Strength" },
+          { "name": "Dexterity" },
+          { "name": "Stamina" }
+        ]
+      },
+      {
+        "type": "Social",
+        "attributes": [
+          { "name": "Charisma" },
+          { "name": "Manipulation" },
+          { "name": "Apperance" }
+        ]
+      },
+      {
+        "type": "Mental",
+        "attributes": [
+          { "name": "Perception" },
+          { "name": "Intelligence" },
+          { "name": "Wits" }
+        ]
+      }
+    ],
+    "abilitiesFieldList": [
+      {
+        "type": "Talents",
+        "abilities": [
+          { "name": "Alertness" },
+          { "name": "Athletics" },
+          { "name": "Awareness" },
+          { "name": "Brawl" },
+          { "name": "Empathy" },
+          { "name": "Expression" },
+          { "name": "Intimidation" },
+          { "name": "Leadership" },
+          { "name": "Streetwise" },
+          { "name": "Subterfuge" }
+        ]
+      },
+      {
+        "type": "Skills",
+        "abilities": [
+          { "name": "Animal Ken" },
+          { "name": "Crafts" },
+          { "name": "Drive" },
+          { "name": "Etiquette" },
+          { "name": "Firearms" },
+          { "name": "Larceny" },
+          { "name": "Melee" },
+          { "name": "Performance" },
+          { "name": "Stealth" },
+          { "name": "Survival" }
+        ]
+      },
+      {
+        "type": "Knowledges",
+        "abilities": [
+          { "name": "Academics" },
+          { "name": "Computers" },
+          { "name": "Finance" },
+          { "name": "Investigation" },
+          { "name": "Law" },
+          { "name": "Medicine" },
+          { "name": "Occult" },
+          { "name": "Politics" },
+          { "name": "Science" },
+          { "name": "Technology" }
+        ]
+      }
+    ]
+  },
   "users": [
     {
       "id": "nick",
@@ -11,14 +137,16 @@
           "lastSelectedCharacter": "rosa",
           "clans": [
             {
-              "name": "Toreador",
+              "name": "Clan Toreador",
               "characters": [
                 {
                   "id": "rosa",
                   "name": "Rosa",
+                  "clan": "Clan Toreador",
                   "imageUrl": "https://ksr-ugc.imgix.net/assets/023/013/173/16d2716416ac53332f8248e912c75259_original.jpg?ixlib=rb-2.1.0&w=680&fit=max&v=1540397758&auto=format&gif-q=50&q=92&s=bcc86fd3a579872bf713b43a06f13365",
                   "nature": "Conniver",
                   "demeanor": "Guardian",
+                  "sire": "Count Dracula",
                   "generation": 12,
                   "concept": "Something simple for me to show off",
                   "lastSelectedNote": null,
@@ -40,12 +168,13 @@
                 {
                   "id": "kris",
                   "name": "Kris",
+                  "clan": "Clan Toreador",
                   "imageUrl": "https://ksr-ugc.imgix.net/assets/023/013/173/16d2716416ac53332f8248e912c75259_original.jpg?ixlib=rb-2.1.0&w=680&fit=max&v=1540397758&auto=format&gif-q=50&q=92&s=bcc86fd3a579872bf713b43a06f13365",
                   "nature": "Aristocrat",
                   "demeanor": "Jocker",
                   "generation": 8,
                   "concept": "Something simple for me to show off",
-                  "lastSelectedNote": null,
+                  "lastSelectedNote": "note_b1",
                   "notes": [
                     {
                       "id": "note_b1",
@@ -64,7 +193,7 @@
               ]
             },
             {
-              "name": "Brujah",
+              "name": "Clan Brujah",
               "characters": []
             }
           ]
@@ -75,15 +204,15 @@
           "lastSelectedCharacter": null,
           "clans": [
             {
-              "name": "Gangrel",
+              "name": "Clan Gangrel",
               "characters": []
             },
             {
-              "name": "Brujah",
+              "name": "Clan Brujah",
               "characters": []
             },
             {
-              "name": "Tremere",
+              "name": "Clan Tremere",
               "characters": []
             }
           ]

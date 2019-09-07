@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy } from "@angular/core";
-import { StateService } from "../state.service";
+import { StateService } from "../core/state.service";
 
 @Component({
   template: `

@@ -12,26 +12,52 @@ import { FormGroup, FormControl } from "@angular/forms";
 @Component({
   selector: "app-inline-input-editor",
   template: `
-    <form [formGroup]="formGroup">
+    <div class="display-value" *ngIf="!editMode">
+      <label>
+        {{ text }}
+      </label>
+      <span>
+        {{ value }}
+      </span>
+      <button mat-icon-button matSuffix>
+        <mat-icon (click)="editMode = true">edit</mat-icon>
+      </button>
+    </div>
+    <form [formGroup]="formGroup" *ngIf="editMode">
       <mat-form-field>
-        <input
-          matInput
-          [type]="type"
-          [placeholder]="text"
-          [value]="value"
-          [formControlName]="name"
-          [readonly]="!editMode"
-        />
-        <button mat-icon-button matSuffix *ngIf="!editMode">
-          <mat-icon (click)="editMode = true">edit</mat-icon>
-        </button>
-        <button mat-icon-button matSuffix *ngIf="editMode" color="accent">
+        <ng-container [ngSwitch]="type">
+          <textarea
+            *ngSwitchCase="'textarea'"
+            matInput
+            [type]="type"
+            [placeholder]="text"
+            [value]="value"
+            [formControlName]="name"
+            [readonly]="!editMode"
+          ></textarea>
+          <input
+            *ngSwitchDefault
+            matInput
+            [type]="type"
+            [placeholder]="text"
+            [value]="value"
+            [formControlName]="name"
+            [readonly]="!editMode"
+          />
+        </ng-container>
+
+        <button mat-icon-button matSuffix color="accent">
           <mat-icon (click)="saveChanges()">save</mat-icon>
         </button>
-        <button mat-icon-button matSuffix *ngIf="editMode">
+        <button mat-icon-button matSuffix>
           <mat-icon (click)="cancelChanges()">cancel</mat-icon>
         </button>
       </mat-form-field>
+      <div class="edit-warning-box alert-box" *ngIf="editWarning">
+        {{ editWarning }}
+      </div>
+      <!-- <div class="error-box alert-box" *ngIf="">
+      </div> -->
     </form>
   `,
   styles: [
@@ -39,11 +65,39 @@ import { FormGroup, FormControl } from "@angular/forms";
       mat-form-field {
         width: 100%;
       }
+
+      .display-value label {
+        font-weight: 600;
+      }
+
+      .alert-box {
+        padding: 0.75rem 1.25rem;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+      }
+
+      .alert-box:not(:first-of-type) {
+        margin-top: 8px;
+      }
+
+      .edit-warning-box {
+        color: #856404;
+        background-color: #fff3cd;
+        border-color: #ffeeba;
+      }
+
+      .error-box {
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+      }
     `
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InlineInputEditorComponent implements OnChanges {
+  @Input() editWarning: string;
+  @Input() selectionOptionList: any[];
   @Input() type: string;
   @Input() text: string;
   @Input() name: string;

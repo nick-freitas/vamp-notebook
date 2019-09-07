@@ -3,19 +3,19 @@ import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from "@angular/forms";
 import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
 
-import { CommonMaterialModule } from "../common-material.module";
+import { CommonMaterialModule } from "../core/common-material.module";
 import { SharedModule } from "../shared/shared.module";
 
 import { CharactersRoutingModule } from "./characters-routing.module";
-import { CharactersComponent } from "./characters.component";
-import { SidenavCharacterListComponent } from "./sidenav-character-list.component";
-import { SidenavNoteListComponent } from "./sidenav-note-list.component";
-import { NoteEditorComponent } from "./note-editor.component";
-import { CharacterSheetComponent } from "./character-sheet.component";
-import { SheetHeaderComponent } from "./sheet-header.component";
-import { SheetAttributesComponent } from "./sheet-attributes.component";
-import { SheetAbilitiesComponent } from "./sheet-abilities.component";
-import { SingleStatComponent } from "./single-stat.component";
+import { CharactersComponent } from "./characters.view";
+import { SidenavCharacterListComponent } from "./components/sidenav-character-list.component";
+import { SidenavNoteListComponent } from "./components/sidenav-note-list.component";
+import { NoteEditorComponent } from "./components/note-editor.component";
+import { CharacterSheetComponent } from "./components/character-sheet.component";
+import { SheetHeaderComponent } from "./components/sheet-header.component";
+import { SheetAttributesComponent } from "./components/sheet-attributes.component";
+import { SheetAbilitiesComponent } from "./components/sheet-abilities.component";
+import { SingleStatComponent } from "./components/single-stat.component";
 
 @NgModule({
   declarations: [

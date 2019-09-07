@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy } from "@angular/core";
-import { StateService } from "./state.service";
+import { StateService } from "../state.service";
 
 @Component({
   selector: "app-nav-bar",

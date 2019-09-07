@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy } from "@angular/core";
-import { StateService } from "src/app/state.service";
+import { StateService } from "src/app/core/state.service";
 
 @Component({
   selector: "app-sidenav-note-list",

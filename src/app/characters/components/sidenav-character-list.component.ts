@@ -1,30 +1,32 @@
 import { Component, ChangeDetectionStrategy } from "@angular/core";
-import { StateService } from "src/app/state.service";
+import { StateService } from "src/app/core/state.service";
 
 @Component({
   selector: "app-sidenav-character-list",
   template: `
     <div class="existing-character-list">
-      <mat-nav-list
+      <ng-container
         *ngFor="
           let clan of (this.state.selectedChronicle$ | async)?.clans;
           let index = index
         "
       >
-        <mat-divider *ngIf="index"></mat-divider>
-        <h1 matSubheader>{{ clan.name }}</h1>
+        <mat-nav-list *ngIf="clan.characters.length">
+          <mat-divider *ngIf="index"></mat-divider>
+          <h1 matSubheader>{{ clan.name }}</h1>
 
-        <a
-          *ngFor="let character of clan?.characters"
-          mat-list-item
-          [class.selected-menu-item]="
-            character.id === (this.state.selectedCharacter$ | async).id
-          "
-          (click)="this.state.changeSelectedCharacter(character)"
-        >
-          {{ character.name }}
-        </a>
-      </mat-nav-list>
+          <a
+            *ngFor="let character of clan?.characters"
+            mat-list-item
+            [class.selected-menu-item]="
+              character.id === (this.state.selectedCharacter$ | async).id
+            "
+            (click)="this.state.changeSelectedCharacter(character)"
+          >
+            {{ character.name }}
+          </a>
+        </mat-nav-list>
+      </ng-container>
     </div>
 
     <mat-nav-list>

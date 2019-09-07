@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy } from "@angular/core";
-import { StateService } from "../state.service";
+import { StateService } from "../../core/state.service";
 import * as BalloonBlockEditor from "@ckeditor/ckeditor5-build-balloon-block";
 
 @Component({

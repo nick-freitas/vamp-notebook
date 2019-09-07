@@ -4,7 +4,7 @@ import { BreakpointObserver } from "@angular/cdk/layout";
 import { Subject, BehaviorSubject } from "rxjs";
 import { map, filter } from "rxjs/operators";
 import * as StateTypes from "./state.types";
-import stateJSON from "../assets/initial-state.json";
+import stateJSON from "../../assets/initial-state.json";
 
 const initialState: StateTypes.TopLevel = stateJSON;
 
@@ -12,6 +12,7 @@ const initialState: StateTypes.TopLevel = stateJSON;
   providedIn: "root"
 })
 export class StateService {
+  readonly characterSheetFields$: Subject<StateTypes.CharacterSheetFields>;
   readonly chronicleList$: Subject<StateTypes.Chronicle[]>;
   readonly selectedChronicle$: Subject<StateTypes.Chronicle>;
   readonly selectedCharacter$: Subject<StateTypes.Character>;
@@ -33,6 +34,7 @@ export class StateService {
     private router: Router,
     private breakpointObserver: BreakpointObserver
   ) {
+    this.characterSheetFields$ = new BehaviorSubject(null);
     this.chronicleList$ = new BehaviorSubject(null);
     this.selectedChronicle$ = new BehaviorSubject(null);
     this.selectedCharacter$ = new BehaviorSubject(null);
@@ -51,6 +53,8 @@ export class StateService {
   }
 
   private initializeSubscriptions() {
+    this.characterSheetFields$.next(initialState.characterSheetFields);
+
     // * chronicleList$
     this.chronicleList$.next(this.user.chronicles);
 
