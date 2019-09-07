@@ -55,25 +55,25 @@
       {
         "type": "Physical",
         "attributes": [
-          { "name": "Strength" },
-          { "name": "Dexterity" },
-          { "name": "Stamina" }
+          { "name": "strength", "text": "Strength" },
+          { "name": "dexterity", "text": "Dexterity" },
+          { "name": "stamina", "text": "Stamina" }
         ]
       },
       {
         "type": "Social",
         "attributes": [
-          { "name": "Charisma" },
-          { "name": "Manipulation" },
-          { "name": "Apperance" }
+          { "name": "charisma", "text": "Charisma" },
+          { "name": "manipulation", "text": "Manipulation" },
+          { "name": "apperance", "text": "Apperance" }
         ]
       },
       {
         "type": "Mental",
         "attributes": [
-          { "name": "Perception" },
-          { "name": "Intelligence" },
-          { "name": "Wits" }
+          { "name": "perception", "text": "Perception" },
+          { "name": "intelligence", "text": "Intelligence" },
+          { "name": "wits", "text": "Wits" }
         ]
       }
     ],
@@ -81,46 +81,46 @@
       {
         "type": "Talents",
         "abilities": [
-          { "name": "Alertness" },
-          { "name": "Athletics" },
-          { "name": "Awareness" },
-          { "name": "Brawl" },
-          { "name": "Empathy" },
-          { "name": "Expression" },
-          { "name": "Intimidation" },
-          { "name": "Leadership" },
-          { "name": "Streetwise" },
-          { "name": "Subterfuge" }
+          { "name": "alertness", "text": "Alertness" },
+          { "name": "athletics", "text": "Athletics" },
+          { "name": "awareness", "text": "Awareness" },
+          { "name": "brawl", "text": "Brawl" },
+          { "name": "empathy", "text": "Empathy" },
+          { "name": "expression", "text": "Expression" },
+          { "name": "intimidation", "text": "Intimidation" },
+          { "name": "leadership", "text": "Leadership" },
+          { "name": "streetwise", "text": "Streetwise" },
+          { "name": "subterfuge", "text": "Subterfuge" }
         ]
       },
       {
         "type": "Skills",
         "abilities": [
-          { "name": "Animal Ken" },
-          { "name": "Crafts" },
-          { "name": "Drive" },
-          { "name": "Etiquette" },
-          { "name": "Firearms" },
-          { "name": "Larceny" },
-          { "name": "Melee" },
-          { "name": "Performance" },
-          { "name": "Stealth" },
-          { "name": "Survival" }
+          { "name": "animal-ken", "text": "Animal Ken" },
+          { "name": "crafts", "text": "Crafts" },
+          { "name": "drive", "text": "Drive" },
+          { "name": "etiquette", "text": "Etiquette" },
+          { "name": "firearms", "text": "Firearms" },
+          { "name": "larceny", "text": "Larceny" },
+          { "name": "melee", "text": "Melee" },
+          { "name": "performance", "text": "Performance" },
+          { "name": "stealth", "text": "Stealth" },
+          { "name": "survival", "text": "Survival" }
         ]
       },
       {
         "type": "Knowledges",
         "abilities": [
-          { "name": "Academics" },
-          { "name": "Computers" },
-          { "name": "Finance" },
-          { "name": "Investigation" },
-          { "name": "Law" },
-          { "name": "Medicine" },
-          { "name": "Occult" },
-          { "name": "Politics" },
-          { "name": "Science" },
-          { "name": "Technology" }
+          { "name": "academics", "text": "Academics" },
+          { "name": "computers", "text": "Computers" },
+          { "name": "finance", "text": "Finance" },
+          { "name": "investigation", "text": "Investigation" },
+          { "name": "law", "text": "Law" },
+          { "name": "medicine", "text": "Medicine" },
+          { "name": "occult", "text": "Occult" },
+          { "name": "politics", "text": "Politics" },
+          { "name": "science", "text": "Science" },
+          { "name": "technology", "text": "Technology" }
         ]
       }
     ]
@@ -150,6 +150,16 @@
                   "generation": 12,
                   "concept": "Something simple for me to show off",
                   "lastSelectedNote": null,
+                  "stats": {
+                    "strength": {
+                      "value": 2,
+                      "advantage": null
+                    },
+                    "dexterity": {
+                      "value": 1,
+                      "advantage": "xyz"
+                    }
+                  },
                   "notes": [
                     {
                       "id": "note_a1",
