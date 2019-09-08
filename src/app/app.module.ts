@@ -7,6 +7,8 @@ import { CommonMaterialModule } from "./core/common-material.module";
 import { AppComponent } from "./app.view";
 import { NavBarComponent } from "./core/components/nav-bar.component";
 import { ReactiveFormsModule } from "@angular/forms";
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent, NavBarComponent],
@@ -15,7 +17,8 @@ import { ReactiveFormsModule } from "@angular/forms";
     AppRoutingModule,
     CommonMaterialModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

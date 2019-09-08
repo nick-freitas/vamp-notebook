@@ -1,5 +1,6 @@
 export interface StatField {
   name: string;
+  text: string;
   maxDots?: number;
   dots?: number;
   hasAdvantage?: boolean;

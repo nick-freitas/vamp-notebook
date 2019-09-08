@@ -50,7 +50,8 @@ import {
     MatToolbarModule,
     MatCardModule,
     MatDividerModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSnackBarModule
   ],
   exports: [
     // cdk
@@ -75,7 +76,8 @@ import {
     MatToolbarModule,
     MatCardModule,
     MatDividerModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSnackBarModule
   ]
 })
 export class CommonMaterialModule {}

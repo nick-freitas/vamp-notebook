@@ -1,4 +1,6 @@
 import { Component, ChangeDetectionStrategy } from "@angular/core";
+import { StateService } from "./core/state.service";
+import { MatSnackBar } from "@angular/material";
 
 @Component({
   selector: "app-root",
@@ -14,7 +16,7 @@ import { Component, ChangeDetectionStrategy } from "@angular/core";
         display: grid;
         height: 100%;
 
-       /* this isnt going to work on mobile */
+        /* this isnt going to work on mobile */
         grid:
           "nav-bar" 64px
           "main";
@@ -31,4 +33,28 @@ import { Component, ChangeDetectionStrategy } from "@angular/core";
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent {}
+export class AppComponent {
+  constructor(private snackBar: MatSnackBar, private state: StateService) {
+    this.state.updateAvailable$.subscribe(
+      updateAvailable => updateAvailable && this.promptForUpdate()
+    );
+  }
+
+  promptForUpdate() {
+    const updateMessage = "There is a new version of the application available";
+    const actionMessage = "Reload";
+    const config = { duration: 60 * 1000 };
+    const snackBarRef = this.snackBar.open(
+      updateMessage,
+      actionMessage,
+      config
+    );
+
+    snackBarRef
+      .afterDismissed()
+      .subscribe(
+        dismissed =>
+          dismissed.dismissedByAction && this.state.updateApplication()
+      );
+  }
+}

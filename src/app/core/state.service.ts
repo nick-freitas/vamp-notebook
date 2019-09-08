@@ -5,6 +5,7 @@ import { Subject, BehaviorSubject } from "rxjs";
 import { map, filter } from "rxjs/operators";
 import * as StateTypes from "./state.types";
 import stateJSON from "../../assets/initial-state.json";
+import { SwUpdate, UpdateAvailableEvent } from "@angular/service-worker";
 
 const initialState: StateTypes.TopLevel = stateJSON;
 
@@ -22,6 +23,7 @@ export class StateService {
   readonly isCharacterListSidenavOpen$: Subject<boolean>;
   readonly isNoteListSidenavOpen$: Subject<boolean>;
   readonly isMobile$: Subject<boolean>;
+  readonly updateAvailable$: Subject<boolean>;
 
   private user: StateTypes.User;
   private selectedChronicle: StateTypes.Chronicle;
@@ -32,7 +34,8 @@ export class StateService {
 
   constructor(
     private router: Router,
-    private breakpointObserver: BreakpointObserver
+    private breakpointObserver: BreakpointObserver,
+    private updates: SwUpdate
   ) {
     this.characterSheetFields$ = new BehaviorSubject(null);
     this.chronicleList$ = new BehaviorSubject(null);
@@ -46,6 +49,7 @@ export class StateService {
     this.isCharacterListSidenavOpen$ = new BehaviorSubject(null);
     this.isNoteListSidenavOpen$ = new BehaviorSubject(null);
     this.isMobile$ = new BehaviorSubject(null);
+    this.updateAvailable$ = new BehaviorSubject(null);
 
     this.user = initialState.users[0];
 
@@ -158,6 +162,13 @@ export class StateService {
 
         this.isMobile$.next(!isDesktop);
       });
+
+    // * updates
+    if (this.updates.isEnabled) {
+      this.updates.available.subscribe(event =>
+        this.updateAvailable$.next(event.current !== event.available)
+      );
+    }
   }
 
   updateUserState() {
@@ -270,5 +281,9 @@ export class StateService {
   toggleNoteListSidenav() {
     this.isNoteListSidenavOpen = !this.isNoteListSidenavOpen;
     this.isNoteListSidenavOpen$.next(this.isNoteListSidenavOpen);
+  }
+
+  updateApplication() {
+    this.updates.activateUpdate().then(() => document.location.reload());
   }
 }
