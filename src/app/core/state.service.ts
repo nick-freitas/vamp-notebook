@@ -31,6 +31,7 @@ export class StateService {
   private selectedNote: StateTypes.Note;
   private isCharacterListSidenavOpen: boolean;
   private isNoteListSidenavOpen: boolean;
+  private isMobile: boolean;
 
   constructor(
     private router: Router,
@@ -160,7 +161,9 @@ export class StateService {
         this.isCharacterListSidenavOpen$.next(this.isCharacterListSidenavOpen);
         this.isNoteListSidenavOpen$.next(this.isNoteListSidenavOpen);
 
-        this.isMobile$.next(!isDesktop);
+        this.isMobile = !isDesktop;
+
+        this.isMobile$.next(this.isMobile);
       });
 
     // * updates
@@ -258,8 +261,11 @@ export class StateService {
     this.isCharacterListSidenavOpen$.next(this.isCharacterListSidenavOpen);
   }
 
-  closeCharacterListSidenav() {
-    this.isCharacterListSidenavOpen = false;
+  closeCharacterListSidenav(mobileOnly: boolean = false) {
+    if (mobileOnly && this.isMobile && this.isCharacterListSidenavOpen) {
+      this.isCharacterListSidenavOpen = false;
+    }
+    
     this.isCharacterListSidenavOpen$.next(this.isCharacterListSidenavOpen);
   }
 
@@ -273,8 +279,11 @@ export class StateService {
     this.isNoteListSidenavOpen$.next(this.isNoteListSidenavOpen);
   }
 
-  closeNoteListSidenav() {
-    this.isNoteListSidenavOpen = false;
+  closeNoteListSidenav(mobileOnly: boolean = false) {
+    if (mobileOnly && this.isMobile && this.isNoteListSidenavOpen) {
+      this.isNoteListSidenavOpen = false;
+    }
+
     this.isNoteListSidenavOpen$.next(this.isNoteListSidenavOpen);
   }
 

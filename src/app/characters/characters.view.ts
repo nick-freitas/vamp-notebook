@@ -65,6 +65,11 @@ import { StateService } from "../core/state.service";
         display: flex;
         margin-top: 16px;
       }
+
+      mat-sidenav {
+        position: fixed;
+        top: 64px;
+      }
     `
   ],
   changeDetection: ChangeDetectionStrategy.OnPush

@@ -9,7 +9,9 @@ import { StateService } from "src/app/core/state.service";
         <a
           mat-list-item
           [class.selected-menu-item]="!(state.selectedNote$ | async)"
-          (click)="state.changeSelectedNote(null)"
+          (click)="
+            state.changeSelectedNote(null); state.closeNoteListSidenav(true)
+          "
         >
           Character Sheet
         </a>
@@ -19,7 +21,9 @@ import { StateService } from "src/app/core/state.service";
           [class.selected-menu-item]="
             note?.id === (state.selectedNote$ | async)?.id
           "
-          (click)="state.changeSelectedNote(note)"
+          (click)="
+            state.changeSelectedNote(note); state.closeNoteListSidenav(true)
+          "
         >
           {{ note.title }}
         </a>

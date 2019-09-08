@@ -16,6 +16,7 @@ import { SheetHeaderComponent } from "./components/sheet-header.component";
 import { SheetAttributesComponent } from "./components/sheet-attributes.component";
 import { SheetAbilitiesComponent } from "./components/sheet-abilities.component";
 import { SingleStatComponent } from "./components/single-stat.component";
+import { CharacterPortraitComponent } from "./components/character-portrait.component";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { SingleStatComponent } from "./components/single-stat.component";
     SheetHeaderComponent,
     SheetAttributesComponent,
     SheetAbilitiesComponent,
-    SingleStatComponent
+    SingleStatComponent,
+    CharacterPortraitComponent
   ],
   imports: [
     CommonModule,

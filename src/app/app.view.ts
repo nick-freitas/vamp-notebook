@@ -28,6 +28,11 @@ import { MatSnackBar } from "@angular/material";
 
       app-nav-bar {
         grid-area: nav-bar;
+
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
       }
     `
   ],

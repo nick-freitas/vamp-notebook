@@ -1,0 +1,25 @@
+<app-character-portrait></app-character-portrait>
+<app-sheet-header
+  id="core-header"
+  [headerFieldList]="(state.characterSheetFields$ | async).coreHeaderFieldList"
+></app-sheet-header>
+<app-sheet-header
+  id="sub-header"
+  [headerFieldList]="(state.characterSheetFields$ | async).subHeaderFieldList"
+></app-sheet-header>
+<app-sheet-header
+  id="concept-header"
+  [headerFieldList]="
+    (state.characterSheetFields$ | async).conceptHeaderFieldList
+  "
+></app-sheet-header>
+<app-sheet-attributes
+  [attributesFieldList]="
+    (state.characterSheetFields$ | async).attributesFieldList
+  "
+></app-sheet-attributes>
+<app-sheet-abilities
+  [abilitiesFieldList]="
+    (state.characterSheetFields$ | async).abilitiesFieldList
+  "
+></app-sheet-abilities>

@@ -21,7 +21,10 @@ import { StateService } from "src/app/core/state.service";
             [class.selected-menu-item]="
               character.id === (state.selectedCharacter$ | async).id
             "
-            (click)="state.changeSelectedCharacter(character)"
+            (click)="
+              state.changeSelectedCharacter(character);
+              state.closeCharacterListSidenav(true)
+            "
           >
             {{ character.name }}
           </a>

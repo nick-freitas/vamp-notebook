@@ -97,7 +97,7 @@ export interface Character {
   generation: number;
   concept: string;
   lastSelectedNote: null | string;
-  stats?: Stats;
+  stats: Stats;
   notes: Note[];
 }
 
@@ -109,8 +109,8 @@ export interface Note {
 }
 
 export interface Stats {
-  strength: Dexterity;
-  dexterity: Dexterity;
+  strength?: Dexterity;
+  dexterity?: Dexterity;
 }
 
 export interface Dexterity {
