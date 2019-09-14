@@ -1,0 +1,29 @@
+<ng-container *ngIf="state.selectedCharacter$ | async as char">
+  <span id="char-name">{{ char.name || "temp place holder" }}</span>
+  <span id="char-nature">{{ char.nature || "temp place holder" }}</span>
+  <span id="char-clan">{{ char.clan || "temp place holder" }}</span>
+
+  <span id="char-player">{{ char.player || "temp place holder" }}</span>
+  <span id="char-demeanor">{{ char.demeanor || "temp place holder" }}</span>
+  <span id="char-generation">{{ char.generation || "temp place holder" }}</span>
+
+  <span id="char-chronicle">{{ char.chronicle || "temp place holder" }}</span>
+  <span id="char-concept">{{ char.concept || "temp place holder" }}</span>
+  <span id="char-sire">{{ char.sire || "temp place holder" }}</span>
+
+  <ng-container *ngFor="let dot of dots">
+    <ng-container *ngFor="let _ of [].constructor(5); let value = index">
+      <span
+        [class]="
+          'dot dot-row-' +
+          dot.row +
+          ' dot-column-' +
+          dot.column +
+          ' dot-value-' +
+          value
+        "
+        *ngIf="char.stats[dot.name]?.value > value"
+      ></span>
+    </ng-container>
+  </ng-container>
+</ng-container>

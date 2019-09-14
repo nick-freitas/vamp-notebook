@@ -3,35 +3,7 @@ import { StateService } from "src/app/core/state.service";
 
 @Component({
   selector: "app-character-portrait",
-  template: `
-    <mat-card class="upload-character-portrait-card">
-      <mat-card-content>
-        <ng-container
-          *ngIf="
-            (state.selectedCharacter$ | async)?.imageUrl?.length;
-            then hasImageLoaded;
-            else needToUploadImage
-          "
-        ></ng-container>
-        <ng-template #hasImageLoaded>
-          <img
-            class="character-portrait"
-            [src]="(state.selectedCharacter$ | async)?.imageUrl"
-            alt="Character Portrait"
-          />
-        </ng-template>
-        <ng-template #needToUploadImage> UPLOAD CHARACTER PORTRAIT</ng-template>
-      </mat-card-content>
-      <mat-action-list>
-        <button mat-button>
-          UPLOAD
-        </button>
-        <button mat-button color="warn">
-          REMOVE
-        </button>
-      </mat-action-list>
-    </mat-card>
-  `,
+  templateUrl: "./character-portrait.component.html",
   styles: [
     `
       img {
@@ -46,8 +18,6 @@ import { StateService } from "src/app/core/state.service";
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CharacterPortraitComponent implements OnInit {
+export class CharacterPortraitComponent {
   constructor(public state: StateService) {}
-
-  ngOnInit() {}
 }

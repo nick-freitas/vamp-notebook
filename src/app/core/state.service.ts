@@ -9,11 +9,25 @@ import { SwUpdate, UpdateAvailableEvent } from "@angular/service-worker";
 
 const initialState: StateTypes.TopLevel = stateJSON;
 
+/*
+    const a =[  { name: "charisma", row: 0, column: 1 },
+      { name: "manipulation", row: 1, column: 1 },
+      { name: "appearance", row: 2, column: 1 },
+
+      { name: "perception", row: 0, column: 2 },
+      { name: "intelligence", row: 1, column: 2 },
+      { name: "wits", row: 2, column: 2 }].map(x=>x.name);
+  const b = {};
+  a.forEach(x => (b[x] = {value: 5, advantage: null}));
+  JSON.stringify(b).slice(2, -1)
+ */
+
 @Injectable({
   providedIn: "root"
 })
 export class StateService {
-  readonly characterSheetFields$: Subject<StateTypes.CharacterSheetFields>;
+  readonly configs$: Subject<StateTypes.Configs>;
+  readonly defaults$: Subject<StateTypes.Defaults>;
   readonly chronicleList$: Subject<StateTypes.Chronicle[]>;
   readonly selectedChronicle$: Subject<StateTypes.Chronicle>;
   readonly selectedCharacter$: Subject<StateTypes.Character>;
@@ -23,6 +37,7 @@ export class StateService {
   readonly isCharacterListSidenavOpen$: Subject<boolean>;
   readonly isNoteListSidenavOpen$: Subject<boolean>;
   readonly isMobile$: Subject<boolean>;
+  readonly isPrint$: Subject<boolean>;
   readonly updateAvailable$: Subject<boolean>;
 
   private user: StateTypes.User;
@@ -32,13 +47,15 @@ export class StateService {
   private isCharacterListSidenavOpen: boolean;
   private isNoteListSidenavOpen: boolean;
   private isMobile: boolean;
+  private isPrint: boolean;
 
   constructor(
     private router: Router,
     private breakpointObserver: BreakpointObserver,
     private updates: SwUpdate
   ) {
-    this.characterSheetFields$ = new BehaviorSubject(null);
+    this.configs$ = new BehaviorSubject(null);
+    this.defaults$ = new BehaviorSubject(null);
     this.chronicleList$ = new BehaviorSubject(null);
     this.selectedChronicle$ = new BehaviorSubject(null);
     this.selectedCharacter$ = new BehaviorSubject(null);
@@ -50,6 +67,7 @@ export class StateService {
     this.isCharacterListSidenavOpen$ = new BehaviorSubject(null);
     this.isNoteListSidenavOpen$ = new BehaviorSubject(null);
     this.isMobile$ = new BehaviorSubject(null);
+    this.isPrint$ = new BehaviorSubject(null);
     this.updateAvailable$ = new BehaviorSubject(null);
 
     this.user = initialState.users[0];
@@ -58,7 +76,8 @@ export class StateService {
   }
 
   private initializeSubscriptions() {
-    this.characterSheetFields$.next(initialState.characterSheetFields);
+    this.configs$.next(initialState.configs);
+    this.defaults$.next(initialState.defaults);
 
     // * chronicleList$
     this.chronicleList$.next(this.user.chronicles);
@@ -166,6 +185,16 @@ export class StateService {
         this.isMobile$.next(this.isMobile);
       });
 
+    // * is print
+    this.breakpointObserver
+      .observe(["print"])
+      .pipe(map(result => result.matches))
+      .subscribe(isPrint => {
+        this.isPrint = isPrint;
+
+        this.isPrint$.next(this.isPrint);
+      });
+
     // * updates
     if (this.updates.isEnabled) {
       this.updates.available.subscribe(event =>
@@ -265,7 +294,7 @@ export class StateService {
     if (mobileOnly && this.isMobile && this.isCharacterListSidenavOpen) {
       this.isCharacterListSidenavOpen = false;
     }
-    
+
     this.isCharacterListSidenavOpen$.next(this.isCharacterListSidenavOpen);
   }
 
@@ -294,5 +323,11 @@ export class StateService {
 
   updateApplication() {
     this.updates.activateUpdate().then(() => document.location.reload());
+  }
+
+  updateCharacterSheet(formGroup) {
+    this.changeSelectedCharacter(
+      Object.assign({}, this.selectedCharacter, formGroup)
+    );
   }
 }

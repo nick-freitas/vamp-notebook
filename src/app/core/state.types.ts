@@ -11,7 +11,7 @@ export interface SheetHeaderFields {
   text: string;
   name: string;
   inputType?: string;
-  selectionOptionList?: any[];
+  options?: any[];
   editWarning?: string;
 }
 
@@ -29,42 +29,56 @@ export interface SheetAbilitiesField {
 
 export interface TopLevel {
   defaults: Defaults;
-  characterSheetFields: CharacterSheetFields;
+  configs: Configs;
   users: User[];
 }
 
+export interface Configs {
+  characterSheetFields: CharacterSheetFields;
+  showPortraits: boolean;
+}
+
 export interface CharacterSheetFields {
-  coreHeaderFieldList: HeaderFieldList[];
-  subHeaderFieldList: SubHeaderFieldList[];
-  conceptHeaderFieldList: HeaderFieldList[];
+  headerFieldList: HeaderFieldList[];
   attributesFieldList: AttributesFieldList[];
   abilitiesFieldList: AbilitiesFieldList[];
 }
 
 export interface AbilitiesFieldList {
   type: string;
-  abilities: SubHeaderFieldList[];
+  abilities: Ability[];
 }
 
-export interface SubHeaderFieldList {
+export interface Ability {
   name: string;
   text: string;
 }
 
 export interface AttributesFieldList {
   type: string;
-  attributes: SubHeaderFieldList[];
+  attributes: Ability[];
 }
 
 export interface HeaderFieldList {
   name: string;
   text: string;
-  inputType?: string;
   editWarning?: string;
+  inputType?: string;
+  options?: Option[];
+}
+
+export interface Option {
+  text: string;
+  value: number | string;
 }
 
 export interface Defaults {
-  clans: string[];
+  clans: DefaultsClan[];
+}
+
+export interface DefaultsClan {
+  name: string;
+  disciplines: string[];
 }
 
 export interface User {
@@ -78,10 +92,10 @@ export interface Chronicle {
   id: string;
   name: string;
   lastSelectedCharacter: null | string;
-  clans: Clan[];
+  clans: ChronicleClan[];
 }
 
-export interface Clan {
+export interface ChronicleClan {
   name: string;
   characters: Character[];
 }
@@ -109,11 +123,18 @@ export interface Note {
 }
 
 export interface Stats {
-  strength?: Dexterity;
-  dexterity?: Dexterity;
+  strength?: Appearance;
+  dexterity?: Appearance;
+  stamina?: Appearance;
+  charisma?: Appearance;
+  manipulation?: Appearance;
+  appearance?: Appearance;
+  perception?: Appearance;
+  intelligence?: Appearance;
+  wits?: Appearance;
 }
 
-export interface Dexterity {
+export interface Appearance {
   value: number;
   advantage: null | string;
 }

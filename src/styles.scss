@@ -6,11 +6,13 @@ body {
   height: 100vh;
 }
 
+mat-card.mat-card {
+  border-radius: 0;
+}
+
 .content-block {
-  // overflow-y: auto;
   padding: 32px 64px;
   display: grid;
-  // height: calc(100vh - 128px);
   box-sizing: border-box;
 }
 
@@ -27,11 +29,22 @@ body {
   }
 }
 
-.character-sheet-card {
-  &,
-  &.mat-card {
+mat-card.character-sheet-card {
+  width: 100%;
+  box-sizing: border-box;
+
+  .mat-card-header-text {
+    margin: 0;
+
+    mat-card-title.mat-card-title {
+      font-size: 1.5em;
+    }
+  }
+
+  mat-card-content,
+  mat-card-content form {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: 16px;
   }
 }

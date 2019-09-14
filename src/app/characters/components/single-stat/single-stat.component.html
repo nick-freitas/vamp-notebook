@@ -1,0 +1,27 @@
+<div>
+  {{ stat.text }}
+</div>
+<div class="dot-group">
+  <button
+    mat-icon-button
+    *ngFor="let dot of [].constructor(stat.maxDots || 5); let i = index"
+    (click)="state.changeStatDots(stat.name, i + 1)"
+  >
+    <ng-container
+      *ngIf="
+        (state.selectedCharacter$ | async).stats[stat.name]?.value > i;
+        then filled;
+        else blank
+      "
+    ></ng-container>
+    <ng-template #filled>
+      <mat-icon>star</mat-icon>
+    </ng-template>
+    <ng-template #blank>
+      <mat-icon>star_border</mat-icon>
+    </ng-template>
+  </button>
+</div>
+<mat-form-field>
+  <input matInput [placeholder]="stat.text + ' Profiency'" />
+</mat-form-field>

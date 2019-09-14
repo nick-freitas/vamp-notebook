@@ -1,0 +1,96 @@
+:host {
+  background-image: url("src/assets/character-sheet.png");
+  height: 10.6in;
+  width: 8.2in;
+  position: absolute;
+}
+
+span {
+  position: absolute;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+// header - first
+%first-header-line {
+  top: 41mm;
+}
+#char-name {
+  @extend %first-header-line;
+  left: 33mm;
+  max-width: 42mm;
+}
+#char-nature {
+  @extend %first-header-line;
+  left: 94mm;
+  max-width: 40mm;
+}
+#char-clan {
+  @extend %first-header-line;
+  left: 147mm;
+  max-width: 44mm;
+}
+
+// header - second
+%second-header-line {
+  top: 47mm;
+}
+#char-player {
+  @extend %second-header-line;
+  left: 37mm;
+  max-width: 40mm;
+}
+#char-demeanor {
+  @extend %second-header-line;
+  left: 99mm;
+  max-width: 36mm;
+}
+#char-generation {
+  @extend %second-header-line;
+  left: 160mm;
+  max-width: 30mm;
+}
+
+// header - third
+%third-header-line {
+  top: 53mm;
+}
+#char-chronicle {
+  @extend %third-header-line;
+  left: 43mm;
+  max-width: 34mm;
+}
+#char-concept {
+  @extend %third-header-line;
+  left: 96mm;
+  max-width: 38mm;
+}
+#char-sire {
+  @extend %third-header-line;
+  left: 145mm;
+  max-width: 44mm;
+}
+
+.dot {
+  height: 12px;
+  width: 9px;
+  background-color: black;
+  border-radius: 50%;
+  /* display: inline-block; */
+  position: absolute;
+}
+
+@for $i from 0 to 3 {
+  .dot-row-#{$i} {
+    top: 274 + $i * 18 + px;
+  }
+
+  .dot-column-#{$i} {
+    @for $j from 0 to 5 {
+      &.dot-value-#{$j} {
+        left: 188 + $i * 218 + 11 * $j + px;
+      }
+    }
+  }
+}

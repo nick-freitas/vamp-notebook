@@ -21,7 +21,8 @@ import {
   MatToolbarModule,
   MatCardModule,
   MatDividerModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatTabsModule
 } from "@angular/material";
 
 @NgModule({
@@ -51,7 +52,8 @@ import {
     MatCardModule,
     MatDividerModule,
     MatCheckboxModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTabsModule
   ],
   exports: [
     // cdk
@@ -77,7 +79,8 @@ import {
     MatCardModule,
     MatDividerModule,
     MatCheckboxModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTabsModule
   ]
 })
 export class CommonMaterialModule {}

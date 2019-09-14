@@ -1,0 +1,26 @@
+<mat-sidenav-container autosize>
+  <mat-sidenav
+    [mode]="(state.isMobile$ | async) ? 'over' : 'side'"
+    [opened]="state.isCharacterListSidenavOpen$ | async"
+    (closed)="state.closeCharacterListSidenav()"
+  >
+    <app-sidenav-character-list></app-sidenav-character-list>
+  </mat-sidenav>
+  <mat-sidenav
+    [mode]="(state.isMobile$ | async) ? 'over' : 'side'"
+    [opened]="state.isNoteListSidenavOpen$ | async"
+    (closed)="state.closeNoteListSidenav()"
+    position="end"
+  >
+    <app-sidenav-note-list></app-sidenav-note-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="main-sidenav-content">
+    <div class="content-block">
+      <app-character-sheet
+        *ngIf="!(state.selectedNote$ | async)"
+      ></app-character-sheet>
+      <app-note-editor *ngIf="state.selectedNote$ | async"></app-note-editor>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

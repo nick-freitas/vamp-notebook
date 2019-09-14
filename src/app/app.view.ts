@@ -18,8 +18,16 @@ import { MatSnackBar } from "@angular/material";
 
         /* this isnt going to work on mobile */
         grid:
-          "nav-bar" 64px
+          "nav-bar"
           "main";
+
+        grid-template-rows: 56px auto;
+      }
+
+      @media (min-width: 600px) {
+        :host {
+          grid-template-rows: 64px auto;
+        }
       }
 
       main {
@@ -33,6 +41,12 @@ import { MatSnackBar } from "@angular/material";
         top: 0;
         left: 0;
         right: 0;
+      }
+
+      @media print {
+        :host {
+          grid: "main";
+        }
       }
     `
   ],
