@@ -1,129 +1,351 @@
 {
   "defaults": {
     "clans": [
-      "Clan Assamite",
-      "Clan Brujah",
-      "Followers of Set",
-      "Clan Gangrel",
-      "Clan Giovanni",
-      "Clan Lasombra",
-      "Clan Malkavian",
-      "Clan Nosferatu",
-      "Clan Ravnos",
-      "Clan Toreador",
-      "Clan Tremere",
-      "Clan Tzimisce",
-      "Clan Ventrue"
+      {
+        "name": "Clan Assamite",
+        "disciplines": ["Celerity", "Obfuscate", "Quietus"]
+      },
+      {
+        "name": "Clan Brujah",
+        "disciplines": ["Celerity", "Potence", "Presence"]
+      },
+      {
+        "name": "Followers of Set",
+        "disciplines": ["Obfuscate", "Presence", "Serpentis"]
+      },
+      {
+        "name": "Clan Gangrel",
+        "disciplines": ["Animalism", "Fortitude", "Protean"]
+      },
+      {
+        "name": "Clan Giovanni",
+        "disciplines": ["Dominate", "Necromancy", "Potence"]
+      },
+      {
+        "name": "Clan Lasombra",
+        "disciplines": ["Dominate", "Obtenebration", "Potence"]
+      },
+      {
+        "name": "Clan Malkavian",
+        "disciplines": ["Auspex", "Dominate", "Obfuscate"]
+      },
+      {
+        "name": "Clan Nosferatu",
+        "disciplines": ["Animalism", "Obfuscate", "Potence"]
+      },
+      {
+        "name": "Clan Ravnos",
+        "disciplines": ["Animalism", "Chimerstry", "Fortitude"]
+      },
+      {
+        "name": "Clan Toreador",
+        "disciplines": ["Auspex", "Celerity", "Presence"]
+      },
+      {
+        "name": "Clan Tremere",
+        "disciplines": ["Auspex", "Dominate", "Thaumaturgy"]
+      },
+      {
+        "name": "Clan Tzimisce",
+        "disciplines": ["Animalism", "Auspex", "Vicissitude"]
+      },
+      {
+        "name": "Clan Ventrue",
+        "disciplines": ["Dominate", "Fortitude", "Presence"]
+      }
     ]
   },
-  "characterSheetFields": {
-    "coreHeaderFieldList": [
-      {
-        "name": "name",
-        "text": "Name"
-      },
-      {
-        "name": "generation",
-        "text": "Generation",
-        "editWarning": "Changing this might cause abilities to reset",
-        "inputType": "number"
-      },
-      {
-        "name": "clan",
-        "text": "Clan",
-        "editWarning": "Changing this will cause Disciplines to reset"
-      }
-    ],
-    "subHeaderFieldList": [
-      {
-        "name": "demeanor",
-        "text": "Demeanor"
-      },
-      {
-        "name": "nature",
-        "text": "Nature"
-      },
-      {
-        "name": "sire",
-        "text": "Sire"
-      }
-    ],
-    "conceptHeaderFieldList": [
-      { "name": "concept", "text": "Concept", "inputType": "textarea" }
-    ],
-    "attributesFieldList": [
-      {
-        "type": "Physical",
-        "attributes": [
-          { "name": "strength", "text": "Strength" },
-          { "name": "dexterity", "text": "Dexterity" },
-          { "name": "stamina", "text": "Stamina" }
-        ]
-      },
-      {
-        "type": "Social",
-        "attributes": [
-          { "name": "charisma", "text": "Charisma" },
-          { "name": "manipulation", "text": "Manipulation" },
-          { "name": "apperance", "text": "Apperance" }
-        ]
-      },
-      {
-        "type": "Mental",
-        "attributes": [
-          { "name": "perception", "text": "Perception" },
-          { "name": "intelligence", "text": "Intelligence" },
-          { "name": "wits", "text": "Wits" }
-        ]
-      }
-    ],
-    "abilitiesFieldList": [
-      {
-        "type": "Talents",
-        "abilities": [
-          { "name": "alertness", "text": "Alertness" },
-          { "name": "athletics", "text": "Athletics" },
-          { "name": "awareness", "text": "Awareness" },
-          { "name": "brawl", "text": "Brawl" },
-          { "name": "empathy", "text": "Empathy" },
-          { "name": "expression", "text": "Expression" },
-          { "name": "intimidation", "text": "Intimidation" },
-          { "name": "leadership", "text": "Leadership" },
-          { "name": "streetwise", "text": "Streetwise" },
-          { "name": "subterfuge", "text": "Subterfuge" }
-        ]
-      },
-      {
-        "type": "Skills",
-        "abilities": [
-          { "name": "animal-ken", "text": "Animal Ken" },
-          { "name": "crafts", "text": "Crafts" },
-          { "name": "drive", "text": "Drive" },
-          { "name": "etiquette", "text": "Etiquette" },
-          { "name": "firearms", "text": "Firearms" },
-          { "name": "larceny", "text": "Larceny" },
-          { "name": "melee", "text": "Melee" },
-          { "name": "performance", "text": "Performance" },
-          { "name": "stealth", "text": "Stealth" },
-          { "name": "survival", "text": "Survival" }
-        ]
-      },
-      {
-        "type": "Knowledges",
-        "abilities": [
-          { "name": "academics", "text": "Academics" },
-          { "name": "computers", "text": "Computers" },
-          { "name": "finance", "text": "Finance" },
-          { "name": "investigation", "text": "Investigation" },
-          { "name": "law", "text": "Law" },
-          { "name": "medicine", "text": "Medicine" },
-          { "name": "occult", "text": "Occult" },
-          { "name": "politics", "text": "Politics" },
-          { "name": "science", "text": "Science" },
-          { "name": "technology", "text": "Technology" }
-        ]
-      }
-    ]
+  "configs": {
+    "characterSheetFields": {
+      "headerFieldList": [
+        {
+          "name": "name",
+          "text": "Name"
+        },
+        {
+          "name": "generation",
+          "text": "Generation",
+          "editWarning": "Changing this might cause abilities to reset",
+          "inputType": "select",
+          "options": [
+            { "text": "Second Generation", "value": 2 },
+            { "text": "Third Generation", "value": 3 },
+            { "text": "Fourth Generation", "value": 4 },
+            { "text": "Fifth Generation", "value": 5 },
+            { "text": "Sixth Generation", "value": 6 },
+            { "text": "Seventh Generation", "value": 7 },
+            { "text": "Eigth Generation", "value": 8 },
+            { "text": "Ninth Generation", "value": 9 },
+            { "text": "Tenth Generation", "value": 10 },
+            { "text": "Eleven Generation", "value": 11 },
+            { "text": "Twelve Generation", "value": 12 },
+            { "text": "Thirteenth Generation", "value": 13 },
+            { "text": "Furteenth Generation", "value": 14 },
+            { "text": "Fifteenth Generation", "value": 15 },
+            { "text": "Sixteenth Generation", "value": 16 }
+          ]
+        },
+        {
+          "name": "clan",
+          "text": "Clan",
+          "editWarning": "Changing this will cause Disciplines to reset",
+          "inputType": "select",
+          "options": [
+            { "text": "Clan Assamite", "value": "Clan Assamite" },
+            { "text": "Clan Brujah", "value": "Clan Brujah" },
+            { "text": "Followers of Set", "value": "Followers of Set" },
+            { "text": "Clan Gangrel", "value": "Clan Gangrel" },
+            { "text": "Clan Giovanni", "value": "Clan Giovanni" },
+            { "text": "Clan Lasombra", "value": "Clan Lasombra" },
+            { "text": "Clan Malkavian", "value": "Clan Malkavian" },
+            { "text": "Clan Nosferatu", "value": "Clan Nosferatu" },
+            { "text": "Clan Ravnos", "value": "Clan Ravnos" },
+            { "text": "Clan Toreador", "value": "Clan Toreador" },
+            { "text": "Clan Tremere", "value": "Clan Tremere" },
+            { "text": "Clan Tzimisce", "value": "Clan Tzimisce" },
+            { "text": "Clan Ventrue", "value": "Clan Ventrue" }
+          ]
+        },
+        {
+          "name": "demeanor",
+          "text": "Demeanor",
+          "inputType": "select",
+          "options": [
+            { "text": "Addict", "value": "Addict" },
+            { "text": "Adherent", "value": "Adherent" },
+            { "text": "Adjudicator", "value": "Adjudicator" },
+            { "text": "Alpha", "value": "Alpha" },
+            { "text": "Architect", "value": "Architect" },
+            { "text": "Artiste", "value": "Artiste" },
+            { "text": "Autocrat", "value": "Autocrat" },
+            { "text": "Barbarian", "value": "Barbarian" },
+            { "text": "Benefactor", "value": "Benefactor" },
+            { "text": "Beta", "value": "Beta" },
+            { "text": "Bon Vivant", "value": "Bon Vivant" },
+            { "text": "Bravo", "value": "Bravo" },
+            { "text": "Capitalist", "value": "Capitalist" },
+            { "text": "Caregiver", "value": "Caregiver" },
+            { "text": "Caretaker", "value": "Caretaker" },
+            { "text": "Celebrant", "value": "Celebrant" },
+            { "text": "Chameleon", "value": "Chameleon" },
+            { "text": "Child", "value": "Child" },
+            { "text": "Competitor", "value": "Competitor" },
+            { "text": "Conformist", "value": "Conformist" },
+            { "text": "Conniver", "value": "Conniver" },
+            { "text": "Coward", "value": "Coward" },
+            { "text": "Creep Show", "value": "Creep Show" },
+            { "text": "Crusader", "value": "Crusader" },
+            { "text": "Curmudgeon", "value": "Curmudgeon" },
+            { "text": "Dabbler", "value": "Dabbler" },
+            { "text": "Defender", "value": "Defender" },
+            { "text": "Deviant", "value": "Deviant" },
+            { "text": "Devil’s Advocate", "value": "Devil’s Advocate" },
+            { "text": "Director", "value": "Director" },
+            { "text": "Enigma", "value": "Enigma" },
+            { "text": "Explorer", "value": "Explorer" },
+            { "text": "Eye of the Storm", "value": "Eye of the Storm" },
+            { "text": "Fanatic", "value": "Fanatic" },
+            { "text": "Fatalist", "value": "Fatalist" },
+            { "text": "Futurist", "value": "Futurist" },
+            { "text": "Gallant", "value": "Gallant" },
+            { "text": "Gambler", "value": "Gambler" },
+            { "text": "Guru", "value": "Guru" },
+            { "text": "Heretic", "value": "Heretic" },
+            { "text": "Hunter", "value": "Hunter" },
+            { "text": "Idealist", "value": "Idealist" },
+            { "text": "Judge", "value": "Judge" },
+            { "text": "Loner", "value": "Loner" },
+            { "text": "Machine", "value": "Machine" },
+            { "text": "Maniac", "value": "Maniac" },
+            { "text": "Martyr", "value": "Martyr" },
+            { "text": "Masochist", "value": "Masochist" },
+            { "text": "Meddler", "value": "Meddler" },
+            { "text": "Melancholic", "value": "Melancholic" },
+            { "text": "Monster", "value": "Monster" },
+            { "text": "Omega", "value": "Omega" },
+            { "text": "Outsider", "value": "Outsider" },
+            { "text": "Paragon", "value": "Paragon" },
+            { "text": "Pedagogue", "value": "Pedagogue" },
+            { "text": "Penitent", "value": "Penitent" },
+            { "text": "Perfectionist", "value": "Perfectionist" },
+            { "text": "Quaestor", "value": "Quaestor" },
+            { "text": "Rebel", "value": "Rebel" },
+            { "text": "Rogue", "value": "Rogue" },
+            { "text": "Sadist", "value": "Sadist" },
+            { "text": "Scientist", "value": "Scientist" },
+            { "text": "Seer", "value": "Seer" },
+            { "text": "Sociopath", "value": "Sociopath" },
+            { "text": "Soldier", "value": "Soldier" },
+            { "text": "Stoic", "value": "Stoic" },
+            { "text": "Survivor", "value": "Survivor" },
+            { "text": "Thrill-Seeker", "value": "Thrill-Seeker" },
+            { "text": "Traditionalist", "value": "Traditionalist" },
+            { "text": "Trickster", "value": "Trickster" },
+            { "text": "Tycoon", "value": "Tycoon" },
+            { "text": "Vigilante", "value": "Vigilante" },
+            { "text": "Visionary", "value": "Visionary" }
+          ]
+        },
+        {
+          "name": "nature",
+          "text": "Nature",
+          "inputType": "select",
+          "options": [
+            { "text": "Addict", "value": "Addict" },
+            { "text": "Adherent", "value": "Adherent" },
+            { "text": "Adjudicator", "value": "Adjudicator" },
+            { "text": "Alpha", "value": "Alpha" },
+            { "text": "Architect", "value": "Architect" },
+            { "text": "Artiste", "value": "Artiste" },
+            { "text": "Autocrat", "value": "Autocrat" },
+            { "text": "Barbarian", "value": "Barbarian" },
+            { "text": "Benefactor", "value": "Benefactor" },
+            { "text": "Beta", "value": "Beta" },
+            { "text": "Bon Vivant", "value": "Bon Vivant" },
+            { "text": "Bravo", "value": "Bravo" },
+            { "text": "Capitalist", "value": "Capitalist" },
+            { "text": "Caregiver", "value": "Caregiver" },
+            { "text": "Caretaker", "value": "Caretaker" },
+            { "text": "Celebrant", "value": "Celebrant" },
+            { "text": "Chameleon", "value": "Chameleon" },
+            { "text": "Child", "value": "Child" },
+            { "text": "Competitor", "value": "Competitor" },
+            { "text": "Conformist", "value": "Conformist" },
+            { "text": "Conniver", "value": "Conniver" },
+            { "text": "Coward", "value": "Coward" },
+            { "text": "Creep Show", "value": "Creep Show" },
+            { "text": "Crusader", "value": "Crusader" },
+            { "text": "Curmudgeon", "value": "Curmudgeon" },
+            { "text": "Dabbler", "value": "Dabbler" },
+            { "text": "Defender", "value": "Defender" },
+            { "text": "Deviant", "value": "Deviant" },
+            { "text": "Devil’s Advocate", "value": "Devil’s Advocate" },
+            { "text": "Director", "value": "Director" },
+            { "text": "Enigma", "value": "Enigma" },
+            { "text": "Explorer", "value": "Explorer" },
+            { "text": "Eye of the Storm", "value": "Eye of the Storm" },
+            { "text": "Fanatic", "value": "Fanatic" },
+            { "text": "Fatalist", "value": "Fatalist" },
+            { "text": "Futurist", "value": "Futurist" },
+            { "text": "Gallant", "value": "Gallant" },
+            { "text": "Gambler", "value": "Gambler" },
+            { "text": "Guru", "value": "Guru" },
+            { "text": "Heretic", "value": "Heretic" },
+            { "text": "Hunter", "value": "Hunter" },
+            { "text": "Idealist", "value": "Idealist" },
+            { "text": "Judge", "value": "Judge" },
+            { "text": "Loner", "value": "Loner" },
+            { "text": "Machine", "value": "Machine" },
+            { "text": "Maniac", "value": "Maniac" },
+            { "text": "Martyr", "value": "Martyr" },
+            { "text": "Masochist", "value": "Masochist" },
+            { "text": "Meddler", "value": "Meddler" },
+            { "text": "Melancholic", "value": "Melancholic" },
+            { "text": "Monster", "value": "Monster" },
+            { "text": "Omega", "value": "Omega" },
+            { "text": "Outsider", "value": "Outsider" },
+            { "text": "Paragon", "value": "Paragon" },
+            { "text": "Pedagogue", "value": "Pedagogue" },
+            { "text": "Penitent", "value": "Penitent" },
+            { "text": "Perfectionist", "value": "Perfectionist" },
+            { "text": "Quaestor", "value": "Quaestor" },
+            { "text": "Rebel", "value": "Rebel" },
+            { "text": "Rogue", "value": "Rogue" },
+            { "text": "Sadist", "value": "Sadist" },
+            { "text": "Scientist", "value": "Scientist" },
+            { "text": "Seer", "value": "Seer" },
+            { "text": "Sociopath", "value": "Sociopath" },
+            { "text": "Soldier", "value": "Soldier" },
+            { "text": "Stoic", "value": "Stoic" },
+            { "text": "Survivor", "value": "Survivor" },
+            { "text": "Thrill-Seeker", "value": "Thrill-Seeker" },
+            { "text": "Traditionalist", "value": "Traditionalist" },
+            { "text": "Trickster", "value": "Trickster" },
+            { "text": "Tycoon", "value": "Tycoon" },
+            { "text": "Vigilante", "value": "Vigilante" },
+            { "text": "Visionary", "value": "Visionary" }
+          ]
+        },
+        {
+          "name": "sire",
+          "text": "Sire"
+        }
+      ],
+      "attributesFieldList": [
+        {
+          "type": "Physical",
+          "attributes": [
+            { "name": "strength", "text": "Strength" },
+            { "name": "dexterity", "text": "Dexterity" },
+            { "name": "stamina", "text": "Stamina" }
+          ]
+        },
+        {
+          "type": "Social",
+          "attributes": [
+            { "name": "charisma", "text": "Charisma" },
+            { "name": "manipulation", "text": "Manipulation" },
+            { "name": "apperance", "text": "Apperance" }
+          ]
+        },
+        {
+          "type": "Mental",
+          "attributes": [
+            { "name": "perception", "text": "Perception" },
+            { "name": "intelligence", "text": "Intelligence" },
+            { "name": "wits", "text": "Wits" }
+          ]
+        }
+      ],
+      "abilitiesFieldList": [
+        {
+          "type": "Talents",
+          "abilities": [
+            { "name": "alertness", "text": "Alertness" },
+            { "name": "athletics", "text": "Athletics" },
+            { "name": "awareness", "text": "Awareness" },
+            { "name": "brawl", "text": "Brawl" },
+            { "name": "empathy", "text": "Empathy" },
+            { "name": "expression", "text": "Expression" },
+            { "name": "intimidation", "text": "Intimidation" },
+            { "name": "leadership", "text": "Leadership" },
+            { "name": "streetwise", "text": "Streetwise" },
+            { "name": "subterfuge", "text": "Subterfuge" }
+          ]
+        },
+        {
+          "type": "Skills",
+          "abilities": [
+            { "name": "animal-ken", "text": "Animal Ken" },
+            { "name": "crafts", "text": "Crafts" },
+            { "name": "drive", "text": "Drive" },
+            { "name": "etiquette", "text": "Etiquette" },
+            { "name": "firearms", "text": "Firearms" },
+            { "name": "larceny", "text": "Larceny" },
+            { "name": "melee", "text": "Melee" },
+            { "name": "performance", "text": "Performance" },
+            { "name": "stealth", "text": "Stealth" },
+            { "name": "survival", "text": "Survival" }
+          ]
+        },
+        {
+          "type": "Knowledges",
+          "abilities": [
+            { "name": "academics", "text": "Academics" },
+            { "name": "computers", "text": "Computers" },
+            { "name": "finance", "text": "Finance" },
+            { "name": "investigation", "text": "Investigation" },
+            { "name": "law", "text": "Law" },
+            { "name": "medicine", "text": "Medicine" },
+            { "name": "occult", "text": "Occult" },
+            { "name": "politics", "text": "Politics" },
+            { "name": "science", "text": "Science" },
+            { "name": "technology", "text": "Technology" }
+          ]
+        }
+      ]
+    },
+    "showPortraits": false
   },
   "users": [
     {
@@ -145,20 +367,30 @@
                   "clan": "Clan Toreador",
                   "imageUrl": "https://ksr-ugc.imgix.net/assets/023/013/173/16d2716416ac53332f8248e912c75259_original.jpg?ixlib=rb-2.1.0&w=680&fit=max&v=1540397758&auto=format&gif-q=50&q=92&s=bcc86fd3a579872bf713b43a06f13365",
                   "nature": "Conniver",
-                  "demeanor": "Guardian",
+                  "demeanor": "Trickster",
                   "sire": "Count Dracula",
                   "generation": 12,
                   "concept": "Something simple for me to show off",
                   "lastSelectedNote": null,
                   "stats": {
                     "strength": {
-                      "value": 2,
+                      "value": 5,
                       "advantage": null
                     },
                     "dexterity": {
-                      "value": 1,
+                      "value": 5,
                       "advantage": "xyz"
-                    }
+                    },
+                    "stamina": {
+                      "value": 5,
+                      "advantage": null
+                    },
+                    "charisma": { "value": 5, "advantage": null },
+                    "manipulation": { "value": 5, "advantage": null },
+                    "appearance": { "value": 5, "advantage": null },
+                    "perception": { "value": 5, "advantage": null },
+                    "intelligence": { "value": 3, "advantage": null },
+                    "wits": { "value": 5, "advantage": null }
                   },
                   "notes": [
                     {

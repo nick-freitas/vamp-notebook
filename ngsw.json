@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1567966899812,
+  "timestamp": 1568497202657,
   "index": "https://nick-freitas.github.io/vamp-notebook/index.html",
   "assetGroups": [
     {
@@ -8,21 +8,21 @@
       "installMode": "prefetch",
       "updateMode": "prefetch",
       "urls": [
-        "https://nick-freitas.github.io/vamp-notebook/4-es5.aaec2d20b49b5ef72769.js",
-        "https://nick-freitas.github.io/vamp-notebook/5-es2015.959df82621ae209477f4.js",
-        "https://nick-freitas.github.io/vamp-notebook/5-es5.fcebb426834aad7b8317.js",
-        "https://nick-freitas.github.io/vamp-notebook/6-es2015.464e9a9de9c0239c4a69.js",
-        "https://nick-freitas.github.io/vamp-notebook/common-es2015.80a421690c8dcc1d75b4.js",
-        "https://nick-freitas.github.io/vamp-notebook/common-es5.d2d130a0cbd0527fbe14.js",
+        "https://nick-freitas.github.io/vamp-notebook/1-es2015.0429af7dc680527e1498.js",
+        "https://nick-freitas.github.io/vamp-notebook/1-es5.b1a59c8053300df64c29.js",
+        "https://nick-freitas.github.io/vamp-notebook/4-es5.ab04282644ab79c46086.js",
+        "https://nick-freitas.github.io/vamp-notebook/5-es2015.67b54a7ae698050dd9ea.js",
+        "https://nick-freitas.github.io/vamp-notebook/5-es5.1151ddd8bf07109f629e.js",
+        "https://nick-freitas.github.io/vamp-notebook/6-es2015.75bd55645822044de966.js",
         "https://nick-freitas.github.io/vamp-notebook/favicon.ico",
         "https://nick-freitas.github.io/vamp-notebook/index.html",
-        "https://nick-freitas.github.io/vamp-notebook/main-es2015.dc6e36cc84e861d35b6d.js",
-        "https://nick-freitas.github.io/vamp-notebook/main-es5.561117b1c8821f29e7c5.js",
+        "https://nick-freitas.github.io/vamp-notebook/main-es2015.20b14b31e6c004107433.js",
+        "https://nick-freitas.github.io/vamp-notebook/main-es5.553c0d45b7faa5f079df.js",
         "https://nick-freitas.github.io/vamp-notebook/polyfills-es2015.48aea8121e617cba950b.js",
-        "https://nick-freitas.github.io/vamp-notebook/polyfills-es5.a6b79a6dc1b4b862c5f1.js",
-        "https://nick-freitas.github.io/vamp-notebook/runtime-es2015.191b75c9602f4e6a75b1.js",
-        "https://nick-freitas.github.io/vamp-notebook/runtime-es5.275839b228e2b1dbd588.js",
-        "https://nick-freitas.github.io/vamp-notebook/styles.dcaccfb2de222cbf83f4.css"
+        "https://nick-freitas.github.io/vamp-notebook/polyfills-es5.6cae81cf07dfd16b7b43.js",
+        "https://nick-freitas.github.io/vamp-notebook/runtime-es2015.ff2864178f6a053d83a0.js",
+        "https://nick-freitas.github.io/vamp-notebook/runtime-es5.364e66adcb4cf59675f8.js",
+        "https://nick-freitas.github.io/vamp-notebook/styles.a04bfebdcc51eada3010.css"
       ],
       "patterns": []
     },
@@ -31,6 +31,7 @@
       "installMode": "lazy",
       "updateMode": "prefetch",
       "urls": [
+        "https://nick-freitas.github.io/vamp-notebook/assets/character-sheet.png",
         "https://nick-freitas.github.io/vamp-notebook/assets/icons/icon-128x128.png",
         "https://nick-freitas.github.io/vamp-notebook/assets/icons/icon-144x144.png",
         "https://nick-freitas.github.io/vamp-notebook/assets/icons/icon-152x152.png",
@@ -39,17 +40,21 @@
         "https://nick-freitas.github.io/vamp-notebook/assets/icons/icon-512x512.png",
         "https://nick-freitas.github.io/vamp-notebook/assets/icons/icon-72x72.png",
         "https://nick-freitas.github.io/vamp-notebook/assets/icons/icon-96x96.png",
-        "https://nick-freitas.github.io/vamp-notebook/assets/initial-state.json"
+        "https://nick-freitas.github.io/vamp-notebook/assets/initial-state.json",
+        "https://nick-freitas.github.io/vamp-notebook/character-sheet.e3aa474d6e04745e8e71.png"
       ],
       "patterns": []
     }
   ],
   "dataGroups": [],
   "hashTable": {
-    "https://nick-freitas.github.io/vamp-notebook/4-es5.aaec2d20b49b5ef72769.js": "1480466333edef99b7762896eb52ac83d2aae4b6",
-    "https://nick-freitas.github.io/vamp-notebook/5-es2015.959df82621ae209477f4.js": "a12cd1f11ddea40139a353e3728d8a076dfe6f56",
-    "https://nick-freitas.github.io/vamp-notebook/5-es5.fcebb426834aad7b8317.js": "e17f389e14c9233eb50a71e50b1a727e0a78a919",
-    "https://nick-freitas.github.io/vamp-notebook/6-es2015.464e9a9de9c0239c4a69.js": "c33d0a1ded3040e5c74805f1ed347bef8e44a0fd",
+    "https://nick-freitas.github.io/vamp-notebook/1-es2015.0429af7dc680527e1498.js": "e0484dcdc6f0758b8e9910903c909dc56df1c20f",
+    "https://nick-freitas.github.io/vamp-notebook/1-es5.b1a59c8053300df64c29.js": "732d14223da2c9b761ad89b6d027734c7581ea64",
+    "https://nick-freitas.github.io/vamp-notebook/4-es5.ab04282644ab79c46086.js": "cb1b3fdee1a63b4c7e89561bc1da341f494e3fe7",
+    "https://nick-freitas.github.io/vamp-notebook/5-es2015.67b54a7ae698050dd9ea.js": "0d566c0bd44c32449ca07c98ce9a5a6a6cf3ccce",
+    "https://nick-freitas.github.io/vamp-notebook/5-es5.1151ddd8bf07109f629e.js": "06a4e2acf0b37dc7cbe67fdaf1433f077b2f090e",
+    "https://nick-freitas.github.io/vamp-notebook/6-es2015.75bd55645822044de966.js": "875a7440daa67c9ffff96b4c7580c015edafce6a",
+    "https://nick-freitas.github.io/vamp-notebook/assets/character-sheet.png": "e9a321e3232e3e2216ed5b49aea98c40bc64802e",
     "https://nick-freitas.github.io/vamp-notebook/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
     "https://nick-freitas.github.io/vamp-notebook/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
     "https://nick-freitas.github.io/vamp-notebook/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
@@ -58,18 +63,17 @@
     "https://nick-freitas.github.io/vamp-notebook/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
     "https://nick-freitas.github.io/vamp-notebook/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
     "https://nick-freitas.github.io/vamp-notebook/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
-    "https://nick-freitas.github.io/vamp-notebook/assets/initial-state.json": "e3f546745411b543dcf83eacde10daefc73bc1b4",
-    "https://nick-freitas.github.io/vamp-notebook/common-es2015.80a421690c8dcc1d75b4.js": "8e3d1452ec9391fdd6259b18a739f698762688e5",
-    "https://nick-freitas.github.io/vamp-notebook/common-es5.d2d130a0cbd0527fbe14.js": "6f88982cb0d74e1a3872ea21499ebf55385f5808",
+    "https://nick-freitas.github.io/vamp-notebook/assets/initial-state.json": "7d9ab26e3b2bc67f2369e0320dcb26711b8abc1b",
+    "https://nick-freitas.github.io/vamp-notebook/character-sheet.e3aa474d6e04745e8e71.png": "e9a321e3232e3e2216ed5b49aea98c40bc64802e",
     "https://nick-freitas.github.io/vamp-notebook/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
-    "https://nick-freitas.github.io/vamp-notebook/index.html": "ed419cc1025cafde6ac71036895152405f211611",
-    "https://nick-freitas.github.io/vamp-notebook/main-es2015.dc6e36cc84e861d35b6d.js": "f59c22483ee47aecb9e06a891a5d356a6bb1b6bf",
-    "https://nick-freitas.github.io/vamp-notebook/main-es5.561117b1c8821f29e7c5.js": "cd5c22d86f1fd603c8bed3edc5de8b0f49030b6c",
+    "https://nick-freitas.github.io/vamp-notebook/index.html": "c3366eb5a0dd517501f1896fd3e6083124fd3a54",
+    "https://nick-freitas.github.io/vamp-notebook/main-es2015.20b14b31e6c004107433.js": "9cd7ef193ae4b7efd9fe28e1c377735fce9c4416",
+    "https://nick-freitas.github.io/vamp-notebook/main-es5.553c0d45b7faa5f079df.js": "a62a01601572d84db7484dc14a2b652e3e905def",
     "https://nick-freitas.github.io/vamp-notebook/polyfills-es2015.48aea8121e617cba950b.js": "216a075da82205a1ded96d02c13604ae56936c9c",
-    "https://nick-freitas.github.io/vamp-notebook/polyfills-es5.a6b79a6dc1b4b862c5f1.js": "567c71009e14970e8ecfb28f103c574c2f4c778d",
-    "https://nick-freitas.github.io/vamp-notebook/runtime-es2015.191b75c9602f4e6a75b1.js": "358559167c63250bc9196762ec21b5ff32fcc4af",
-    "https://nick-freitas.github.io/vamp-notebook/runtime-es5.275839b228e2b1dbd588.js": "a8528febbb5e9c37e6be8fab25461482ddfde8f5",
-    "https://nick-freitas.github.io/vamp-notebook/styles.dcaccfb2de222cbf83f4.css": "564153e4c3e743f70b99e34ab253950affea9dea"
+    "https://nick-freitas.github.io/vamp-notebook/polyfills-es5.6cae81cf07dfd16b7b43.js": "301cb7fae164b29abac57cc3fceae736464d8f82",
+    "https://nick-freitas.github.io/vamp-notebook/runtime-es2015.ff2864178f6a053d83a0.js": "857e5f7aefb10419e94b5bd608e4d6d33dadd0bd",
+    "https://nick-freitas.github.io/vamp-notebook/runtime-es5.364e66adcb4cf59675f8.js": "1a0de281e3f76e337ed8a97af81736e63e28ab7a",
+    "https://nick-freitas.github.io/vamp-notebook/styles.a04bfebdcc51eada3010.css": "254acb67834b18055ab7138a9d04892513fe3ed4"
   },
   "navigationUrls": [
     {
