@@ -13,7 +13,6 @@ import { BlockOrientation } from '../block-orientation.enum';
         </div>
         <div class="card card-body abilities-card">
           <app-stat-block
-            [includeHr]="!isLast"
             [orientation]="this.horizontal"
             *ngFor="let type of block.types; last as isLast"
             [name]="type.name"

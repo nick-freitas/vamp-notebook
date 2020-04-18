@@ -16,7 +16,7 @@
     "server:start:debug": "nodemon --config ./src/server/nodemon-debug.json",
     "preserver:start:prod": "rimraf dist/server && npm run server:build",
     "server:start:prod": "node dist/server/main.js",
-    "dev": "concurrently \" ng serve \" \" npm run server:start:dev \" "
+    "dev": "concurrently \" ng serve \" \" npm run server:start:debug \" "
   },
   "private": true,
   "dependencies": {

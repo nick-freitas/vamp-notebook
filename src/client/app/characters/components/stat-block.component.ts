@@ -16,7 +16,6 @@ import { BlockOrientation } from '../block-orientation.enum';
         <span class="points" *ngIf="points != null">{{ points }}</span>
       </div>
     </div>
-    <hr *ngIf="includeHr" />
   `,
   styles: [
     `
@@ -48,7 +47,6 @@ import { BlockOrientation } from '../block-orientation.enum';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StatBlockComponent implements OnInit {
-  @Input() includeHr: boolean;
   @Input() orientation: BlockOrientation;
   @Input() name: string;
   @Input() points: string;

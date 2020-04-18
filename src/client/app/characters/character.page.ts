@@ -29,7 +29,7 @@ import { Character } from '../../../shared/models/character';
           {{ unimplemetedFeatureMessage }}
         </div>
 
-        <app-sheet-top-card [character]="character" (edit)="edit($event)" (delete)="delete($event)"></app-sheet-top-card>
+        <app-sheet-top-card [character]="character" (edit)="edit($event)" (delete)="delete($event)" (export)="export($event)"></app-sheet-top-card>
         <app-background-info [character]="character"></app-background-info>
         <app-attributes [character]="character"></app-attributes>
         <app-abilities [character]="character"></app-abilities>
@@ -70,5 +70,12 @@ export class CharacterComponent implements OnInit {
 
   edit(id: string) {
     this.unimplemetedFeatureMessage = 'Editing not implemented';
+  }
+
+  export(id: string) {
+    console.log('exporting');
+    this.characterSvc.export(id);
+    //.pipe(tap(conosle.log('something')));
+    console.log('exported');
   }
 }

@@ -1,4 +1,5 @@
-import { Param, Put, Post, Get, Delete, Body, Controller } from '@nestjs/common';
+import { Param, Put, Post, Get, Delete, Body, Controller, Res } from '@nestjs/common';
+import { Response } from 'express';
 import { CharacterEntity } from './character.entity';
 import { CharactersService } from './character.service';
 
@@ -17,8 +18,15 @@ export class CharactersController {
   }
 
   @Post(':id/export')
-  async exportCharacter(@Param('id') id: string) {
-    return this.charactersService.exportCharacter(id);
+  async exportCharacter(@Param('id') id: string, @Res() res: Response) {
+    const { stream, length } = await this.charactersService.exportCharacter(id);
+
+    res.set({
+      'Content-Type': 'application/pdf',
+      'Content-Length': length
+    });
+
+    return stream.pipe(res);
   }
 
   @Post()

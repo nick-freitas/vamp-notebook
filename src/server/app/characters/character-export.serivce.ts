@@ -1,13 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import * as pdffiler from 'pdffiller';
-import { CharacterEntity } from './character.entity';
 import * as fs from 'fs';
+import { CharacterEntity } from './character.entity';
+import { Readable } from 'stream';
 
 @Injectable()
 export class CharacterExportService {
   constructor() {}
 
-  public async export(character: CharacterEntity) {
+  public async export(character: CharacterEntity): Promise<{ stream: Readable; length: number }> {
     return new Promise(async (resolve, reject) => {
       const src = this.getSheetSource(character.sheetType);
 
@@ -24,8 +25,17 @@ export class CharacterExportService {
       //   console.debug(`fieldJson: ${JSON.stringify(fieldJson)}`);
       //   console.debug(`convMapSrc: ${JSON.stringify(convMapSrc)}`);
       //console.debug(`convMap: ${JSON.stringify(convMap)}`);
-      console.debug(`mappedFields: ${JSON.stringify(mappedFields)}`);
-      return pdffiler.fillForm(src, destinationDebug, mappedFields, err => (err ? reject(err) : resolve()));
+      // console.debug(`mappedFields: ${JSON.stringify(mappedFields)}`);
+      pdffiler.fillForm(src, destinationDebug, mappedFields, async err => {
+        if (err) return reject(err);
+
+        const buffer = await this.getFileFromPath(destinationDebug);
+        const stream = new Readable();
+        stream.push(buffer);
+        stream.push(null);
+
+        return resolve({ stream, length: buffer.length });
+      });
     });
   }
 
@@ -67,7 +77,7 @@ export class CharacterExportService {
       });
     }
 
-    return { ...initial, ...dots };
+    return [...initial, ...dots];
   }
 
   private async getFileFromPath(source: string): Promise<any> {

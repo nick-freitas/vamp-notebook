@@ -14,6 +14,9 @@ import { Character } from 'src/shared/models/character';
         </div>
       </div>
       <div id="actions">
+        <button type="button" class="btn btn-outline-light" (click)="export.emit(character.id)" i18n>
+          Export
+        </button>
         <button type="button" class="btn btn-outline-light" (click)="edit.emit(character.id)" i18n>
           Edit
         </button>
@@ -30,10 +33,12 @@ export class SheetTopCardComponent implements OnInit {
   @Input() character: Character;
   @Output() delete: EventEmitter<string>;
   @Output() edit: EventEmitter<string>;
+  @Output() export: EventEmitter<string>;
 
   constructor() {
     this.delete = new EventEmitter();
     this.edit = new EventEmitter();
+    this.export = new EventEmitter();
   }
 
   ngOnInit(): void {}
