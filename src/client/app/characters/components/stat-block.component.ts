@@ -5,13 +5,19 @@ import { BlockOrientation } from '../block-orientation.enum';
   selector: 'app-stat-block',
   template: `
     <div *ngIf="this.orientation === this.vertical" class="vertical-stat-block">
-      <label>{{ name }}</label>
+      <div>
+        <label>{{ name }}</label>
+        <img src="/assets/info-circle.svg" data-toggle="tooltip" [title]="nameTooltip" *ngIf="nameTooltip" />
+      </div>
       <span class="points" *ngIf="points != null">{{ points }}</span>
       <span class="prof" *ngIf="prof">{{ prof }}</span>
     </div>
     <div *ngIf="this.orientation === this.horizontal" class="horizontal-stat-block">
       <div>
-        <label>{{ name }}</label>
+        <div>
+          <label>{{ name }}</label>
+          <img src="/assets/info-circle.svg" data-toggle="tooltip" [title]="nameTooltip" *ngIf="nameTooltip" />
+        </div>
         <span class="prof" *ngIf="prof">({{ prof }})</span>
         <span class="points" *ngIf="points != null">{{ points }}</span>
       </div>
@@ -19,6 +25,10 @@ import { BlockOrientation } from '../block-orientation.enum';
   `,
   styles: [
     `
+      img {
+        margin-left: 8px;
+      }
+
       div.horizontal-stat-block div {
         display: flex;
         justify-content: space-between;
@@ -51,6 +61,8 @@ export class StatBlockComponent implements OnInit {
   @Input() name: string;
   @Input() points: string;
   @Input() prof: string;
+  @Input() nameTooltip: string;
+
   vertical: BlockOrientation = BlockOrientation.VERTICAL;
   horizontal: BlockOrientation = BlockOrientation.HORIZONTAL;
 

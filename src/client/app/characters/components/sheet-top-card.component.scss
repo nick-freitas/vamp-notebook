@@ -27,7 +27,7 @@
         font-size: 1.2rem;
       }
 
-      #clan {
+      div:not(#name) {
         font-size: 0.8rem;
       }
     }

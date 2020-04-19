@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter, Input } from '@angular/core';
 import { Character } from 'src/shared/models/character';
 import { BlockOrientation } from '../block-orientation.enum';
+import { bearingModifier } from '../bearing.data';
 
 @Component({
   selector: 'app-sheet-bottom-card',
@@ -32,8 +33,8 @@ import { BlockOrientation } from '../block-orientation.enum';
           <span>Humanity/Path</span>
         </div>
         <div class="card card-body advantages-card" id="advantages-disciplines">
-          <app-stat-block [orientation]="this.vertical" name="Humanity" [points]="character.humanity"></app-stat-block>
-          <app-stat-block [orientation]="this.horizontal" name="Bearing" [prof]="character.bearing"></app-stat-block>
+          <app-stat-block [orientation]="this.vertical" [name]="character.path" [points]="character.humanity"></app-stat-block>
+          <app-stat-block [orientation]="this.horizontal" name="Bearing" [prof]="character.bearing" [points]="character.bearingModifier"></app-stat-block>
         </div>
 
         <div class="advantage-name-points">
@@ -58,20 +59,80 @@ import { BlockOrientation } from '../block-orientation.enum';
           <span>Health</span>
         </div>
         <div class="card card-body advantages-card" id="advantages-disciplines">
-          <app-stat-block [orientation]="this.horizontal" name="Bruised"></app-stat-block>
-          <app-stat-block [orientation]="this.horizontal" name="Hurt" prof="-1"></app-stat-block>
-          <app-stat-block [orientation]="this.horizontal" name="Injured" prof="-1"></app-stat-block>
-          <app-stat-block [orientation]="this.horizontal" name="Wounded" prof="-2"></app-stat-block>
-          <app-stat-block [orientation]="this.horizontal" name="Mauled" prof="-2"></app-stat-block>
-          <app-stat-block [orientation]="this.horizontal" name="Cripled" prof="-5"></app-stat-block>
-          <app-stat-block [orientation]="this.horizontal" name="Incapacitated"></app-stat-block>
+          <app-stat-block
+            [orientation]="this.horizontal"
+            name="Bruised"
+            nameTooltip="Character is only bruised and suffers no dice pool penalties due to damage."
+          ></app-stat-block>
+          <app-stat-block
+            [orientation]="this.horizontal"
+            name="Hurt"
+            prof="-1"
+            nameTooltip="Character is superficially hurt and suffers no movement hindrance."
+          ></app-stat-block>
+          <app-stat-block
+            [orientation]="this.horizontal"
+            name="Injured"
+            prof="-1"
+            nameTooltip="Character suffers minor injuries and movement is mildly inhibited (halve maximum running speed)."
+          ></app-stat-block>
+          <app-stat-block
+            [orientation]="this.horizontal"
+            name="Wounded"
+            prof="-2"
+            nameTooltip="Character suffers significant damage and may not run (though he may still walk). At this level, a character may only move or attack; he always loses dice when moving and attacking in the same turn."
+          ></app-stat-block>
+          <app-stat-block
+            [orientation]="this.horizontal"
+            name="Mauled"
+            prof="-2"
+            nameTooltip="Character is badly injured and may only hobble about (three yards or meters/turn)."
+          ></app-stat-block>
+          <app-stat-block
+            [orientation]="this.horizontal"
+            name="Cripled"
+            prof="-5"
+            nameTooltip="Character is catastrophically injured and may only crawl (one yard or meter/turn)."
+          ></app-stat-block>
+          <app-stat-block
+            [orientation]="this.horizontal"
+            name="Incapacitated"
+            nameTooltip="Character is incapable of movement and is likely unconscious. Incapacitated vampires with no blood in their bodies enter torpor."
+          ></app-stat-block>
+          <app-stat-block
+            *ngIf="false"
+            [orientation]="this.horizontal"
+            name="Torpor"
+            nameTooltip="Character enters a deathlike trance. He may do nothing, not even spend blood, until a certain period of time has passed."
+          ></app-stat-block>
+          <app-stat-block
+            *ngIf="false"
+            [orientation]="this.horizontal"
+            name="Final Death"
+            nameTooltip="Character dies again, this time forever."
+          ></app-stat-block>
         </div>
         <div class="advantage-name-points">
-          <span>Notes</span>
+          <span>Weakness</span>
         </div>
         <div class="card card-body advantages-card" id="advantages-disciplines">
-          <app-stat-block [orientation]="this.horizontal" name="Combo Discipline" [prof]="character.comboDisciplineName1"></app-stat-block>
+          <app-stat-block [orientation]="this.vertical" [points]="character.weakness"></app-stat-block>
         </div>
+        <div class="advantage-name-points">
+          <span>Experience</span>
+        </div>
+        <div class="card card-body advantages-card" id="advantages-disciplines">
+          <app-stat-block [orientation]="this.vertical" [points]="character.experience"></app-stat-block>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="advantage-name-points">
+        <span>Notes</span>
+      </div>
+      <div class="card card-body advantages-card" id="advantages-disciplines">
+        <app-stat-block [orientation]="this.horizontal" name="Combo Discipline" [prof]="character.comboDisciplineName1"></app-stat-block>
+        <app-stat-block [orientation]="this.horizontal" [name]="character.otherNotes" *ngIf="character.otherNotes"></app-stat-block>
       </div>
     </div>
   `,
@@ -82,7 +143,7 @@ export class SheetBottomCardComponent implements OnInit {
   @Input() character: Character;
   vertical: BlockOrientation = BlockOrientation.VERTICAL;
   horizontal: BlockOrientation = BlockOrientation.HORIZONTAL;
-
+  bearingModifier = bearingModifier;
   constructor() {}
 
   ngOnInit(): void {}

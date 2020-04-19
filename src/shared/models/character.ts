@@ -1,4 +1,4 @@
-export interface Character {
+export class Character {
   id: string;
   sheetType: string;
   name: string;
@@ -99,6 +99,7 @@ export interface Character {
   courage: number;
   humanity: number;
   bearing: string;
+  bearingModifier: string;
   willpower: number;
   bloodPool: number;
   bloodPerTurn: number;
@@ -219,6 +220,7 @@ export interface Character {
   path: string;
 
   weakness: string;
-  experience: string;
+  experience: number;
   maxWillpower: number;
+  ageCategory: string;
 }

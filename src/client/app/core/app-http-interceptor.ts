@@ -9,7 +9,7 @@ export class AppHttpInterceptor implements HttpInterceptor {
     req = req.clone({
       url: url + req.url.replace(url, '')
     });
-    console.log(req);
+
     return next.handle(req);
   }
 }

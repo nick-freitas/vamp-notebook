@@ -50,30 +50,92 @@ export class CharacterExportService {
 
     //todo: add "health_dot7"
     for (let i = 1; i <= 10; i++) {
+      [
+        'humanity',
+        'strength',
+        'dexterity',
+        'stamina',
+        'charisma',
+        'manipulation',
+        'appearance',
+        'perception',
+        'intelligence',
+        'wits',
+        'alertness',
+        'athletics',
+        'awareness',
+        'brawl',
+        'empathy',
+        'expression',
+        'intimidation',
+        'leadership',
+        'streetwise',
+        'subterfuge',
+        'animalKen',
+        'crafts',
+        'drive',
+        'etiquette',
+        'firearms',
+        'larceny',
+        'melee',
+        'performance',
+        'stealth',
+        'survival',
+        'academics',
+        'computer',
+        'finance',
+        'investigation',
+        'law',
+        'medicine',
+        'occult',
+        'politics',
+        'science',
+        'technology',
+        'conscience',
+        'selfControl',
+        'courage'
+      ].forEach(trait =>
+        dots.push({
+          title: `${trait}_dot${i}`,
+          fieldfieldType: 'Button',
+          fieldValue: character[trait] >= i
+        })
+      );
+
       dots.push(
         {
           title: `willpower_dot${i}`,
           fieldfieldType: 'Button',
-          fieldValue: character.maxWillpower <= i
+          fieldValue: character.maxWillpower >= i
         },
         {
           title: `willpower_box${i}`,
           fieldfieldType: 'Button',
-          fieldValue: character.willpower <= i
-        },
-        {
-          title: `humanity_dot${i}`,
-          fieldfieldType: 'Button',
-          fieldValue: character.humanity <= i
+          fieldValue: character.willpower >= i
         }
       );
+
+      for (let j = 1; j <= 6; j++) {
+        dots.push(
+          {
+            title: `discipline${j}_dot${i}`,
+            fieldfieldType: 'Button',
+            fieldValue: character[`disciplinePoints${j}`] >= i
+          },
+          {
+            title: `background${j}_dot${i}`,
+            fieldfieldType: 'Button',
+            fieldValue: character[`backgroundPoints${j}`] >= i
+          }
+        );
+      }
     }
 
     for (let i = 1; i <= 20; i++) {
       dots.push({
         title: `bloodPool_box${i}`,
         fieldfieldType: 'Button',
-        fieldValue: character.bloodPool <= i
+        fieldValue: character.bloodPool >= i
       });
     }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
       <a class="navbar-brand" routerLink="/">
         <img src="assets/vtm-icon.png" width="30" height="30" class="d-inline-block align-top" alt="" />
-        <span i18n>VTM Project</span>
+        <span i18n>VTM Notebook</span>
       </a>
       <button
         class="navbar-toggler"
@@ -31,10 +31,9 @@ import { Component, OnInit } from '@angular/core';
       </div>
     </nav>
   `,
-  styles: []
+  styles: [],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
   constructor() {}
-
-  ngOnInit() {}
 }

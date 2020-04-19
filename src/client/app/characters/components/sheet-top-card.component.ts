@@ -8,13 +8,13 @@ import { Character } from 'src/shared/models/character';
       <div id="info-block">
         <img src="assets/mrniceguy.jpg" alt="Character Profile" />
         <div id="name-clan-container">
-          <span id="name">{{ character.name }}</span>
-          <span id="clan"> <span i18n>Clan</span> {{ character.clan || 'Unknown' }} / <span i18n>Sect</span> {{ character.sect || 'Unknown' }} </span>
-          <span id="clan">{{ character.generationDescription }}</span>
+          <div id="name">{{ character.name }}</div>
+          <div id="clan"><span i18n>Clan</span> {{ character.clan || 'Unknown' }} / <span i18n>Sect</span> {{ character.sect || 'Unknown' }}</div>
+          <div id="generation">{{ character.generationDescription }} / {{ character.ageCategory }}</div>
         </div>
       </div>
       <div id="actions">
-        <button type="button" class="btn btn-outline-light" (click)="export.emit(character.id)" i18n>
+        <button type="button" class="btn btn-outline-success" (click)="export.emit(character.id)" i18n>
           Export
         </button>
         <button type="button" class="btn btn-outline-light" (click)="edit.emit(character.id)" i18n>
