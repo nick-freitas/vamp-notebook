@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CharacterListComponent } from './character-list.page';
-import { CharacterComponent } from './character.page';
+import { CharacterListPage } from './pages/character-list.page';
+import { CharacterPage } from './pages/character.page';
 import { SharedModule } from '../shared/shared.module';
 import { CoreModule } from '../core/core.module';
 import { CharactersService } from './characters.service';
@@ -12,18 +12,20 @@ import { AbilitiesComponent } from './components/abilities.component';
 import { AdvantagesComponent } from './components/advantages.component';
 import { SheetBottomCardComponent } from './components/sheet-bottom-card.component';
 import { StatBlockComponent } from './components/stat-block.component';
+import { CharacterEditPage } from './pages/character-edit.page';
 
 @NgModule({
   declarations: [
-    CharacterComponent,
-    CharacterListComponent,
+    CharacterPage,
+    CharacterListPage,
     SheetTopCardComponent,
     BackgroundInfoComponent,
     AttributesComponent,
     AbilitiesComponent,
     AdvantagesComponent,
     StatBlockComponent,
-    SheetBottomCardComponent
+    SheetBottomCardComponent,
+    CharacterEditPage
   ],
   imports: [CommonModule, SharedModule, CoreModule],
   providers: [CharactersService]

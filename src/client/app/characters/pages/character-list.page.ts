@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CharactersService } from './characters.service';
+import { CharactersService } from '../characters.service';
 import { Observable } from 'rxjs';
-import { Character } from '../../../shared/models/character';
+import { Character } from '../../../../shared/models/character';
 
 @Component({
   template: `
@@ -28,7 +28,7 @@ import { Character } from '../../../shared/models/character';
   `,
   styles: []
 })
-export class CharacterListComponent implements OnInit {
+export class CharacterListPage implements OnInit {
   loading$: Observable<boolean>;
   characters$: Observable<Character[]>;
 

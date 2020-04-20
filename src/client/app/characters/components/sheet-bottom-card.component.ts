@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter, Input } from '@angular/core';
 import { Character } from 'src/shared/models/character';
 import { BlockOrientation } from '../block-orientation.enum';
-import { bearingModifier } from '../bearing.data';
+import { bearingModifier } from '../data/bearing.data';
 
 @Component({
   selector: 'app-sheet-bottom-card',

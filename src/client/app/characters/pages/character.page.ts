@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { CharactersService } from './characters.service';
-import { Character } from '../../../shared/models/character';
+import { CharactersService } from '../characters.service';
+import { Character } from '../../../../shared/models/character';
 
 @Component({
   template: `
@@ -46,7 +46,7 @@ import { Character } from '../../../shared/models/character';
     `
   ]
 })
-export class CharacterComponent implements OnInit {
+export class CharacterPage implements OnInit {
   unimplemetedFeatureMessage: string;
   loading$: Observable<boolean>;
   character$: Observable<Character>;
@@ -69,7 +69,7 @@ export class CharacterComponent implements OnInit {
   }
 
   edit(id: string) {
-    this.unimplemetedFeatureMessage = 'Editing not implemented';
+    this.router.navigateByUrl(`/characters/${id}/edit`);
   }
 
   export(id: string) {

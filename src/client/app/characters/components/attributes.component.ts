@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { Character } from 'src/shared/models/character';
-import { AttributeBlock } from '../attribute.data';
+import { AttributeBlock } from '../data/attribute.data';
 import { BlockOrientation } from '../block-orientation.enum';
 
 @Component({
