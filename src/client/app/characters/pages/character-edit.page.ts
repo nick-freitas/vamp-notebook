@@ -55,30 +55,15 @@ import { map } from 'rxjs/operators';
         </ul>
 
         <div class="tab-content" *ngIf="token | async as tkn">
-          <div *ngIf="tkn === 'background'">
-            BACKGROUND GOES HERE
-          </div>
-          <div *ngIf="tkn === 'attributes'">
-            ATTRIBUTES GO HERE
-          </div>
-          <div *ngIf="tkn === 'abilities'">
-            abilities GO HERE
-          </div>
-          <div *ngIf="tkn === 'advantages'">
-            advantages GO HERE
-          </div>
-          <div *ngIf="tkn === 'merits-flaws'">
-            merits-flaws GO HERE
-          </div>
-          <div *ngIf="tkn === 'rest'">
-            REST GO HERE
-          </div>
-          <div *ngIf="tkn === 'done'">
-            DONE WOO WOO
-          </div>
+          <app-edit-background *ngIf="tkn === 'background'" (next)="next(tkn, character.id)" [characterId]="id"></app-edit-background>
+          <app-edit-attributes *ngIf="tkn === 'attributes'" (next)="next(tkn, character.id)" [characterId]="id"></app-edit-attributes>
+          <app-edit-abilities *ngIf="tkn === 'abilities'" (next)="next(tkn, character.id)" [characterId]="id"></app-edit-abilities>
+          <app-edit-advantages *ngIf="tkn === 'advantages'" (next)="next(tkn, character.id)" [characterId]="id"></app-edit-advantages>
+          <app-edit-merits-flaws *ngIf="tkn === 'merits-flaws'" (next)="next(tkn, character.id)" [characterId]="id"></app-edit-merits-flaws>
+          <app-edit-rest *ngIf="tkn === 'rest'" [characterId]="id"></app-edit-rest>
+          <app-edit-next *ngIf="tkn === 'next'"></app-edit-next>
 
           <button type="button" class="btn btn-outline-primary" (click)="back(tkn, character.id)" *ngIf="showBack(tkn)">Back</button>
-          <button type="button" class="btn btn-outline-primary" (click)="next(tkn, character.id)" *ngIf="showNext(tkn)">Next</button>
         </div>
       </div>
     </ng-template>
@@ -93,18 +78,19 @@ import { map } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CharacterEditPage implements OnInit {
+  id: string;
   loading$: Observable<boolean>;
   character$: Observable<Character>;
   token: Observable<string>;
-  progression = ['background', 'attributes', 'abilities', 'advantages', 'merits-flaws', 'rest', 'done'];
+  progression = ['background', 'attributes', 'abilities', 'advantages', 'merits-flaws', 'rest', 'next'];
 
   constructor(private route: ActivatedRoute, private router: Router, private characterSvc: CharactersService) {
     this.loading$ = characterSvc.loading$;
   }
 
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.character$ = this.characterSvc.getByKey(id);
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.character$ = this.characterSvc.getByKey(this.id);
 
     this.token = this.route.fragment.pipe(map(fragment => fragment || 'background'));
   }

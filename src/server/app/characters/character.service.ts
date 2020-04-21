@@ -30,8 +30,9 @@ export class CharactersService {
     if (!current) {
       return null;
     }
-    character.createdAt = current.createdAt;
-    character.createdBy = current.createdBy;
+
+    character.createdAt = new Date();
+    character.createdBy = 'nick';
     return this.charactersRepository.update(id, character);
   }
 
