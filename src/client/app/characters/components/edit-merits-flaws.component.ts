@@ -9,49 +9,18 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-edit-merits-flaws',
   template: `
-    <form [formGroup]="profileForm" *ngIf="character$ | async as character">
-      <label>
-        Name
-        <input type="text" formControlName="name" />
-      </label>
-
-      <label>
-        Clan
-        <input type="text" formControlName="clan" />
-      </label>
-
-      <label>
-        Sect
-        <input type="text" formControlName="sect" />
-      </label>
-
-      <label>
-        Nature
-        <input type="text" formControlName="nature" />
-      </label>
-
-      <label>
-        Demeanor
-        <input type="text" formControlName="demeanor" />
-      </label>
-
-      <label>
-        Sire
-        <input type="text" formControlName="sire" />
-      </label>
-
-      <label>
-        Concept
-        <input type="text" formControlName="concept" />
-      </label>
-
-      <button type="button" class="btn btn-outline-primary" (click)="next()">Next</button>
-    </form>
+    <form [formGroup]="profileForm" *ngIf="character$ | async as character"></form>
+    <button type="button" class="btn btn-outline-primary" (click)="next()">Next</button>
   `,
   styles: [
     `
       :host {
         display: block;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
       }
     `
   ]
@@ -59,16 +28,7 @@ import { Router } from '@angular/router';
 export class EditMeritsFlawsComponent implements OnInit {
   @Input() characterId: string;
   character$: Observable<Character>;
-
-  profileForm = new FormGroup({
-    name: new FormControl('', Validators.required),
-    clan: new FormControl(''),
-    sect: new FormControl(''),
-    nature: new FormControl(''),
-    demeanor: new FormControl(''),
-    sire: new FormControl(''),
-    concept: new FormControl('')
-  });
+  profileForm = new FormGroup({});
 
   constructor(private characterSvc: CharactersService, private router: Router) {}
 

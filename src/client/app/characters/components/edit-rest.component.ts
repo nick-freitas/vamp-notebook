@@ -11,47 +11,31 @@ import { Router } from '@angular/router';
   template: `
     <form [formGroup]="profileForm" *ngIf="character$ | async as character">
       <label>
-        Name
-        <input type="text" formControlName="name" />
+        Max Willpower
+        <input type="text" formControlName="maxWillpower" />
       </label>
 
       <label>
-        Clan
-        <input type="text" formControlName="clan" />
+        Weakness
+        <input type="text" formControlName="weakness" />
       </label>
 
       <label>
-        Sect
-        <input type="text" formControlName="sect" />
+        Experience
+        <input type="text" formControlName="experience" />
       </label>
-
-      <label>
-        Nature
-        <input type="text" formControlName="nature" />
-      </label>
-
-      <label>
-        Demeanor
-        <input type="text" formControlName="demeanor" />
-      </label>
-
-      <label>
-        Sire
-        <input type="text" formControlName="sire" />
-      </label>
-
-      <label>
-        Concept
-        <input type="text" formControlName="concept" />
-      </label>
-
-      <button type="button" class="btn btn-outline-primary" (click)="next()">Next</button>
     </form>
+    <button type="button" class="btn btn-outline-primary" (click)="next()">Next</button>
   `,
   styles: [
     `
       :host {
         display: block;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
       }
     `
   ]
@@ -59,15 +43,10 @@ import { Router } from '@angular/router';
 export class EditRestComponent implements OnInit {
   @Input() characterId: string;
   character$: Observable<Character>;
-
   profileForm = new FormGroup({
-    name: new FormControl('', Validators.required),
-    clan: new FormControl(''),
-    sect: new FormControl(''),
-    nature: new FormControl(''),
-    demeanor: new FormControl(''),
-    sire: new FormControl(''),
-    concept: new FormControl('')
+    maxWillpower: new FormControl(''),
+    weakness: new FormControl(''),
+    experience: new FormControl('')
   });
 
   constructor(private characterSvc: CharactersService, private router: Router) {}

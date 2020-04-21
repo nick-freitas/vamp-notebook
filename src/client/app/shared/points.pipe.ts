@@ -6,6 +6,6 @@ import { Character } from 'src/shared/models/character';
 })
 export class PointsPipe implements PipeTransform {
   transform(character: Character, fields: string[], defaultOne?: boolean): number {
-    return fields.map(field => character[field]).reduce((acc, field) => acc + (defaultOne ? field - 1 : field), 0);
+    return fields.map(field => character[field]).reduce((acc, field) => +acc + (defaultOne ? +field - 1 : +field), 0);
   }
 }

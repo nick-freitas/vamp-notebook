@@ -22,7 +22,11 @@ export class CharactersService {
   }
 
   createCharacter(character: CharacterEntity) {
-    return this.charactersRepository.create(character);
+    // todo: make this come from jwt
+    const defaults = { name: 'Unnamed Character', createdAt: new Date(), createdBy: 'nick' };
+    const newChar = { ...character, ...defaults };
+
+    return this.charactersRepository.create(newChar);
   }
 
   async updateCharacter(id: string, character: CharacterEntity) {
@@ -31,9 +35,12 @@ export class CharactersService {
       return null;
     }
 
-    character.createdAt = new Date();
-    character.createdBy = 'nick';
-    return this.charactersRepository.update(id, character);
+    const newChar = { ...current, ...character };
+
+    newChar.createdAt = newChar.createdAt || new Date();
+    // todo: make this come from jwt
+    newChar.createdBy = newChar.createdBy || 'nick';
+    return this.charactersRepository.update(id, newChar);
   }
 
   deleteCharacter(id: string) {

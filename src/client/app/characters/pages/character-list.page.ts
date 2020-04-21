@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CharactersService } from '../characters.service';
 import { Observable } from 'rxjs';
 import { Character } from '../../../../shared/models/character';
+import { Router } from '@angular/router';
 
 @Component({
   template: `
@@ -20,7 +21,8 @@ import { Character } from '../../../../shared/models/character';
     <!-- loaded -->
     <ng-template #loaded>
       <ul class="list-group">
-        <li routerLink="/characters/{{ character.id }}" class="list-group-item" *ngFor="let character of characters$ | async">
+        <li class="list-group-item" (click)="createCharacter()">Create New Character</li>
+        <li class="list-group-item" routerLink="/characters/{{ character.id }}" *ngFor="let character of characters$ | async">
           {{ character.clan }} > {{ character.name }}
         </li>
       </ul>
@@ -32,7 +34,7 @@ export class CharacterListPage implements OnInit {
   loading$: Observable<boolean>;
   characters$: Observable<Character[]>;
 
-  constructor(private characterSvc: CharactersService) {
+  constructor(private characterSvc: CharactersService, private router: Router) {
     this.characters$ = characterSvc.entities$;
     this.loading$ = characterSvc.loading$;
   }
@@ -55,5 +57,12 @@ export class CharacterListPage implements OnInit {
 
   update(character: Character) {
     this.characterSvc.update(character);
+  }
+
+  createCharacter() {
+    this.characterSvc.add(new Character()).subscribe(
+      response => this.router.navigate(['/characters', response.id, 'edit'], { fragment: 'background' }),
+      error => console.error(error)
+    );
   }
 }

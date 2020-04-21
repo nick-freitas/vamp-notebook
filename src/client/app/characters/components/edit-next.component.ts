@@ -14,6 +14,11 @@ import { Component, OnInit, Input } from '@angular/core';
       :host {
         display: block;
       }
+
+      form {
+        display: flex;
+        flex-direction: column;
+      }
     `
   ]
 })

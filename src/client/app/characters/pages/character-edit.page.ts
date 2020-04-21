@@ -49,7 +49,7 @@ import { map } from 'rxjs/operators';
           <li routerLink="." fragment="rest" [class.active]="(token | async) === 'rest'">
             <a>Rest</a>
           </li>
-          <li routerLink="." fragment="done" [class.active]="(token | async) === 'done'">
+          <li routerLink="." fragment="next" [class.active]="(token | async) === 'next'">
             <a>What's Next</a>
           </li>
         </ul>
@@ -61,7 +61,7 @@ import { map } from 'rxjs/operators';
           <app-edit-advantages *ngIf="tkn === 'advantages'" (next)="next(tkn, character.id)" [characterId]="id"></app-edit-advantages>
           <app-edit-merits-flaws *ngIf="tkn === 'merits-flaws'" (next)="next(tkn, character.id)" [characterId]="id"></app-edit-merits-flaws>
           <app-edit-rest *ngIf="tkn === 'rest'" [characterId]="id"></app-edit-rest>
-          <app-edit-next *ngIf="tkn === 'next'"></app-edit-next>
+          <app-edit-next *ngIf="tkn === 'next'" [characterId]="id"></app-edit-next>
 
           <button type="button" class="btn btn-outline-primary" (click)="back(tkn, character.id)" *ngIf="showBack(tkn)">Back</button>
         </div>

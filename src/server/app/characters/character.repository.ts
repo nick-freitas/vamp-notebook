@@ -43,7 +43,7 @@ export class CharactersRepository {
 
   async create(character: CharacterEntity) {
     this.validate(character);
-    character.id = new Date().toUTCString();
+    character.id = Date.now().toString();
 
     this.datastore.db
       .get('characters')

@@ -44,9 +44,8 @@ import { Router } from '@angular/router';
         Concept
         <input type="text" formControlName="concept" />
       </label>
-
-      <button type="button" class="btn btn-outline-primary" (click)="next()">Next</button>
     </form>
+    <button type="button" class="btn btn-outline-primary" (click)="next()">Next</button>
   `,
   styles: [
     `
@@ -58,13 +57,17 @@ import { Router } from '@angular/router';
         display: flex;
         flex-direction: column;
       }
+
+      form label {
+        display: flex;
+        flex-direction: column;
+      }
     `
   ]
 })
 export class EditBackgroundComponent implements OnInit {
   @Input() characterId: string;
   character$: Observable<Character>;
-
   profileForm = new FormGroup({
     name: new FormControl('', Validators.required),
     clan: new FormControl(''),
