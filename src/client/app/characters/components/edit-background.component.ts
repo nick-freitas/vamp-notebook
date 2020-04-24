@@ -3,6 +3,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Character } from 'src/shared/models/character';
 import { CharactersService } from '../characters.service';
+import { clans } from '../data/clans.data';
+import { sects } from '../data/sects.data';
+import { archetypes } from '../data/archetypes.data';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
@@ -17,22 +20,30 @@ import { Router } from '@angular/router';
 
       <label>
         Clan
-        <input type="text" formControlName="clan" />
+        <select class="form-control" formControlName="clan">
+          <option *ngFor="let clan of clans" [ngValue]="clan">{{ clan }}</option>
+        </select>
       </label>
 
       <label>
         Sect
-        <input type="text" formControlName="sect" />
+        <select class="form-control" formControlName="sect">
+          <option *ngFor="let sect of sects" [ngValue]="sect">{{ sect }}</option>
+        </select>
       </label>
 
       <label>
         Nature
-        <input type="text" formControlName="nature" />
+        <select class="form-control" formControlName="nature">
+          <option *ngFor="let archetype of archetypes" [ngValue]="archetype">{{ archetype }}</option>
+        </select>
       </label>
 
       <label>
         Demeanor
-        <input type="text" formControlName="demeanor" />
+        <select class="form-control" formControlName="demeanor">
+          <option *ngFor="let archetype of archetypes" [ngValue]="archetype">{{ archetype }}</option>
+        </select>
       </label>
 
       <label>
@@ -45,7 +56,10 @@ import { Router } from '@angular/router';
         <input type="text" formControlName="concept" />
       </label>
     </form>
-    <button type="button" class="btn btn-outline-primary" (click)="next()">Next</button>
+
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-outline-primary" (click)="next()">Next</button>
+    </div>
   `,
   styles: [
     `
@@ -68,6 +82,9 @@ import { Router } from '@angular/router';
 export class EditBackgroundComponent implements OnInit {
   @Input() characterId: string;
   character$: Observable<Character>;
+  clans = clans;
+  archetypes = archetypes;
+  sects = sects;
   profileForm = new FormGroup({
     name: new FormControl('', Validators.required),
     clan: new FormControl(''),

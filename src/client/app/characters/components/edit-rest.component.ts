@@ -25,7 +25,11 @@ import { Router } from '@angular/router';
         <input type="text" formControlName="experience" />
       </label>
     </form>
-    <button type="button" class="btn btn-outline-primary" (click)="next()">Next</button>
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-outline-primary" (click)="previous()">Previous</button>
+
+      <button type="button" class="btn btn-outline-primary" (click)="next()">Next</button>
+    </div>
   `,
   styles: [
     `
@@ -53,6 +57,13 @@ export class EditRestComponent implements OnInit {
 
   ngOnInit(): void {
     this.character$ = this.characterSvc.getByKey(this.characterId).pipe(tap(character => this.profileForm.patchValue(character)));
+  }
+
+  previous() {
+    this.characterSvc.update({ ...this.profileForm.value, id: this.characterId }).subscribe(
+      response => this.router.navigate(['/characters', this.characterId, 'edit'], { fragment: 'merits-flaws' }),
+      error => console.error(error)
+    );
   }
 
   next() {

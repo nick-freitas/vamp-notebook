@@ -10,8 +10,8 @@ import { Router } from '@angular/router';
   selector: 'app-edit-attributes',
   template: `
     <form [formGroup]="profileForm" *ngIf="character$ | async as character">
-      <h3>Physical</h3>
       <div id="physicial-attributes">
+        <h3>Physical</h3>
         <label>
           Strength
           <input type="text" formControlName="strengthProf" />
@@ -31,8 +31,8 @@ import { Router } from '@angular/router';
         </label>
       </div>
 
-      <h3>Mental</h3>
       <div id="mental-attributes">
+        <h3>Mental</h3>
         <label>
           Charisma
           <input type="text" formControlName="charismaProf" />
@@ -52,8 +52,8 @@ import { Router } from '@angular/router';
         </label>
       </div>
 
-      <h3>Social</h3>
       <div id="social-attributes">
+        <h3>Social</h3>
         <label>
           Perception
           <input type="text" formControlName="perceptionProf" />
@@ -73,7 +73,12 @@ import { Router } from '@angular/router';
         </label>
       </div>
     </form>
-    <button type="button" class="btn btn-outline-primary" (click)="next()">Next</button>
+
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-outline-primary" (click)="previous()">Previous</button>
+
+      <button type="button" class="btn btn-outline-primary" (click)="next()">Next</button>
+    </div>
   `,
   styles: [
     `
@@ -83,7 +88,14 @@ import { Router } from '@angular/router';
 
       form {
         display: flex;
+        flex-direction: row;
+        column-gap: 8px;
+      }
+
+      form div {
+        display: flex;
         flex-direction: column;
+        flex: 1;
       }
 
       form label {
@@ -122,6 +134,13 @@ export class EditAttributesComponent implements OnInit {
 
   ngOnInit(): void {
     this.character$ = this.characterSvc.getByKey(this.characterId).pipe(tap(character => this.profileForm.patchValue(character)));
+  }
+
+  previous() {
+    this.characterSvc.update({ ...this.profileForm.value, id: this.characterId }).subscribe(
+      response => this.router.navigate(['/characters', this.characterId, 'edit'], { fragment: 'background' }),
+      error => console.error(error)
+    );
   }
 
   next() {

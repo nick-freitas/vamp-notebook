@@ -31,26 +31,26 @@ import { map } from 'rxjs/operators';
     <ng-template #loaded>
       <div *ngIf="this.character$ | async as character">
         <ul class="nav nav-wizard">
-          <li routerLink="." fragment="background" [class.active]="(token | async) === 'background'">
-            <a>Background Info</a>
+          <li [class.active]="(token | async) === 'background'">
+            Background Info
           </li>
-          <li routerLink="." fragment="attributes" [class.active]="(token | async) === 'attributes'">
-            <a>Attributes</a>
+          <li [class.active]="(token | async) === 'attributes'">
+            Attributes
           </li>
-          <li routerLink="." fragment="abilities" [class.active]="(token | async) === 'abilities'">
-            <a>Abilities</a>
+          <li [class.active]="(token | async) === 'abilities'">
+            Abilities
           </li>
-          <li routerLink="." fragment="advantages" [class.active]="(token | async) === 'advantages'">
-            <a>Advantages</a>
+          <li [class.active]="(token | async) === 'advantages'">
+            Advantages
           </li>
-          <li routerLink="." fragment="merits-flaws" [class.active]="(token | async) === 'merits-flaws'">
-            <a>Merits & Flaws</a>
+          <li [class.active]="(token | async) === 'merits-flaws'">
+            Merits & Flaws
           </li>
-          <li routerLink="." fragment="rest" [class.active]="(token | async) === 'rest'">
-            <a>Rest</a>
+          <li [class.active]="(token | async) === 'rest'">
+            Rest
           </li>
-          <li routerLink="." fragment="next" [class.active]="(token | async) === 'next'">
-            <a>What's Next</a>
+          <li [class.active]="(token | async) === 'next'">
+            What's Next
           </li>
         </ul>
 
@@ -62,8 +62,6 @@ import { map } from 'rxjs/operators';
           <app-edit-merits-flaws *ngIf="tkn === 'merits-flaws'" (next)="next(tkn, character.id)" [characterId]="id"></app-edit-merits-flaws>
           <app-edit-rest *ngIf="tkn === 'rest'" [characterId]="id"></app-edit-rest>
           <app-edit-next *ngIf="tkn === 'next'" [characterId]="id"></app-edit-next>
-
-          <button type="button" class="btn btn-outline-primary" (click)="back(tkn, character.id)" *ngIf="showBack(tkn)">Back</button>
         </div>
       </div>
     </ng-template>

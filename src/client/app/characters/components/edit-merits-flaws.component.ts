@@ -10,7 +10,11 @@ import { Router } from '@angular/router';
   selector: 'app-edit-merits-flaws',
   template: `
     <form [formGroup]="profileForm" *ngIf="character$ | async as character"></form>
-    <button type="button" class="btn btn-outline-primary" (click)="next()">Next</button>
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-outline-primary" (click)="previous()">Previous</button>
+
+      <button type="button" class="btn btn-outline-primary" (click)="next()">Next</button>
+    </div>
   `,
   styles: [
     `
@@ -39,6 +43,13 @@ export class EditMeritsFlawsComponent implements OnInit {
   next() {
     this.characterSvc.update({ ...this.profileForm.value, id: this.characterId }).subscribe(
       response => this.router.navigate(['/characters', this.characterId, 'edit'], { fragment: 'rest' }),
+      error => console.error(error)
+    );
+  }
+
+  previous() {
+    this.characterSvc.update({ ...this.profileForm.value, id: this.characterId }).subscribe(
+      response => this.router.navigate(['/characters', this.characterId, 'edit'], { fragment: 'advantages' }),
       error => console.error(error)
     );
   }

@@ -13,43 +13,53 @@ import { Router } from '@angular/router';
       <div id="talent-edits">
         <h3>Talents</h3>
         <label>
-          alertness
+          Alertness
+          <input type="text" formControlName="alertnessProf" />
           <input type="number" formControlName="alertness" />
         </label>
         <label>
-          athletics
+          Athletics
+          <input type="text" formControlName="athleticsProf" />
           <input type="number" formControlName="athletics" />
         </label>
         <label>
-          awareness
+          Awareness
+          <input type="text" formControlName="awarenessProf" />
           <input type="number" formControlName="awareness" />
         </label>
         <label>
-          brawl
+          Brawl
+          <input type="text" formControlName="brawlProf" />
           <input type="number" formControlName="brawl" />
         </label>
         <label>
-          empathy
+          Empathy
+          <input type="text" formControlName="empathyProf" />
           <input type="number" formControlName="empathy" />
         </label>
         <label>
-          expression
+          Expression
+          <input type="text" formControlName="expressionProf" />
           <input type="number" formControlName="expression" />
         </label>
         <label>
-          intimidation
+          Intimidation
+          <input type="text" formControlName="intimidationProf" />
           <input type="number" formControlName="intimidation" />
         </label>
         <label>
-          leadership
+          Leadership
+          <input type="text" formControlName="leadershipProf" />
           <input type="number" formControlName="leadership" />
         </label>
         <label>
-          streetwise
+          Streetwise
+          <input type="text" formControlName="streetwiseProf" />
           <input type="number" formControlName="streetwise" />
         </label>
         <label>
-          subterfuge
+          Subterfuge
+          <input type="text" formControlName="subterfugeProf" />
           <input type="number" formControlName="subterfuge" />
         </label>
       </div>
@@ -57,43 +67,53 @@ import { Router } from '@angular/router';
       <div id="skill-edits">
         <h3>Skills</h3>
         <label>
-          animal ken
-          <input type="number" formControlName="alertness" />
+          Animal Ken
+          <input type="text" formControlName="animalKenProf" />
+          <input type="number" formControlName="animalKen" />
         </label>
         <label>
-          crafts
+          Crafts
+          <input type="text" formControlName="athleticsProf" />
           <input type="number" formControlName="athletics" />
         </label>
         <label>
-          drive
+          Drive
+          <input type="text" formControlName="driveProf" />
           <input type="number" formControlName="drive" />
         </label>
         <label>
-          etiquette
+          Etiquette
+          <input type="text" formControlName="etiquetteProf" />
           <input type="number" formControlName="etiquette" />
         </label>
         <label>
-          firearms
+          Firearms
+          <input type="text" formControlName="firearmsProf" />
           <input type="number" formControlName="firearms" />
         </label>
         <label>
-          larceny
+          Larceny
+          <input type="text" formControlName="larcenyProf" />
           <input type="number" formControlName="larceny" />
         </label>
         <label>
-          melee
+          Melee
+          <input type="text" formControlName="meleeProf" />
           <input type="number" formControlName="melee" />
         </label>
         <label>
-          performance
+          Performance
+          <input type="text" formControlName="performanceProf" />
           <input type="number" formControlName="performance" />
         </label>
         <label>
-          stealth
+          Stealth
+          <input type="text" formControlName="stealthProf" />
           <input type="number" formControlName="stealth" />
         </label>
         <label>
-          survival
+          Survival
+          <input type="text" formControlName="survivalProf" />
           <input type="number" formControlName="survival" />
         </label>
       </div>
@@ -101,48 +121,63 @@ import { Router } from '@angular/router';
       <div id="knowledge-edits">
         <h3>Knowledge</h3>
         <label>
-          academics
+          Academics
+          <input type="text" formControlName="academicsProf" />
           <input type="number" formControlName="academics" />
         </label>
         <label>
-          computer
+          Computer
+          <input type="text" formControlName="computerProf" />
           <input type="number" formControlName="computer" />
         </label>
         <label>
-          finance
+          Finance
+          <input type="text" formControlName="financeProf" />
           <input type="number" formControlName="finance" />
         </label>
         <label>
-          investigation
+          Investigation
+          <input type="text" formControlName="investigationProf" />
           <input type="number" formControlName="investigation" />
         </label>
         <label>
-          law
+          Law
+          <input type="text" formControlName="lawProf" />
           <input type="number" formControlName="law" />
         </label>
         <label>
-          medicine
+          Medicine
+          <input type="text" formControlName="medicineProf" />
           <input type="number" formControlName="medicine" />
         </label>
         <label>
-          occult
+          Occult
+          <input type="text" formControlName="occultProf" />
           <input type="number" formControlName="occult" />
         </label>
         <label>
-          politics
+          Politics
+          <input type="text" formControlName="politicsProf" />
           <input type="number" formControlName="politics" />
         </label>
         <label>
-          science
+          Science
+          <input type="text" formControlName="scienceProf" />
           <input type="number" formControlName="science" />
         </label>
         <label>
-          technology
+          Technology
+          <input type="text" formControlName="technologyProf" />
           <input type="number" formControlName="technology" />
         </label>
       </div>
     </form>
-    <button type="button" class="btn btn-outline-primary" (click)="next()">Next</button>
+
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-outline-primary" (click)="previous()">Previous</button>
+
+      <button type="button" class="btn btn-outline-primary" (click)="next()">Next</button>
+    </div>
   `,
   styles: [
     `
@@ -239,6 +274,13 @@ export class EditAbilitiesComponent implements OnInit {
 
   ngOnInit(): void {
     this.character$ = this.characterSvc.getByKey(this.characterId).pipe(tap(character => this.profileForm.patchValue(character)));
+  }
+
+  previous() {
+    this.characterSvc.update({ ...this.profileForm.value, id: this.characterId }).subscribe(
+      response => this.router.navigate(['/characters', this.characterId, 'edit'], { fragment: 'attributes' }),
+      error => console.error(error)
+    );
   }
 
   next() {
