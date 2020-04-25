@@ -4,6 +4,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { Character } from 'src/shared/models/character';
 import { CharactersService } from '../characters.service';
 import { disciplines } from '../data/disciplines.data';
+import { backgrounds } from '../data/background.data';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
@@ -37,44 +38,65 @@ import { Router } from '@angular/router';
 
         <div>
           <h3>Backgrounds</h3>
-          <!-- <label>
-          Charisma
-          <input type="text" formControlName="charismaProf" />
-          <input type="number" formControlName="charisma" />
-        </label>
+          <label>
+            <select class="form-control" formControlName="backgroundName1">
+              <option *ngFor="let background of backgrounds" [ngValue]="background">{{ background }}</option>
+            </select>
+            <input type="number" formControlName="backgroundPoints1" />
+          </label>
 
-        <label>
-          Manipulation
-          <input type="text" formControlName="manipulationProf" />
-          <input type="number" formControlName="manipulation" />
-        </label>
+          <label>
+            <select class="form-control" formControlName="backgroundName2">
+              <option *ngFor="let background of backgrounds" [ngValue]="background">{{ background }}</option>
+            </select>
+            <input type="number" formControlName="backgroundPoints2" />
+          </label>
 
-        <label>
-          Appearance
-          <input type="text" formControlName="appearanceProf" />
-          <input type="number" formControlName="appearance" />
-        </label> -->
+          <label>
+            <select class="form-control" formControlName="backgroundName3">
+              <option *ngFor="let background of backgrounds" [ngValue]="background">{{ background }}</option>
+            </select>
+            <input type="number" formControlName="backgroundPoints3" />
+          </label>
+
+          <label>
+            <select class="form-control" formControlName="backgroundName4">
+              <option *ngFor="let background of backgrounds" [ngValue]="background">{{ background }}</option>
+            </select>
+            <input type="number" formControlName="backgroundPoints4" />
+          </label>
+
+          <label>
+            <select class="form-control" formControlName="backgroundName5">
+              <option *ngFor="let background of backgrounds" [ngValue]="background">{{ background }}</option>
+            </select>
+            <input type="number" formControlName="backgroundPoints5" />
+          </label>
+
+          <label>
+            <select class="form-control" formControlName="backgroundName6">
+              <option *ngFor="let background of backgrounds" [ngValue]="background">{{ background }}</option>
+            </select>
+            <input type="number" formControlName="backgroundPoints6" />
+          </label>
         </div>
 
         <div>
           <h3>Virtues</h3>
-          <!-- <label>
-          Perception
-          <input type="text" formControlName="perceptionProf" />
-          <input type="number" formControlName="perception" />
-        </label>
+          <label>
+            Conscience
+            <input type="number" formControlName="conscience" />
+          </label>
 
-        <label>
-          Intelligence
-          <input type="text" formControlName="intelligenceProf" />
-          <input type="number" formControlName="intelligence" />
-        </label>
+          <label>
+            Self-Control
+            <input type="number" formControlName="selfControl" />
+          </label>
 
-        <label>
-          Wits
-          <input type="text" formControlName="witsProf" />
-          <input type="number" formControlName="wits" />
-        </label> -->
+          <label>
+            Courage
+            <input type="number" formControlName="courage" />
+          </label>
         </div>
       </form>
 
@@ -120,13 +142,29 @@ export class EditAdvantagesComponent implements OnInit {
   errors$: BehaviorSubject<string>;
   character$: Observable<Character>;
   disciplines = disciplines;
+  backgrounds = backgrounds;
   profileForm = new FormGroup({
     disciplineName1: new FormControl(''),
     disciplineName2: new FormControl(''),
     disciplineName3: new FormControl(''),
     disciplinePoints1: new FormControl(''),
     disciplinePoints2: new FormControl(''),
-    disciplinePoints3: new FormControl('')
+    disciplinePoints3: new FormControl(''),
+    backgroundName1: new FormControl(''),
+    backgroundName2: new FormControl(''),
+    backgroundName3: new FormControl(''),
+    backgroundName4: new FormControl(''),
+    backgroundName5: new FormControl(''),
+    backgroundName6: new FormControl(''),
+    backgroundPoints1: new FormControl(''),
+    backgroundPoints2: new FormControl(''),
+    backgroundPoints3: new FormControl(''),
+    backgroundPoints4: new FormControl(''),
+    backgroundPoints5: new FormControl(''),
+    backgroundPoints6: new FormControl(''),
+    conscience: new FormControl(''),
+    selfControl: new FormControl(''),
+    courage: new FormControl('')
   });
 
   constructor(private characterSvc: CharactersService, private router: Router) {
@@ -146,16 +184,35 @@ export class EditAdvantagesComponent implements OnInit {
     );
   }
 
+  validForm(): boolean {
+    this.errors$.next(null);
+
+    const { backgroundName1, backgroundName2, backgroundName3, backgroundName4, backgroundName5, backgroundName6 } = this.profileForm.value;
+    const backgrounds = [backgroundName1, backgroundName2, backgroundName3, backgroundName4, backgroundName5, backgroundName6];
+    const allUniqueBackgrounds = backgrounds.every((background, i, a) => a.indexOf(background) === i);
+
+    if (!allUniqueBackgrounds) {
+      this.errors$.next('Background Names must be unique');
+      return false;
+    }
+
+    return true;
+  }
+
   next() {
+    if (!this.validForm()) return;
+
     this.characterSvc.update({ ...this.profileForm.value, id: this.characterId }).subscribe(
-      response => this.router.navigate(['/characters', this.characterId, 'edit'], { fragment: 'merits-flaws' }),
+      _ => this.router.navigate(['/characters', this.characterId, 'edit'], { fragment: 'merits-flaws' }),
       error => console.error(error)
     );
   }
 
   previous() {
+    if (!this.validForm()) return;
+
     this.characterSvc.update({ ...this.profileForm.value, id: this.characterId }).subscribe(
-      response => this.router.navigate(['/characters', this.characterId, 'edit'], { fragment: 'abilities' }),
+      _ => this.router.navigate(['/characters', this.characterId, 'edit'], { fragment: 'abilities' }),
       error => console.error(error)
     );
   }
