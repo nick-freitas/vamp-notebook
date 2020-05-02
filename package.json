@@ -97,5 +97,8 @@
   "prettier": {
     "singleQuote": true,
     "printWidth": 160
+  },
+  "resolutions": {
+    "is-promise": "2.1.0"
   }
 }

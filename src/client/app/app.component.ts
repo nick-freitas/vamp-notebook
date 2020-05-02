@@ -5,14 +5,14 @@ import { Component } from '@angular/core';
   template: `
     <app-navbar></app-navbar>
 
-    <div class="container">
+    <main>
       <router-outlet></router-outlet>
-    </div>
+    </main>
   `,
   styles: [
     `
-      .container {
-        margin-top: 32px;
+      :host {
+        display: block;
       }
     `
   ]

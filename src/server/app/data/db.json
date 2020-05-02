@@ -284,6 +284,18 @@
       "perception": 3,
       "intelligence": 2,
       "wits": 5
+    },
+    {
+      "name": "Unnamed Character",
+      "createdAt": "2020-04-28T03:35:47.639Z",
+      "createdBy": "nick",
+      "id": "1588044947639"
+    },
+    {
+      "name": "Unnamed Character",
+      "createdAt": "2020-05-01T03:58:29.199Z",
+      "createdBy": "nick",
+      "id": "1588305509199"
     }
   ],
   "chronicles": [],

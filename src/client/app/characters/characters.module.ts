@@ -21,6 +21,7 @@ import { EditMeritsFlawsComponent } from './components/edit-merits-flaws.compone
 import { EditRestComponent } from './components/edit-rest.component';
 import { EditNextComponent } from './components/edit-next.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ByClanPipe } from './by-clan.pipe';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     EditAdvantagesComponent,
     EditMeritsFlawsComponent,
     EditRestComponent,
-    EditNextComponent
+    EditNextComponent,
+    ByClanPipe
   ],
   imports: [CommonModule, SharedModule, CoreModule, FormsModule, ReactiveFormsModule],
   providers: [CharactersService]

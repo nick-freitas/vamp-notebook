@@ -1,0 +1,84 @@
+@import '../styles/library';
+
+:host {
+  display: block;
+}
+
+header {
+  height: 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: var(--primary-light);
+  color: var(--on-primary);
+  padding-right: 1rem;
+
+  #brand {
+    cursor: pointer;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1.5rem;
+    color: var(--on-primary-dark);
+    font-size: 1rem;
+    background-color: var(--primary-dark);
+    transition: 300ms ease;
+
+    &:hover {
+      color: var(--secondary-light);
+    }
+  }
+
+  #account {
+    margin-left: auto;
+    color: var(--on-primary);
+    cursor: pointer;
+
+    &.active,
+    &:hover {
+      color: var(--primary-dark);
+    }
+  }
+}
+
+nav {
+  height: 1.25rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: var(--primary);
+  color: var(--on-primary);
+  padding-right: 1rem;
+
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+
+    li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 0 1rem;
+
+      transition: 300ms ease;
+
+      span {
+        text-transform: uppercase;
+        font-size: 0.7rem;
+      }
+
+      &.active,
+      &:hover {
+        background-color: var(--secondary-light);
+
+        span {
+          color: var(--on-secondary-light);
+        }
+      }
+    }
+  }
+}

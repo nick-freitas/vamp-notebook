@@ -6,29 +6,50 @@ import { Router } from '@angular/router';
 
 @Component({
   template: `
-    <nav aria-label="breadcrumb">
+    <!-- <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item active" aria-current="page" i18n>
           Characters
         </li>
       </ol>
-    </nav>
+    </nav> -->
 
-    <div *ngIf="loading$ | async; then loading; else loaded"></div>
+    <!-- <div *ngIf="loading$ | async; then loading; else loaded"></div>
     <!-- loading -->
-    <ng-template #loading> <app-spinner></app-spinner> </ng-template>
+    <!-- <ng-template #loading> <app-spinner></app-spinner> </ng-template> -->
 
     <!-- loaded -->
-    <ng-template #loaded>
-      <ul class="list-group">
-        <li class="list-group-item" (click)="createCharacter()">Create New Character</li>
-        <li class="list-group-item" routerLink="/characters/{{ character.id }}" *ngFor="let character of characters$ | async">
-          {{ character.clan }} > {{ character.name }}
-        </li>
-      </ul>
-    </ng-template>
+    <!-- <ng-template #loaded>
+      
+    </ng-template> -->
+    <!-- <div *ngFor="let clan of characters$ | async | byClan" class="clans">
+      <h1>{{ clan.clan }}</h1> -->
+
+    <div class="grid">
+      <div class="card" *ngFor="let character of characters$ | async">
+        <div class="card-top">
+          <div class="card-header">{{ character.name }}</div>
+          <div class="card-subheader">Clan {{ character.clan || 'Unknown' }} / Sect {{ character.sect || 'Unknown' }}</div>
+        </div>
+        <ul class="card-actions">
+          <li><a routerLink="/characters/{{ character.id }}">View</a></li>
+          <li><a routerLink="/characters/{{ character.id }}/edit">Edit</a></li>
+          <li><a (click)="delete(character)">Delete</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- </div> -->
+
+    <div class="fab">
+      <span class="tooltip" (click)="createCharacter()">
+        Create New Character
+      </span>
+      <span class="fab-icon material-icons" data-tooltip="Create New Character" (click)="createCharacter()">
+        add
+      </span>
+    </div>
   `,
-  styles: []
+  styleUrls: ['character-list.page.scss']
 })
 export class CharacterListPage implements OnInit {
   loading$: Observable<boolean>;
@@ -48,7 +69,8 @@ export class CharacterListPage implements OnInit {
   }
 
   delete(character: Character) {
-    this.characterSvc.delete(character.id);
+    console.log('not actually going to do this right now');
+    // this.characterSvc.delete(character.id);
   }
 
   getHeroes() {
@@ -60,9 +82,10 @@ export class CharacterListPage implements OnInit {
   }
 
   createCharacter() {
-    this.characterSvc.add(new Character()).subscribe(
-      response => this.router.navigate(['/characters', response.id, 'edit'], { fragment: 'background' }),
-      error => console.error(error)
-    );
+    return;
+    // this.characterSvc.add(new Character()).subscribe(
+    //   response => this.router.navigate(['/characters', response.id, 'edit'], { fragment: 'background' }),
+    //   error => console.error(error)
+    // );
   }
 }
