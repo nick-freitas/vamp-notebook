@@ -5,39 +5,7 @@ import { CharactersService } from '../characters.service';
 import { Character } from '../../../../shared/models/character';
 
 @Component({
-  template: `
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a routerLink="/characters" i18n>Characters</a>
-        </li>
-        <li class="breadcrumb-item active" aria-current="page" *ngIf="(loading$ | async) === false">
-          {{ (this.character$ | async)?.name }}
-        </li>
-      </ol>
-    </nav>
-
-    <div *ngIf="loading$ | async; then loading; else loaded"></div>
-
-    <!-- loading -->
-    <ng-template #loading> <app-spinner></app-spinner> </ng-template>
-
-    <!-- loaded -->
-    <ng-template #loaded>
-      <div *ngIf="this.character$ | async as character" id="sheet-container">
-        <div class="alert alert-warning" role="alert" *ngIf="unimplemetedFeatureMessage !== null">
-          {{ unimplemetedFeatureMessage }}
-        </div>
-
-        <app-sheet-top-card [character]="character" (edit)="edit($event)" (delete)="delete($event)" (export)="export($event)"></app-sheet-top-card>
-        <app-background-info [character]="character"></app-background-info>
-        <app-attributes [character]="character"></app-attributes>
-        <app-abilities [character]="character"></app-abilities>
-        <app-advantages [character]="character"></app-advantages>
-        <app-sheet-bottom-card [character]="character"></app-sheet-bottom-card>
-      </div>
-    </ng-template>
-  `,
+  templateUrl: 'character.page.html',
   styles: [
     `
       #sheet-container > :not(:last-child) {

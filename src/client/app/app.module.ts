@@ -12,6 +12,7 @@ import { PageNotFoundComponent } from './page-not-found.page';
 import { NavbarComponent } from './navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { NgMaterial } from './core/ng-material.module';
 
 @NgModule({
   declarations: [AppComponent, HomePage, PageNotFoundComponent, NavbarComponent],
@@ -25,7 +26,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     CharactersModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgMaterial
   ],
   bootstrap: [AppComponent]
 })

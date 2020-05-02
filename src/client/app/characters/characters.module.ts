@@ -22,6 +22,7 @@ import { EditRestComponent } from './components/edit-rest.component';
 import { EditNextComponent } from './components/edit-next.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ByClanPipe } from './by-clan.pipe';
+import { NgMaterial } from '../core/ng-material.module';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ import { ByClanPipe } from './by-clan.pipe';
     EditNextComponent,
     ByClanPipe
   ],
-  imports: [CommonModule, SharedModule, CoreModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, SharedModule, CoreModule, FormsModule, ReactiveFormsModule, NgMaterial],
   providers: [CharactersService]
 })
 export class CharactersModule {}

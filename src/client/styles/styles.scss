@@ -92,47 +92,66 @@ div.fab {
   z-index: 1;
   right: 2rem;
   bottom: 2rem;
-  height: 3rem;
-  width: 3rem;
-  border-radius: 100%;
-  background-color: var(--primary);
-  color: var(--on-primary);
+  display: flex;
+  flex-direction: column-reverse;
 
-  .fab-icon {
-    border-radius: 100%;
-    transition: 500ms ease;
-    font-size: 3rem;
-  }
+  > button {
+    transition: 200ms ease;
 
-  .tooltip {
-    position: absolute;
-    width: 100%;
-    right: 0%;
-    top: 0%;
-    content: attr(data-tooltip);
-    font-size: 0.5rem;
-    background-color: var(--secondary-light);
-    color: var(--on-secondary-light);
-    padding: 0.25rem;
-    border-radius: 0.1rem;
-    transition: 750ms ease;
-
-    opacity: 0;
-  }
-
-  &:hover {
-    .fab-icon {
-      background-color: var(--secondary-light);
-      color: var(--on-secondary-light);
-      cursor: pointer;
-      transform: rotate(90deg);
-    }
-
-    .tooltip {
-      opacity: 1;
-      right: 150%;
-      top: 50%;
-      transform: translateY(-50%);
+    &:hover {
+      transform: rotate(180deg);
     }
   }
+
+  .speed-dial {
+    // opacity:
+    display: flex;
+    flex-direction: column;
+    button {
+      margin-bottom: 0.5rem;
+    }
+  }
+  // height: 3rem;
+  // width: 3rem;
+  // border-radius: 100%;
+  // background-color: var(--primary);
+  // color: var(--on-primary);
+
+  // .fab-icon {
+  //   border-radius: 100%;
+  //   transition: 500ms ease;
+  //   font-size: 3rem;
+  // }
+
+  // .tooltip {
+  //   position: absolute;
+  //   width: 100%;
+  //   right: 0%;
+  //   top: 0%;
+  //   content: attr(data-tooltip);
+  //   font-size: 0.5rem;
+  //   background-color: var(--secondary-light);
+  //   color: var(--on-secondary-light);
+  //   padding: 0.25rem;
+  //   border-radius: 0.1rem;
+  //   transition: 750ms ease;
+
+  //   opacity: 0;
+  // }
+
+  // &:hover {
+  //   .fab-icon {
+  //     background-color: var(--secondary-light);
+  //     color: var(--on-secondary-light);
+  //     cursor: pointer;
+  //     transform: rotate(90deg);
+  //   }
+
+  //   .tooltip {
+  //     opacity: 1;
+  //     right: 150%;
+  //     top: 50%;
+  //     transform: translateY(-50%);
+  //   }
+  // }
 }

@@ -1,0 +1,37 @@
+<div *ngIf="loading$ | async; then loading; else loaded"></div>
+
+<!-- loading -->
+<ng-template #loading> <app-spinner></app-spinner> </ng-template>
+
+<!-- loaded -->
+<ng-template #loaded>
+  <div *ngIf="this.character$ | async as character" id="sheet-container">
+    <div class="alert alert-warning" role="alert" *ngIf="unimplemetedFeatureMessage !== null">
+      {{ unimplemetedFeatureMessage }}
+    </div>
+
+    <app-sheet-top-card [character]="character" (edit)="edit($event)" (delete)="delete($event)" (export)="export($event)"></app-sheet-top-card>
+    <app-background-info [character]="character"></app-background-info>
+    <app-attributes [character]="character"></app-attributes>
+    <app-abilities [character]="character"></app-abilities>
+    <app-advantages [character]="character"></app-advantages>
+    <app-sheet-bottom-card [character]="character"></app-sheet-bottom-card>
+  </div>
+</ng-template>
+
+<div class="fab">
+  <button mat-mini-fab color="primary">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <div class="speed-dial">
+    <button mat-mini-fab color="accent">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-mini-fab color="accent">
+      <mat-icon>pdf</mat-icon>
+    </button>
+    <button mat-mini-fab color="accent">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</div>

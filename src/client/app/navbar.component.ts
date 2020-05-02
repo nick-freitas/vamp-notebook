@@ -3,15 +3,20 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 @Component({
   selector: 'app-navbar',
   template: `
-    <header>
-      <span routerLink="/" src="assets/vtm-icon.png" id="brand"> VTM Notebook</span>
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <span>VTM Notebook</span>
+        <mat-icon id="account" class="material-icons" routerLink="/account">account_circle</mat-icon>
+      </mat-toolbar-row>
+    </mat-toolbar>
 
-      <i id="account" class="material-icons" routerLink="/account" routerLinkActive="active">account_circle</i>
-    </header>
     <nav>
       <ul>
-        <li routerLink="/chronicle" routerLinkActive="active">
-          <span>Chronicle</span>
+        <li routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <span>Home</span>
+        </li>
+        <li routerLink="/chronicles" routerLinkActive="active">
+          <span>Chronicles</span>
         </li>
         <li routerLink="/characters" routerLinkActive="active">
           <span>Characters</span>

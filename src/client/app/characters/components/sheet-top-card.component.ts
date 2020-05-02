@@ -4,9 +4,27 @@ import { Character } from 'src/shared/models/character';
 @Component({
   selector: 'app-sheet-top-card',
   template: `
-    <div class="card card-body" id="top-card">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <img src="assets/mrniceguy.jpg" mat-card-avatar class="example-header-image" />
+        <mat-card-title>{{ character.name }}</mat-card-title>
+        <mat-card-subtitle>
+          Clan {{ character.clan || 'Unknown' }} / Sect {{ character.sect || 'Unknown' }} / {{ character.generationDescription || 'Generation Unknown' }} /
+          {{ character.ageCategory }}
+        </mat-card-subtitle>
+      </mat-card-header>
+      <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu" /> -->
+      <!-- <mat-card-content></mat-card-content> -->
+      <!-- <mat-card-actions>
+        <button mat-button (click)="export.emit(character.id)">Export</button>
+        <button mat-button (click)="edit.emit(character.id)">Edit</button>
+        <button mat-button color="warn" (click)="delete.emit(character.id)">Delete</button>
+      </mat-card-actions> -->
+    </mat-card>
+
+    <!-- <div class="card card-body" id="top-card">
       <div id="info-block">
-        <img src="assets/mrniceguy.jpg" alt="Character Profile" />
+        <img alt="Character Profile" />
         <div id="name-clan-container">
           <div id="name">{{ character.name }}</div>
           <div id="clan"><span i18n>Clan</span> {{ character.clan || 'Unknown' }} / <span i18n>Sect</span> {{ character.sect || 'Unknown' }}</div>
@@ -24,7 +42,7 @@ import { Character } from 'src/shared/models/character';
           Delete
         </button>
       </div>
-    </div>
+    </div> -->
   `,
   styleUrls: ['./sheet-top-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
