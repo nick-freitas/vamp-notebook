@@ -4,15 +4,26 @@ import { Character } from 'src/shared/models/character';
 @Component({
   selector: 'app-sheet-top-card',
   template: `
-    <mat-card class="example-card">
-      <mat-card-header>
-        <img src="assets/mrniceguy.jpg" mat-card-avatar class="example-header-image" />
-        <mat-card-title>{{ character.name }}</mat-card-title>
-        <mat-card-subtitle>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{character.name}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">
           Clan {{ character.clan || 'Unknown' }} / Sect {{ character.sect || 'Unknown' }} / {{ character.generationDescription || 'Generation Unknown' }} /
           {{ character.ageCategory }}
+        </h6>
+        <a href="#" class="card-link">Edit Character</a>
+        <a href="#" class="card-link">Delete Character</a>
+      </div>
+    </div>
+
+    <!-- <mat-card class="example-card">
+      <mat-card-header>
+        <img src="assets/mrniceguy.jpg" mat-card-avatar class="example-header-image" />
+        <mat-card-title></mat-card-title>
+        <mat-card-subtitle>
+          
         </mat-card-subtitle>
-      </mat-card-header>
+      </mat-card-header> -->
       <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu" /> -->
       <!-- <mat-card-content></mat-card-content> -->
       <!-- <mat-card-actions>
@@ -20,7 +31,7 @@ import { Character } from 'src/shared/models/character';
         <button mat-button (click)="edit.emit(character.id)">Edit</button>
         <button mat-button color="warn" (click)="delete.emit(character.id)">Delete</button>
       </mat-card-actions> -->
-    </mat-card>
+    <!-- </mat-card> -->
 
     <!-- <div class="card card-body" id="top-card">
       <div id="info-block">

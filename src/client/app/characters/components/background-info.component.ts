@@ -5,14 +5,14 @@ import { Character } from 'src/shared/models/character';
   selector: 'app-background-info',
   template: `
     <div class="card" id="background-info">
-      <ul class="list-group list-group-flush">
+      <ul class="list-group list-group-horizontal-md list-group-flush">
         <li class="list-group-item">
           <span>Nature</span>: {{ character.nature }}
-          <img src="/assets/info-circle.svg" data-toggle="tooltip" [title]="character.natureDescription" />
+          <!-- <img src="/assets/info-circle.svg" data-toggle="tooltip" [title]="character.natureDescription" /> -->
         </li>
         <li class="list-group-item">
           <span>Demeanor</span>: {{ character.demeanor }}
-          <img src="/assets/info-circle.svg" data-toggle="tooltip" [title]="character.demeanorDescription" />
+          <!-- <img src="/assets/info-circle.svg" data-toggle="tooltip" [title]="character.demeanorDescription" /> -->
         </li>
         <li class="list-group-item"><span>Sire</span>: {{ character.sire }}</li>
         <li class="list-group-item"><span>Concept</span>: {{ character.concept }}</li>

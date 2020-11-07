@@ -1,39 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
-// @import './assets/darkly.bootstrap.css';
+ @import './darkly.bootstrap.css';
 // @import './assets/bootstrap-nav-wizard.css';
 //https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=6002ee
 
 :root {
-  font-size: 16px;
+  // font-size: 16px;
 
-  --gainsboro: #dcdcdc;
-  --silver-sano: #c5c3c6;
-  --davys-grey: #46494c;
-  --black-coral: #4c5c68;
-  --black-coral-light: #788996;
-  --black-coral-dark: #23333d;
-  --blue-sapphire: #19647e;
-  --blue-sapphire-light: #5192ad;
-  --blue-sapphire-dark: #003a52;
-  --rosewood: #68000a;
+  // --gainsboro: #dcdcdc;
+  // --silver-sano: #c5c3c6;
+  // --davys-grey: #46494c;
+  // --black-coral: #4c5c68;
+  // --black-coral-light: #788996;
+  // --black-coral-dark: #23333d;
+  // --blue-sapphire: #19647e;
+  // --blue-sapphire-light: #5192ad;
+  // --blue-sapphire-dark: #003a52;
+  // --rosewood: #68000a;
 
-  --background: var(--gainsboro);
-  --primary: var(--black-coral);
-  --primary-dark: var(--black-coral-dark);
-  --primary-light: var(--black-coral-light);
-  --secondary: var(--blue-sapphire);
-  --secondary-dark: var(--blue-sapphire-dark);
-  --secondary-light: var(--blue-sapphire-light);
-  --error: var(--rosewood);
+  // --background: var(--gainsboro);
+  // --primary: var(--black-coral);
+  // --primary-dark: var(--black-coral-dark);
+  // --primary-light: var(--black-coral-light);
+  // --secondary: var(--blue-sapphire);
+  // --secondary-dark: var(--blue-sapphire-dark);
+  // --secondary-light: var(--blue-sapphire-light);
+  // --error: var(--rosewood);
 
-  --on-primary: rgba(255, 255, 255, 0.8);
-  --on-primary-light: rgba(0, 0, 0, 0.8);
-  --on-primary-dark: rgba(255, 255, 255, 0.8);
-  --on-secondary: rgba(255, 255, 255, 0.8);
-  --on-secondary-light: rgba(0, 0, 0, 0.8);
-  --on-secondary-dark: rgba(255, 255, 255, 0.8);
-  --on-background: rgba(0, 0, 0, 0.6);
-  --on-error: rgba(255, 255, 255, 0.75);
+  // --on-primary: rgba(255, 255, 255, 0.8);
+  // --on-primary-light: rgba(0, 0, 0, 0.8);
+  // --on-primary-dark: rgba(255, 255, 255, 0.8);
+  // --on-secondary: rgba(255, 255, 255, 0.8);
+  // --on-secondary-light: rgba(0, 0, 0, 0.8);
+  // --on-secondary-dark: rgba(255, 255, 255, 0.8);
+  // --on-background: rgba(0, 0, 0, 0.6);
+  // --on-error: rgba(255, 255, 255, 0.75);
 }
 
 * {
@@ -52,23 +52,27 @@ body {
   height: 100vh;
 }
 
-body {
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
-  background-color: var(--background);
-  color: var(--on-background);
-
-  &::-webkit-scrollbar {
-    width: 0.5rem;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: var(--primary-dark);
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: var(--secondary);
-  }
+.card-body {
+  width: 100%;
 }
+
+// body {
+//   font-family: Roboto, 'Helvetica Neue', sans-serif;
+//   background-color: var(--background);
+//   color: var(--on-background);
+
+//   &::-webkit-scrollbar {
+//     width: 0.5rem;
+//   }
+
+//   &::-webkit-scrollbar-track {
+//     background: var(--primary-dark);
+//   }
+
+//   &::-webkit-scrollbar-thumb {
+//     background: var(--secondary);
+//   }
+// }
 
 .card {
   display: flex;
