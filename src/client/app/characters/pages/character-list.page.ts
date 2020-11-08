@@ -5,8 +5,34 @@ import { Character } from '../../../../shared/models/character';
 import { Router } from '@angular/router';
 
 @Component({
-  templateUrl: 'character-list.page.html',
-  styleUrls: ['character-list.page.scss']
+  template: `
+    <div class="row">
+      <nav aria-label="breadcrumb" class="col-12">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item active" aria-current="page">Characters</li>
+        </ol>
+      </nav>
+    </div>
+    <div class="row">
+      <div class="col-12 d-flex justify-content-between align-items-center">
+        My Characters
+        <button type="button" class="btn btn-primary" (click)="createCharacter()">Create New Character</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-lg-3 top-buffer" *ngFor="let character of characters$ | async">
+        <div class="card" routerLink="/characters/{{ character.id }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ character.name }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">
+              Clan {{ character.clan || 'Unknown' }} / Sect {{ character.sect || 'Unknown' }} / {{ character.generationDescription || 'Generation Unknown' }}
+            </h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  `,
+  styleUrls: []
 })
 export class CharacterListPage implements OnInit {
   loading$: Observable<boolean>;
@@ -18,7 +44,7 @@ export class CharacterListPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getHeroes();
+    this.getCharacters();
   }
 
   add(character: Character) {
@@ -30,7 +56,7 @@ export class CharacterListPage implements OnInit {
     // this.characterSvc.delete(character.id);
   }
 
-  getHeroes() {
+  getCharacters() {
     this.characterSvc.getAll();
   }
 

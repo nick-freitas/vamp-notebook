@@ -1,26 +1,28 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { Character } from 'src/shared/models/character';
-import { AbilityBlock } from '../data/abilities.data';
-import { BlockOrientation } from '../block-orientation.enum';
 
 @Component({
   selector: 'app-abilities',
   template: `
     <div class="row">
-      <div class="col-lg ability-container" *ngFor="let block of blocks">
-        <div class="ability-name-points">
-          <span i18n>{{ block.name }} Abilities</span> ({{ character | points: block.forPoints:block.defaultOne }})
+      <div class="col-lg attribute-container" *ngFor="let block of dataBlocks">
+        <div class="card ">
+          <div class="card-header d-flex justify-content-between">
+            <span>{{ block.name }}</span>
+            <span *ngIf="block.forPoints"> {{ character | points: block.forPoints:block.defaultOne }} pts</span>
+          </div>
+          <div class="card-body">
+            <ul class="list-group-flush stat-group">
+              <li class="stat-list-item list-group-item d-flex flex-fill" *ngFor="let type of block.types">
+                <app-stat-block
+                  [name]="type.typeNameIsCharactered ? character[type.name] : type.name"
+                  [points]="type.typePointsAreLabels ? 'type.points' : character[type.points]"
+                  [prof]="type.typeProfsAreLabels ? type.prof : character[type.prof]"
+                ></app-stat-block>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="card card-body abilities-card">
-          <app-stat-block
-            [orientation]="this.horizontal"
-            *ngFor="let type of block.types; last as isLast"
-            [name]="type.name"
-            [points]="character[type.points]"
-            [prof]="character[type.prof]"
-          ></app-stat-block>
-        </div>
-        <hr />
       </div>
     </div>
   `,
@@ -29,30 +31,13 @@ import { BlockOrientation } from '../block-orientation.enum';
       :host {
         display: block;
       }
-
-      .ability-container {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .ability-container .abilities-card {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
     `
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AbilitiesComponent implements OnInit {
   @Input() character: Character;
-  blocks: any[];
-  vertical: BlockOrientation = BlockOrientation.VERTICAL;
-  horizontal: BlockOrientation = BlockOrientation.HORIZONTAL;
-
-  constructor() {
-    this.blocks = AbilityBlock;
-  }
+  @Input() dataBlocks: any;
 
   ngOnInit(): void {}
 }

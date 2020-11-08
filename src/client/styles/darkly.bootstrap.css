@@ -191,7 +191,7 @@ a:hover {
   text-decoration: underline;
 }
 
-a:not([href]) {
+/* a:not([href]) {
   color: inherit;
   text-decoration: none;
 }
@@ -199,7 +199,7 @@ a:not([href]) {
 a:not([href]):hover {
   color: inherit;
   text-decoration: none;
-}
+} */
 
 pre,
 code,

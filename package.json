@@ -4,6 +4,7 @@
   "scripts": {
     "client:ng": "ng",
     "client:start": "ng serve",
+    "client:start:dev": "ng serve",
     "client:build:prod": "ng build --prod",
     "client:build": "ng build",
     "client:test": "ng test",

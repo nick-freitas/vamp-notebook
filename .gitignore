@@ -46,3 +46,5 @@ testem.log
 Thumbs.db
 src/server/assets/TestCharacter.pdf
 src/server/app/data/backup/*
+temp_data*
+src/server/assets/TestCharacter.pdf

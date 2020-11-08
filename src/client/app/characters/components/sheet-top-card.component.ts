@@ -6,56 +6,18 @@ import { Character } from 'src/shared/models/character';
   template: `
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">{{character.name}}</h5>
+        <h5 class="card-title">{{ character.name }}</h5>
         <h6 class="card-subtitle mb-2 text-muted">
           Clan {{ character.clan || 'Unknown' }} / Sect {{ character.sect || 'Unknown' }} / {{ character.generationDescription || 'Generation Unknown' }} /
           {{ character.ageCategory }}
         </h6>
-        <a href="#" class="card-link">Edit Character</a>
-        <a href="#" class="card-link">Delete Character</a>
+        <a class="card-link" (click)="this.export.emit(character.id)">Export</a>
+        <a class="card-link" (click)="this.edit.emit(character.id)">Edit Character</a>
+        <a class="card-link" (click)="this.delete.emit(character.id)">Delete Character</a>
       </div>
     </div>
-
-    <!-- <mat-card class="example-card">
-      <mat-card-header>
-        <img src="assets/mrniceguy.jpg" mat-card-avatar class="example-header-image" />
-        <mat-card-title></mat-card-title>
-        <mat-card-subtitle>
-          
-        </mat-card-subtitle>
-      </mat-card-header> -->
-      <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu" /> -->
-      <!-- <mat-card-content></mat-card-content> -->
-      <!-- <mat-card-actions>
-        <button mat-button (click)="export.emit(character.id)">Export</button>
-        <button mat-button (click)="edit.emit(character.id)">Edit</button>
-        <button mat-button color="warn" (click)="delete.emit(character.id)">Delete</button>
-      </mat-card-actions> -->
-    <!-- </mat-card> -->
-
-    <!-- <div class="card card-body" id="top-card">
-      <div id="info-block">
-        <img alt="Character Profile" />
-        <div id="name-clan-container">
-          <div id="name">{{ character.name }}</div>
-          <div id="clan"><span i18n>Clan</span> {{ character.clan || 'Unknown' }} / <span i18n>Sect</span> {{ character.sect || 'Unknown' }}</div>
-          <div id="generation">{{ character.generationDescription }} / {{ character.ageCategory }}</div>
-        </div>
-      </div>
-      <div id="actions">
-        <button type="button" class="btn btn-outline-success" (click)="export.emit(character.id)" i18n>
-          Export
-        </button>
-        <button type="button" class="btn btn-outline-light" (click)="edit.emit(character.id)" i18n>
-          Edit
-        </button>
-        <button type="button" class="btn btn-outline-danger" (click)="delete.emit(character.id)" i18n>
-          Delete
-        </button>
-      </div>
-    </div> -->
   `,
-  styleUrls: ['./sheet-top-card.component.scss'],
+  styleUrls: [],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SheetTopCardComponent implements OnInit {
