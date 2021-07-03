@@ -127,5 +127,9 @@
       }
     }
   },
+<<<<<<< HEAD
   "defaultProject": "vtm"
+=======
+  "defaultProject": "vamp-notebook"
+>>>>>>> parent of edb073c (add first pass of pdf)
 }

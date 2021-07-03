@@ -1,0 +1,234 @@
+{
+  "defaults": {
+    "clans": [
+      "Clan Assamite",
+      "Clan Brujah",
+      "Followers of Set",
+      "Clan Gangrel",
+      "Clan Giovanni",
+      "Clan Lasombra",
+      "Clan Malkavian",
+      "Clan Nosferatu",
+      "Clan Ravnos",
+      "Clan Toreador",
+      "Clan Tremere",
+      "Clan Tzimisce",
+      "Clan Ventrue"
+    ]
+  },
+  "characterSheetFields": {
+    "coreHeaderFieldList": [
+      {
+        "name": "name",
+        "text": "Name"
+      },
+      {
+        "name": "generation",
+        "text": "Generation",
+        "editWarning": "Changing this might cause abilities to reset",
+        "inputType": "number"
+      },
+      {
+        "name": "clan",
+        "text": "Clan",
+        "editWarning": "Changing this will cause Disciplines to reset"
+      }
+    ],
+    "subHeaderFieldList": [
+      {
+        "name": "demeanor",
+        "text": "Demeanor"
+      },
+      {
+        "name": "nature",
+        "text": "Nature"
+      },
+      {
+        "name": "sire",
+        "text": "Sire"
+      }
+    ],
+    "conceptHeaderFieldList": [
+      { "name": "concept", "text": "Concept", "inputType": "textarea" }
+    ],
+    "attributesFieldList": [
+      {
+        "type": "Physical",
+        "attributes": [
+          { "name": "strength", "text": "Strength" },
+          { "name": "dexterity", "text": "Dexterity" },
+          { "name": "stamina", "text": "Stamina" }
+        ]
+      },
+      {
+        "type": "Social",
+        "attributes": [
+          { "name": "charisma", "text": "Charisma" },
+          { "name": "manipulation", "text": "Manipulation" },
+          { "name": "apperance", "text": "Apperance" }
+        ]
+      },
+      {
+        "type": "Mental",
+        "attributes": [
+          { "name": "perception", "text": "Perception" },
+          { "name": "intelligence", "text": "Intelligence" },
+          { "name": "wits", "text": "Wits" }
+        ]
+      }
+    ],
+    "abilitiesFieldList": [
+      {
+        "type": "Talents",
+        "abilities": [
+          { "name": "alertness", "text": "Alertness" },
+          { "name": "athletics", "text": "Athletics" },
+          { "name": "awareness", "text": "Awareness" },
+          { "name": "brawl", "text": "Brawl" },
+          { "name": "empathy", "text": "Empathy" },
+          { "name": "expression", "text": "Expression" },
+          { "name": "intimidation", "text": "Intimidation" },
+          { "name": "leadership", "text": "Leadership" },
+          { "name": "streetwise", "text": "Streetwise" },
+          { "name": "subterfuge", "text": "Subterfuge" }
+        ]
+      },
+      {
+        "type": "Skills",
+        "abilities": [
+          { "name": "animal-ken", "text": "Animal Ken" },
+          { "name": "crafts", "text": "Crafts" },
+          { "name": "drive", "text": "Drive" },
+          { "name": "etiquette", "text": "Etiquette" },
+          { "name": "firearms", "text": "Firearms" },
+          { "name": "larceny", "text": "Larceny" },
+          { "name": "melee", "text": "Melee" },
+          { "name": "performance", "text": "Performance" },
+          { "name": "stealth", "text": "Stealth" },
+          { "name": "survival", "text": "Survival" }
+        ]
+      },
+      {
+        "type": "Knowledges",
+        "abilities": [
+          { "name": "academics", "text": "Academics" },
+          { "name": "computers", "text": "Computers" },
+          { "name": "finance", "text": "Finance" },
+          { "name": "investigation", "text": "Investigation" },
+          { "name": "law", "text": "Law" },
+          { "name": "medicine", "text": "Medicine" },
+          { "name": "occult", "text": "Occult" },
+          { "name": "politics", "text": "Politics" },
+          { "name": "science", "text": "Science" },
+          { "name": "technology", "text": "Technology" }
+        ]
+      }
+    ]
+  },
+  "users": [
+    {
+      "id": "nick",
+      "username": "nick",
+      "lastSelectedChronicle": "boston",
+      "chronicles": [
+        {
+          "id": "boston",
+          "name": "Boston",
+          "lastSelectedCharacter": "rosa",
+          "clans": [
+            {
+              "name": "Clan Toreador",
+              "characters": [
+                {
+                  "id": "rosa",
+                  "name": "Rosa",
+                  "clan": "Clan Toreador",
+                  "imageUrl": "https://ksr-ugc.imgix.net/assets/023/013/173/16d2716416ac53332f8248e912c75259_original.jpg?ixlib=rb-2.1.0&w=680&fit=max&v=1540397758&auto=format&gif-q=50&q=92&s=bcc86fd3a579872bf713b43a06f13365",
+                  "nature": "Conniver",
+                  "demeanor": "Guardian",
+                  "sire": "Count Dracula",
+                  "generation": 12,
+                  "concept": "Something simple for me to show off",
+                  "lastSelectedNote": null,
+                  "stats": {
+                    "strength": {
+                      "value": 2,
+                      "advantage": null
+                    },
+                    "dexterity": {
+                      "value": 1,
+                      "advantage": "xyz"
+                    }
+                  },
+                  "notes": [
+                    {
+                      "id": "note_a1",
+                      "title": "Childhood",
+                      "subtitle": "Some Description",
+                      "content": "<h1>Cum ageremus, inquit, vitae beatum et eundem supremum diem, scribebamus haec.</h1>\n\n            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Si de re disceptari oportet, nulla mihi tecum, Cato, potest esse dissensio. Quae adhuc, Cato, a te dicta sunt, eadem, inquam, dicere posses, si sequerere Pyrrhonem aut Aristonem. Atque ego: Scis me, inquam, istud idem sentire, Piso, sed a te opportune facta mentio est. Si enim ad populum me vocas, eum. <b>Erit enim mecum, si tecum erit.</b> <b>Compensabatur, inquit, cum summis doloribus laetitia.</b> Quem quidem vos, cum improbis poenam proponitis, inpetibilem facitis, cum sapientem semper boni plus habere vultis, tolerabilem. Duo Reges: constructio interrete. </p>\n\n            <p><a href=\"http://loripsum.net/\" target=\"_blank\">Sed plane dicit quod intellegit.</a> <i>Falli igitur possumus.</i> <mark>Tum Triarius: Posthac quidem, inquit, audacius.</mark> Habes, inquam, Cato, formam eorum, de quibus loquor, philosophorum. Peccata autem partim esse tolerabilia, partim nullo modo, propterea quod alia peccata plures, alia pauciores quasi numeros officii praeterirent. <code>Tamen a proposito, inquam, aberramus.</code> Nunc haec primum fortasse audientis servire debemus. <i>Idem iste, inquam, de voluptate quid sentit?</i> De quibus cupio scire quid sentias. </p>\n\n            <blockquote cite=\"http://loripsum.net\">\n              Quae sunt igitur communia vobis cum antiquis, iis sic utamur quasi concessis;\n            </blockquote>\n\n\n            <p>Hoc est non modo cor non habere, sed ne palatum quidem. Qui autem de summo bono dissentit de tota philosophiae ratione dissentit. Nam illud vehementer repugnat, eundem beatum esse et multis malis oppressum. Atque adhuc ea dixi, causa cur Zenoni non fuisset, quam ob rem a superiorum auctoritate discederet. Hoc etsi multimodis reprehendi potest, tamen accipio, quod dant. Si ista mala sunt, in quae potest incidere sapiens, sapientem esse non esse ad beate vivendum satis. Ergo ita: non posse honeste vivi, nisi honeste vivatur? <b>Eaedem res maneant alio modo.</b> Idem adhuc; <i>Pauca mutat vel plura sane;</i> Fadio Gallo, cuius in testamento scriptum esset se ab eo rogatum ut omnis hereditas ad filiam perveniret. </p>\n\n            <p>Iam quae corporis sunt, ea nec auctoritatem cum animi partibus, comparandam et cognitionem habent faciliorem. Sit ista in Graecorum levitate perversitas, qui maledictis insectantur eos, a quibus de veritate dissentiunt. Sed non alienum est, quo facilius vis verbi intellegatur, rationem huius verbi faciendi Zenonis exponere. Tu enim ista lenius, hic Stoicorum more nos vexat. Est autem a te semper dictum nec gaudere quemquam nisi propter corpus nec dolere. <b>Certe non potest.</b> Utrum enim sit voluptas in iis rebus, quas primas secundum naturam esse diximus, necne sit ad id, quod agimus, nihil interest. Nam quicquid quaeritur, id habet aut generis ipsius sine personis temporibusque aut his adiunctis facti aut iuris aut nominis controversiam. Aristoteles, Xenocrates, tota illa familia non dabit, quippe qui valitudinem, vires, divitias, gloriam, multa alia bona esse dicant, laudabilia non dicant. <i>Immo videri fortasse.</i> </p>\n\n            <p><a href=\"http://loripsum.net/\" target=\"_blank\">Quis istud, quaeso, nesciebat?</a> Nonne videmus quanta perturbatio rerum omnium consequatur, quanta confusio? Quid est, quod ab ea absolvi et perfici debeat? Quid turpius quam sapientis vitam ex insipientium sermone pendere? Nec enim haec movere potest appetitum animi, nec ullum habet ictum, quo pellat animum, status hic non dolendi, itaque in hoc eodem peccat Hieronymus. Quantum Aristoxeni ingenium consumptum videmus in musicis? <a href=\"http://loripsum.net/\" target=\"_blank\">Itaque contra est, ac dicitis;</a> Sumenda potius quam expetenda. Eiuro, inquit adridens, iniquum, hac quidem de re; Nam et a te perfici istam disputationem volo, nec tua mihi oratio longa videri potest. </p>\n\n            <pre>Quo minus animus a se ipse dissidens secumque discordans\n            gustare partem ullam liquidae voluptatis et liberae potest.\n\n            Ampulla enim sit necne sit, quis non iure optimo irrideatur,\n            si laboret?\n            </pre>\n\n\n            <dl>\n              <dt><dfn>Avaritiamne minuis?</dfn></dt>\n              <dd>Non enim ipsa genuit hominem, sed accepit a natura inchoatum.</dd>\n              <dt><dfn>Si quae forte-possumus.</dfn></dt>\n              <dd>Quid autem habent admirationis, cum prope accesseris?</dd>\n              <dt><dfn>Sed nimis multa.</dfn></dt>\n              <dd>Duo enim genera quae erant, fecit tria.</dd>\n              <dt><dfn>Poterat autem inpune;</dfn></dt>\n              <dd>Nam Metrodorum non puto ipsum professum, sed, cum appellaretur ab Epicuro, repudiare tantum beneficium noluisse;</dd>\n            </dl>\n\n\n            <ul>\n              <li>Et homini, qui ceteris animantibus plurimum praestat, praecipue a natura nihil datum esse dicemus?</li>\n              <li>Varietates autem iniurasque fortunae facile veteres philosophorum praeceptis instituta vita superabat.</li>\n              <li>Neque enim disputari sine reprehensione nec cum iracundia aut pertinacia recte disputari potest.</li>\n              <li>Cur post Tarentum ad Archytam?</li>\n              <li>At miser, si in flagitiosa et vitiosa vita afflueret voluptatibus.</li>\n              <li>Potius inflammat, ut coercendi magis quam dedocendi esse videantur.</li>\n            </ul>\n\n\n            <ol>\n              <li>Paulum, cum regem Persem captum adduceret, eodem flumine invectio?</li>\n              <li>Eadem fortitudinis ratio reperietur.</li>\n            </ol>"
+                    },
+                    {
+                      "id": "note_a2",
+                      "title": "Childhood (Part 2)",
+                      "subtitle": "Some Description also",
+                      "content": "<h1>Itaque hic ipse iam pridem est reiectus;</h1>\n\n            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vobis autem, quibus nihil est aliud propositum nisi rectum atque honestum, unde officii, unde agendi principlum nascatur non reperietis. Quid enim necesse est, tamquam meretricem in matronarum coetum, sic voluptatem in virtutum concilium adducere? <i>Addidisti ad extremum etiam indoctum fuisse.</i> <a href=\"http://loripsum.net/\" target=\"_blank\">Nummus in Croesi divitiis obscuratur, pars est tamen divitiarum.</a> <mark>Duo Reges: constructio interrete.</mark> Legimus tamen Diogenem, Antipatrum, Mnesarchum, Panaetium, multos alios in primisque familiarem nostrum Posidonium. Sint ista Graecorum; <code>Eam stabilem appellas.</code> <b>Quoniam, si dis placet, ab Epicuro loqui discimus.</b> Nam si dicent ab illis has res esse tractatas, ne ipsos quidem Graecos est cur tam multos legant, quam legendi sunt. <code>Summum a vobis bonum voluptas dicitur.</code> Ad corpus diceres pertinere-, sed ea, quae dixi, ad corpusne refers? Ergo opifex plus sibi proponet ad formarum quam civis excellens ad factorum pulchritudinem? <a href=\"http://loripsum.net/\" target=\"_blank\">Philosophi autem in suis lectulis plerumque moriuntur.</a> </p>\n\n            <ul>\n              <li>Virtutibus igitur rectissime mihi videris et ad consuetudinem nostrae orationis vitia posuisse contraria.</li>\n              <li>Hoc est vim afferre, Torquate, sensibus, extorquere ex animis cognitiones verborum, quibus inbuti sumus.</li>\n              <li>Non quaeritur autem quid naturae tuae consentaneum sit, sed quid disciplinae.</li>\n              <li>Hic ego: Pomponius quidem, inquam, noster iocari videtur, et fortasse suo iure.</li>\n            </ul>\n\n\n            <pre>Quod cum dixissent, ille contra.\n\n            Huic ego, si negaret quicquam interesse ad beate vivendum\n            quali uteretur victu, concederem, laudarem etiam;\n            </pre>\n\n\n            <blockquote cite=\"http://loripsum.net\">\n              Dolere malum est: in crucem qui agitur, beatus esse non potest.\n            </blockquote>\n\n\n            <h2>An potest cupiditas finiri?</h2>\n\n            <p>Itaque rursus eadem ratione, qua sum paulo ante usus, haerebitis. Quo plebiscito decreta a senatu est consuli quaestio Cn. <a href=\"http://loripsum.net/\" target=\"_blank\">Urgent tamen et nihil remittunt.</a> In contemplatione et cognitione posita rerum, quae quia deorum erat vitae simillima, sapiente visa est dignissima. Negat enim tenuissimo victu, id est contemptissimis escis et potionibus, minorem voluptatem percipi quam rebus exquisitissimis ad epulandum. <mark>Illud dico, ea, quae dicat, praeclare inter se cohaerere.</mark> Ex quo magnitudo quoque animi existebat, qua facile posset repugnari obsistique fortunae, quod maximae res essent in potestate sapientis. Sed tamen omne, quod de re bona dilucide dicitur, mihi praeclare dici videtur. Deque his rebus satis multa in nostris de re publica libris sunt dicta a Laelio. Quis enim redargueret? Et nunc quidem quod eam tuetur, ut de vite potissimum loquar, est id extrinsecus; </p>\n\n            <p><b>Nescio quo modo praetervolavit oratio.</b> <b>At hoc in eo M.</b> <a href=\"http://loripsum.net/\" target=\"_blank\">Ubi ut eam caperet aut quando?</a> Dicuntur ista, Cato, magnifice, inquam, sed videsne verborum gloriam tibi cum Pyrrhone et cum Aristone, qui omnia exaequant, esse communem? Hoc ne statuam quidem dicturam pater aiebat, si loqui posset. Itaque non discedit ab eorum curatione, quibus praeposita vitam omnem debet gubernare, ut mirari satis istorum inconstantiam non possim. <code>Theophrasti igitur, inquit, tibi liber ille placet de beata vita?</code> </p>\n\n            <dl>\n              <dt><dfn>Quonam, inquit, modo?</dfn></dt>\n              <dd>Te autem hortamur omnes, currentem quidem, ut spero, ut eos, quos novisse vis, imitari etiam velis.</dd>\n              <dt><dfn>Sed fortuna fortis;</dfn></dt>\n              <dd>Sed ne, dum huic obsequor, vobis molestus sim.</dd>\n              <dt><dfn>Ille incendat?</dfn></dt>\n              <dd>Sapientem locupletat ipsa natura, cuius divitias Epicurus parabiles esse docuit.</dd>\n              <dt><dfn>Sedulo, inquam, faciam.</dfn></dt>\n              <dd>Nihilne te delectat umquam -video, quicum loquar-, te igitur, Torquate, ipsum per se nihil delectat?</dd>\n            </dl>\n\n\n            <ol>\n              <li>Legimus tamen Diogenem, Antipatrum, Mnesarchum, Panaetium, multos alios in primisque familiarem nostrum Posidonium.</li>\n              <li>Philosophi autem in suis lectulis plerumque moriuntur.</li>\n              <li>Legimus tamen Diogenem, Antipatrum, Mnesarchum, Panaetium, multos alios in primisque familiarem nostrum Posidonium.</li>\n            </ol>"
+                    }
+                  ]
+                },
+                {
+                  "id": "kris",
+                  "name": "Kris",
+                  "clan": "Clan Toreador",
+                  "imageUrl": "https://ksr-ugc.imgix.net/assets/023/013/173/16d2716416ac53332f8248e912c75259_original.jpg?ixlib=rb-2.1.0&w=680&fit=max&v=1540397758&auto=format&gif-q=50&q=92&s=bcc86fd3a579872bf713b43a06f13365",
+                  "nature": "Aristocrat",
+                  "demeanor": "Jocker",
+                  "generation": 8,
+                  "concept": "Something simple for me to show off",
+                  "lastSelectedNote": "note_b1",
+                  "stats": {},
+                  "notes": [
+                    {
+                      "id": "note_b1",
+                      "title": "Childhood",
+                      "subtitle": "Some Description",
+                      "content": "something more here"
+                    },
+                    {
+                      "id": "note_b2",
+                      "title": "Childhood (Part 2)",
+                      "subtitle": "Some Description also",
+                      "content": "even more here"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Clan Brujah",
+              "characters": []
+            }
+          ]
+        },
+        {
+          "id": "portland",
+          "name": "Portland",
+          "lastSelectedCharacter": null,
+          "clans": [
+            {
+              "name": "Clan Gangrel",
+              "characters": []
+            },
+            {
+              "name": "Clan Brujah",
+              "characters": []
+            },
+            {
+              "name": "Clan Tremere",
+              "characters": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
