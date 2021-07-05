@@ -2,7 +2,7 @@ import { Component, ChangeDetectionStrategy, OnDestroy } from "@angular/core";
 import { StateService } from "src/app/core/state.service";
 import { FormGroup, FormControl } from "@angular/forms";
 import { ConfirmChangeComponent } from "../confirm-change.component";
-import { MatDialog } from "@angular/material";
+import { MatDialog } from "@angular/material/dialog";
 import { Subscription } from "rxjs";
 import { SubSink } from "subsink";
 
