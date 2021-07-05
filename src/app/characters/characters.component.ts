@@ -1,14 +1,14 @@
 import { Component, ChangeDetectionStrategy, OnInit } from "@angular/core";
-import { StateService } from "../core/state.service";
+import { StateService } from "../core/state/state.service";
 import { PrintableCharacterSheetComponent } from "./components/printable-character-sheet/printable-character-sheet.component";
 import { ComponentPortal } from "@angular/cdk/portal";
 
 @Component({
-  templateUrl: "./characters.view.html",
-  styleUrls: ["./characters.view.scss"],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  templateUrl: "./characters.component.html",
+  styleUrls: ["./characters.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CharactersView implements OnInit {
+export class CharactersComponent implements OnInit {
   public characterListOpened: boolean;
   constructor(public state: StateService) {}
 

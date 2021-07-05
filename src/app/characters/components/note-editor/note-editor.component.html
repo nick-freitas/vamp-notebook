@@ -1,0 +1,19 @@
+<mat-card *ngIf="state.selectedNote$ | async as selectedNote">
+  <mat-card-content>
+    <app-inline-input-editor
+      text="Title"
+      name="title"
+      type="text"
+      [value]="selectedNote?.title"
+      (valueChanged)="state.changeNoteFields($event)"
+    ></app-inline-input-editor>
+    <app-inline-input-editor
+      text="Subtitle"
+      name="subtitle"
+      type="text"
+      [value]="selectedNote?.subtitle"
+      (valueChanged)="state.changeNoteFields($event)"
+    ></app-inline-input-editor>
+    <ckeditor [editor]="Editor" [data]="selectedNote?.content"></ckeditor>
+  </mat-card-content>
+</mat-card>

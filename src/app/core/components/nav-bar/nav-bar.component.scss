@@ -1,0 +1,34 @@
+:host {
+  z-index: 999;
+  display: grid;
+}
+
+@media print {
+  :host {
+    display: none;
+  }
+}
+
+.nav-item.disabled[routerLink] a {
+  cursor: inherit;
+}
+
+.workspace-button {
+  min-width: 36px;
+  padding: 0;
+  border-radius: 0;
+  font-size: 24px;
+}
+
+.workspace-button + .workspace-name {
+  padding-left: 8px;
+}
+
+mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+mat-toolbar div {
+  display: flex;
+}

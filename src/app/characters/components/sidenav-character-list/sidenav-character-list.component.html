@@ -1,0 +1,33 @@
+<div class="existing-character-list">
+  <ng-container
+    *ngFor="
+      let clan of (state.selectedChronicle$ | async)?.clans;
+      let index = index
+    "
+  >
+    <mat-nav-list *ngIf="clan.characters.length">
+      <mat-divider *ngIf="index"></mat-divider>
+      <h1 matSubheader>{{ clan.name }}</h1>
+
+      <a
+        *ngFor="let character of clan?.characters"
+        mat-list-item
+        [class.selected-menu-item]="
+          character.id === (state.selectedCharacter$ | async).id
+        "
+        (click)="
+          state.changeSelectedCharacter(character);
+          state.closeCharacterListSidenav(true)
+        "
+      >
+        {{ character.name }}
+      </a>
+    </mat-nav-list>
+  </ng-container>
+</div>
+
+<mat-nav-list>
+  <mat-divider></mat-divider>
+
+  <a mat-list-item routerLinkActive="list-item-active"> (+) New Character </a>
+</mat-nav-list>

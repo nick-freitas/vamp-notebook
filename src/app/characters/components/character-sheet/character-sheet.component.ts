@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, OnDestroy } from "@angular/core";
-import { StateService } from "src/app/core/state.service";
+import { StateService } from "src/app/core/state/state.service";
 import { FormGroup, FormControl } from "@angular/forms";
 import { ConfirmChangeComponent } from "../confirm-change.component";
 import { MatDialog } from "@angular/material/dialog";
@@ -21,7 +21,7 @@ const _generations = [
   { text: "Thirteenth Generation", value: 13 },
   { text: "Furteenth Generation", value: 14 },
   { text: "Fifteenth Generation", value: 15 },
-  { text: "Sixteenth Generation", value: 16 }
+  { text: "Sixteenth Generation", value: 16 },
 ];
 
 const _clans = [
@@ -37,7 +37,7 @@ const _clans = [
   { text: "Clan Toreador", value: "Clan Toreador" },
   { text: "Clan Tremere", value: "Clan Tremere" },
   { text: "Clan Tzimisce", value: "Clan Tzimisce" },
-  { text: "Clan Ventrue", value: "Clan Ventrue" }
+  { text: "Clan Ventrue", value: "Clan Ventrue" },
 ];
 
 const _archetypes = [
@@ -113,14 +113,14 @@ const _archetypes = [
   { text: "Trickster", value: "Trickster" },
   { text: "Tycoon", value: "Tycoon" },
   { text: "Vigilante", value: "Vigilante" },
-  { text: "Visionary", value: "Visionary" }
+  { text: "Visionary", value: "Visionary" },
 ];
 
 @Component({
   selector: "app-character-sheet",
   templateUrl: "./character-sheet.component.html",
   styleUrls: ["./character-sheet.component.scss"],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CharacterSheetComponent implements OnDestroy {
   subs: SubSink;
@@ -134,7 +134,7 @@ export class CharacterSheetComponent implements OnDestroy {
   clans = _clans;
   archetypes = _archetypes;
 
-  physicalAttributes: {name: string, text: string}[];
+  physicalAttributes: { name: string; text: string }[];
 
   constructor(public state: StateService, public dialog: MatDialog) {
     this.subs = new SubSink();
@@ -143,7 +143,7 @@ export class CharacterSheetComponent implements OnDestroy {
     this.physicalAttributes = [
       { name: "strength", text: "Strength" },
       { name: "dexterity", text: "Dexterity" },
-      { name: "stamina", text: "Stamina" }
+      { name: "stamina", text: "Stamina" },
     ];
   }
 
@@ -162,7 +162,7 @@ export class CharacterSheetComponent implements OnDestroy {
   resetFormGroup() {
     this.subs.unsubscribe();
 
-    this.subs.sink = this.state.selectedCharacter$.subscribe(character => {
+    this.subs.sink = this.state.selectedCharacter$.subscribe((character) => {
       this.isFormDirty = false;
       this.isGenerationDirty = false;
       this.isClanDirty = false;
@@ -175,21 +175,21 @@ export class CharacterSheetComponent implements OnDestroy {
         nature: new FormControl(character.nature),
         sire: new FormControl(character.sire),
         stats: new FormGroup({
-          strength: new FormControl(character.stats.strength)
-        })
+          strength: new FormControl(character.stats.strength),
+        }),
       });
 
-      this.subs.sink = this.formGroup.valueChanges.subscribe(_ => {
+      this.subs.sink = this.formGroup.valueChanges.subscribe((_) => {
         this.isFormDirty = true;
       });
 
       this.subs.sink = this.formGroup
         .get("generation")
-        .valueChanges.subscribe(_ => (this.isGenerationDirty = true));
+        .valueChanges.subscribe((_) => (this.isGenerationDirty = true));
 
       this.subs.sink = this.formGroup
         .get("clan")
-        .valueChanges.subscribe(_ => (this.isClanDirty = true));
+        .valueChanges.subscribe((_) => (this.isClanDirty = true));
     });
   }
 }

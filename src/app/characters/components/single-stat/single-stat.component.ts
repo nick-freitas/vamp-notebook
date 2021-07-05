@@ -1,12 +1,12 @@
 import { Component, ChangeDetectionStrategy, Input } from "@angular/core";
-import { StatField } from "src/app/core/state.types";
-import { StateService } from "src/app/core/state.service";
+import { StateService } from "src/app/core/state/state.service";
+import { StatField } from "src/app/core/state/state.types";
 
 @Component({
   selector: "app-single-stat",
   templateUrl: "./single-stat.component.html",
   styleUrls: ["./single-stat.component.scss"],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SingleStatComponent {
   @Input() stat: StatField;

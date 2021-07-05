@@ -1,11 +1,11 @@
 import { Component, ChangeDetectionStrategy } from "@angular/core";
-import { StateService } from "src/app/core/state.service";
+import { StateService } from "src/app/core/state/state.service";
 
 @Component({
   selector: "app-printable-character-sheet",
   templateUrl: "./printable-character-sheet.component.html",
   styleUrls: ["./printable-character-sheet.component.scss"],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PrintableCharacterSheetComponent {
   public dots = [
@@ -19,7 +19,7 @@ export class PrintableCharacterSheetComponent {
 
     { name: "perception", row: 0, column: 2 },
     { name: "intelligence", row: 1, column: 2 },
-    { name: "wits", row: 2, column: 2 }
+    { name: "wits", row: 2, column: 2 },
   ];
   constructor(public state: StateService) {}
 }

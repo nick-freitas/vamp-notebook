@@ -4,7 +4,7 @@ import { BreakpointObserver } from "@angular/cdk/layout";
 import { Subject, BehaviorSubject } from "rxjs";
 import { map, filter } from "rxjs/operators";
 import * as StateTypes from "./state.types";
-import stateJSON from "../../assets/initial-state.json";
+import stateJSON from "../../../assets/initial-state.json";
 import { SwUpdate, UpdateAvailableEvent } from "@angular/service-worker";
 
 const initialState: StateTypes.TopLevel = stateJSON;
@@ -23,7 +23,7 @@ const initialState: StateTypes.TopLevel = stateJSON;
  */
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class StateService {
   readonly configs$: Subject<StateTypes.Configs>;
@@ -90,7 +90,7 @@ export class StateService {
 
       this.selectedChronicle = chronicleList[0];
       const lastSelectedChronicle = chronicleList.find(
-        chornicle => chornicle.id === this.user.lastSelectedChronicle
+        (chornicle) => chornicle.id === this.user.lastSelectedChronicle
       );
 
       if (lastSelectedChronicle) {
@@ -112,9 +112,9 @@ export class StateService {
       let lastSelectedCharacter = null;
 
       clanList.some(
-        clan =>
+        (clan) =>
           !!(lastSelectedCharacter = clan.characters.find(
-            character => character.id === chronicle.lastSelectedCharacter
+            (character) => character.id === chronicle.lastSelectedCharacter
           ))
       );
 
@@ -135,7 +135,7 @@ export class StateService {
 
       this.selectedNote = null; // if none is last selected, leave blank for stats
       const lastSelectedNote = noteList.find(
-        note => note.id === this.selectedCharacter.lastSelectedNote
+        (note) => note.id === this.selectedCharacter.lastSelectedNote
       );
 
       if (lastSelectedNote) {
@@ -148,10 +148,10 @@ export class StateService {
     // * router
     this.router.events
       .pipe(
-        filter(event => event instanceof NavigationEnd),
+        filter((event) => event instanceof NavigationEnd),
         map((navEvent: NavigationEnd) => navEvent.urlAfterRedirects)
       )
-      .subscribe(url => {
+      .subscribe((url) => {
         // reset everything first
         this.selectedRouteIsCharactersPage$.next(false);
         this.selectedRouteIsUserPage$.next(false);
@@ -172,8 +172,8 @@ export class StateService {
     // * is mobile
     this.breakpointObserver
       .observe(["(min-width: 840px)"])
-      .pipe(map(result => result.matches))
-      .subscribe(isDesktop => {
+      .pipe(map((result) => result.matches))
+      .subscribe((isDesktop) => {
         this.isCharacterListSidenavOpen = isDesktop;
         this.isNoteListSidenavOpen = isDesktop;
 
@@ -188,8 +188,8 @@ export class StateService {
     // * is print
     this.breakpointObserver
       .observe(["print"])
-      .pipe(map(result => result.matches))
-      .subscribe(isPrint => {
+      .pipe(map((result) => result.matches))
+      .subscribe((isPrint) => {
         this.isPrint = isPrint;
 
         this.isPrint$.next(this.isPrint);
@@ -197,7 +197,7 @@ export class StateService {
 
     // * updates
     if (this.updates.isEnabled) {
-      this.updates.available.subscribe(event =>
+      this.updates.available.subscribe((event) =>
         this.updateAvailable$.next(event.current !== event.available)
       );
     }
@@ -207,7 +207,7 @@ export class StateService {
     // * Notes
     if (this.selectedNote) {
       this.selectedCharacter.notes = this.selectedCharacter.notes.map(
-        charNote =>
+        (charNote) =>
           charNote.id === this.selectedNote.id ? this.selectedNote : charNote
       );
     }
@@ -216,13 +216,13 @@ export class StateService {
       this.selectedNote && this.selectedNote.id;
 
     // * Characters
-    this.selectedChronicle.clans = this.selectedChronicle.clans.map(clan =>
+    this.selectedChronicle.clans = this.selectedChronicle.clans.map((clan) =>
       Object.assign({}, clan, {
-        characters: clan.characters.map(character =>
+        characters: clan.characters.map((character) =>
           character.id === this.selectedCharacter.id
             ? this.selectedCharacter
             : character
-        )
+        ),
       })
     );
 
@@ -230,11 +230,11 @@ export class StateService {
 
     // * Chronicles
     this.user = Object.assign({}, this.user, {
-      chronicles: this.user.chronicles.map(chronicle =>
+      chronicles: this.user.chronicles.map((chronicle) =>
         chronicle.id === this.selectedChronicle.id
           ? this.selectedChronicle
           : chronicle
-      )
+      ),
     });
 
     this.user.lastSelectedChronicle = this.selectedChronicle.id;
@@ -269,11 +269,11 @@ export class StateService {
   changeStatDots(statName: string, dots: number) {
     const oldStat = this.selectedCharacter.stats[statName] || {};
     const newStat = Object.assign({}, oldStat, {
-      value: oldStat.value === dots ? 0 : dots
+      value: oldStat.value === dots ? 0 : dots,
     });
 
     const stats = Object.assign({}, this.selectedCharacter.stats, {
-      [statName]: newStat
+      [statName]: newStat,
     });
 
     this.changeSelectedCharacter(
