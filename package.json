@@ -33,6 +33,7 @@
     "@ckeditor/ckeditor5-build-balloon-block": "12.4.0",
     "@compodoc/compodoc": "1.1.10",
     "@types/jspdf": "1.3.1",
+    "apollo-angular": "2.6.0",
     "global": "4.4.0",
     "graphql": "15.5.1",
     "hammerjs": "^2.0.8",
@@ -41,7 +42,8 @@
     "rxjs": "~6.4.0",
     "subsink": "1.0.0",
     "tslib": "^1.9.0",
-    "zone.js": "~0.9.1"
+    "zone.js": "~0.9.1",
+    "@apollo/client": "^3.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.801.2",
@@ -49,6 +51,10 @@
     "@angular/compiler-cli": "~8.1.2",
     "@angular/language-service": "~8.1.2",
     "@graphql-codegen/cli": "1.21.6",
+    "@graphql-codegen/introspection": "1.18.2",
+    "@graphql-codegen/typescript": "1.22.4",
+    "@graphql-codegen/typescript-apollo-angular": "2.3.7",
+    "@graphql-codegen/typescript-operations": "1.18.3",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
@@ -63,10 +69,6 @@
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
-    "typescript": "~3.4.3",
-    "@graphql-codegen/typescript-operations": "1.18.3",
-    "@graphql-codegen/typescript": "1.22.4",
-    "@graphql-codegen/typescript-apollo-angular": "2.3.7",
-    "@graphql-codegen/introspection": "1.18.2"
+    "typescript": "~3.4.3"
   }
 }

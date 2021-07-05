@@ -9,6 +9,8 @@ import { NavBarComponent } from "./core/components/nav-bar.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { GraphQLModule } from './graphql.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, NavBarComponent],
@@ -18,7 +20,9 @@ import { environment } from '../environments/environment';
     CommonMaterialModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    GraphQLModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
