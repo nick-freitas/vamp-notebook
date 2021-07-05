@@ -1,0 +1,7 @@
+mutation RegisterUser($uuid: String!, $email: String!) {
+  insert_users_one(object: { uuid: $uuid, email: $email }) {
+    uuid
+    email
+    name
+  }
+}

@@ -48,14 +48,14 @@ import { MatSnackBar } from "@angular/material/snack-bar";
           grid: "main";
         }
       }
-    `
+    `,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   constructor(private snackBar: MatSnackBar, private state: StateService) {
     this.state.updateAvailable$.subscribe(
-      updateAvailable => updateAvailable && this.promptForUpdate()
+      (updateAvailable) => updateAvailable && this.promptForUpdate()
     );
   }
 
@@ -72,7 +72,7 @@ export class AppComponent {
     snackBarRef
       .afterDismissed()
       .subscribe(
-        dismissed =>
+        (dismissed) =>
           dismissed.dismissedByAction && this.state.updateApplication()
       );
   }

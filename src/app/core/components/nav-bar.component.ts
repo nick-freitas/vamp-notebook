@@ -41,9 +41,9 @@ import { StateService } from "../state.service";
           display: none;
         }
       }
-    `
+    `,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavBarComponent {
   constructor(public state: StateService) {}

@@ -2,22 +2,22 @@ import { Component, ChangeDetectionStrategy } from "@angular/core";
 import { speedDialFabAnimations } from "./character-sheet-fab.animation.component";
 
 import * as jsPDF from "jspdf";
-import html2pdf from "html2pdf.js";
+import * as html2pdf from "html2pdf.js";
 
 @Component({
   selector: "app-character-sheet-fab",
   animations: speedDialFabAnimations,
   templateUrl: "./character-sheet-fab.component.html",
   styleUrls: ["./character-sheet-fab.component.scss"],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CharacterSheetFabComponent {
   fabButtons = [
     {
       icon: "picture_as_pdf",
       tooltip: "Export as PDF",
-      click: this.printSheet
-    }
+      click: this.printSheet,
+    },
   ];
   buttons = [];
   fabTogglerState = "inactive";
@@ -46,7 +46,7 @@ export class CharacterSheetFabComponent {
       margin: 0,
       filename: "test.pdf",
       image: { type: "jpeg", quality: 1 },
-      html2canvas: { scale: 3, letterRendering: true, useCORS: true }
+      html2canvas: { scale: 3, letterRendering: true, useCORS: true },
     };
 
     // element.style.visibility = "initial";
@@ -54,7 +54,7 @@ export class CharacterSheetFabComponent {
       .from(element)
       .set(opt)
       .save()
-      .then(done => {
+      .then((done) => {
         console.log(element);
         // element.style.visibility = "hidden";
       });

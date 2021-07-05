@@ -32,6 +32,12 @@ export type Int_Comparison_Exp = {
   _nin?: Maybe<Array<Scalars['Int']>>;
 };
 
+export type RegisterUserOutput = {
+  __typename?: 'RegisterUserOutput';
+  name: Scalars['String'];
+  uuid: Scalars['String'];
+};
+
 /** Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'. */
 export type String_Comparison_Exp = {
   _eq?: Maybe<Scalars['String']>;
@@ -3161,6 +3167,7 @@ export enum Chronicles_Update_Column {
 /** mutation root */
 export type Mutation_Root = {
   __typename?: 'mutation_root';
+  RegisterUser?: Maybe<RegisterUserOutput>;
   /** delete data from the table: "characters" */
   delete_characters?: Maybe<Characters_Mutation_Response>;
   /** delete single row from the table: "characters" */
@@ -3209,6 +3216,13 @@ export type Mutation_Root = {
   update_users?: Maybe<Users_Mutation_Response>;
   /** update single row of the table: "users" */
   update_users_by_pk?: Maybe<Users>;
+};
+
+
+/** mutation root */
+export type Mutation_RootRegisterUserArgs = {
+  name: Scalars['String'];
+  uuid: Scalars['String'];
 };
 
 
@@ -3778,6 +3792,7 @@ export type Subscription_RootUsers_By_PkArgs = {
 /** columns and relationships of "users" */
 export type Users = {
   __typename?: 'users';
+  email?: Maybe<Scalars['String']>;
   name: Scalars['String'];
   uuid: Scalars['String'];
 };
@@ -3809,6 +3824,7 @@ export type Users_Bool_Exp = {
   _and?: Maybe<Array<Users_Bool_Exp>>;
   _not?: Maybe<Users_Bool_Exp>;
   _or?: Maybe<Array<Users_Bool_Exp>>;
+  email?: Maybe<String_Comparison_Exp>;
   name?: Maybe<String_Comparison_Exp>;
   uuid?: Maybe<String_Comparison_Exp>;
 };
@@ -3821,6 +3837,7 @@ export enum Users_Constraint {
 
 /** input type for inserting data into table "users" */
 export type Users_Insert_Input = {
+  email?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   uuid?: Maybe<Scalars['String']>;
 };
@@ -3828,6 +3845,7 @@ export type Users_Insert_Input = {
 /** aggregate max on columns */
 export type Users_Max_Fields = {
   __typename?: 'users_max_fields';
+  email?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   uuid?: Maybe<Scalars['String']>;
 };
@@ -3835,6 +3853,7 @@ export type Users_Max_Fields = {
 /** aggregate min on columns */
 export type Users_Min_Fields = {
   __typename?: 'users_min_fields';
+  email?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   uuid?: Maybe<Scalars['String']>;
 };
@@ -3857,6 +3876,7 @@ export type Users_On_Conflict = {
 
 /** Ordering options when selecting data from "users". */
 export type Users_Order_By = {
+  email?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
   uuid?: Maybe<Order_By>;
 };
@@ -3869,6 +3889,8 @@ export type Users_Pk_Columns_Input = {
 /** select columns of table "users" */
 export enum Users_Select_Column {
   /** column name */
+  Email = 'email',
+  /** column name */
   Name = 'name',
   /** column name */
   Uuid = 'uuid'
@@ -3876,12 +3898,15 @@ export enum Users_Select_Column {
 
 /** input type for updating data in table "users" */
 export type Users_Set_Input = {
+  email?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   uuid?: Maybe<Scalars['String']>;
 };
 
 /** update columns of table "users" */
 export enum Users_Update_Column {
+  /** column name */
+  Email = 'email',
   /** column name */
   Name = 'name',
   /** column name */
@@ -3902,12 +3927,12 @@ export type Uuid_Comparison_Exp = {
   _nin?: Maybe<Array<Scalars['uuid']>>;
 };
 
-export type MyQueryQueryVariables = Exact<{
+export type GetCharactersQueryVariables = Exact<{
   userId: Scalars['String'];
 }>;
 
 
-export type MyQueryQuery = (
+export type GetCharactersQuery = (
   { __typename?: 'query_root' }
   & { characters: Array<(
     { __typename?: 'characters' }
@@ -3915,8 +3940,22 @@ export type MyQueryQuery = (
   )> }
 );
 
-export const MyQueryDocument = gql`
-    query MyQuery($userId: String!) {
+export type RegisterUserMutationVariables = Exact<{
+  uuid: Scalars['String'];
+  email: Scalars['String'];
+}>;
+
+
+export type RegisterUserMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_users_one?: Maybe<(
+    { __typename?: 'users' }
+    & Pick<Users, 'uuid' | 'email' | 'name'>
+  )> }
+);
+
+export const GetCharactersDocument = gql`
+    query GetCharacters($userId: String!) {
   characters(where: {user_id: {_eq: $userId}}) {
     name
     uuid
@@ -3928,8 +3967,28 @@ export const MyQueryDocument = gql`
   @Injectable({
     providedIn: 'root'
   })
-  export class MyQueryGQL extends Apollo.Query<MyQueryQuery, MyQueryQueryVariables> {
-    document = MyQueryDocument;
+  export class GetCharactersGQL extends Apollo.Query<GetCharactersQuery, GetCharactersQueryVariables> {
+    document = GetCharactersDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const RegisterUserDocument = gql`
+    mutation RegisterUser($uuid: String!, $email: String!) {
+  insert_users_one(object: {uuid: $uuid, email: $email}) {
+    uuid
+    email
+    name
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class RegisterUserGQL extends Apollo.Mutation<RegisterUserMutation, RegisterUserMutationVariables> {
+    document = RegisterUserDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
