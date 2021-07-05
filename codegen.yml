@@ -1,0 +1,15 @@
+overwrite: true
+schema: https://vamp-notebook.hasura.app/v1/graphql
+headers:
+  - x-hasura-admin-secret: cfVr4kyau6VD94Pq93MWoiVzeoqMpRpY7Q8gJ1GX4wQ07WmgM6NXtHjIANGxTnNu
+  - content-type: application/json
+documents: "src/**/*.graphql"
+generates:
+  src/generated/graphql.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-apollo-angular"
+  ./graphql.schema.json:
+    plugins:
+      - "introspection"

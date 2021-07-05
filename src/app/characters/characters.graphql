@@ -1,0 +1,7 @@
+query MyQuery($userId: String!) {
+  characters(where: { user_id: { _eq: $userId } }) {
+    name
+    uuid
+    user_id
+  }
+}
