@@ -1,10 +1,10 @@
-import { Injectable } from "@angular/core";
+import { Injectable, NgZone } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/auth";
-import { GetSelfUserGQL, RegisterUserGQL, Users } from "src/generated/graphql";
-import firebase from "firebase";
+import { Router } from "@angular/router";
 import { switchMap } from "rxjs/operators";
 import { BehaviorSubject, of } from "rxjs";
-import { Router } from "@angular/router";
+import firebase from "firebase";
+import { GetSelfUserGQL, RegisterUserGQL, Users } from "src/generated/graphql";
 
 //https://www.positronx.io/full-angular-7-firebase-authentication-system/
 @Injectable({
@@ -21,7 +21,8 @@ export class AuthService {
     private auth: AngularFireAuth,
     private registerUserGql: RegisterUserGQL,
     private getSelfUserGQL: GetSelfUserGQL,
-    public router: Router
+    public router: Router,
+    public ngZone: NgZone
   ) {
     this.isSignedIn$ = new BehaviorSubject(null);
     this.auth.authState
@@ -43,6 +44,12 @@ export class AuthService {
           localStorage.setItem("user", JSON.stringify(this.user));
           console.log(this.user);
           this.setIsSignedIn();
+
+          //if we just authenticated and we are currently in the login page,
+          // then bring them to the main page since the sign in method itself is inconsistent
+          if (this.router.url === "/login") {
+            return this.router.navigate(["/characters"]);
+          }
           return;
         }
 
@@ -60,25 +67,22 @@ export class AuthService {
     password,
     rememberMe,
   }): Promise<firebase.auth.UserCredential> {
-    await this.auth.setPersistence(
-      rememberMe
-        ? firebase.auth.Auth.Persistence.LOCAL
-        : firebase.auth.Auth.Persistence.SESSION
-    );
-
-    return new Promise((resolve, reject) => {
-      this.auth
-        .signInWithEmailAndPassword(email, password)
-        .then((res) => {
-          this.router.navigate(["/"]);
-          return resolve(res);
-        })
-        .catch((err) => reject(err));
-    });
+    return this.auth
+      .setPersistence(
+        rememberMe
+          ? firebase.auth.Auth.Persistence.LOCAL
+          : firebase.auth.Auth.Persistence.SESSION
+      )
+      .then(() => this.auth.signInWithEmailAndPassword(email, password))
+      .then((res) => {
+        return res;
+      });
   }
 
   signOut(): Promise<void> {
-    return this.auth.signOut();
+    return this.auth.signOut().then(() => {
+      this.router.navigate(["/login"]);
+    });
   }
 
   async register({ name, email, password }): Promise<Users> {
