@@ -19,6 +19,13 @@ export type Scalars = {
 
 
 
+export type GetSelfUserOutput = {
+  __typename?: 'GetSelfUserOutput';
+  email?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  uuid: Scalars['String'];
+};
+
 /** Boolean expression to compare columns of type "Int". All fields are combined with logical 'AND'. */
 export type Int_Comparison_Exp = {
   _eq?: Maybe<Scalars['Int']>;
@@ -30,12 +37,6 @@ export type Int_Comparison_Exp = {
   _lte?: Maybe<Scalars['Int']>;
   _neq?: Maybe<Scalars['Int']>;
   _nin?: Maybe<Array<Scalars['Int']>>;
-};
-
-export type RegisterUserOutput = {
-  __typename?: 'RegisterUserOutput';
-  name: Scalars['String'];
-  uuid: Scalars['String'];
 };
 
 /** Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'. */
@@ -3167,7 +3168,6 @@ export enum Chronicles_Update_Column {
 /** mutation root */
 export type Mutation_Root = {
   __typename?: 'mutation_root';
-  RegisterUser?: Maybe<RegisterUserOutput>;
   /** delete data from the table: "characters" */
   delete_characters?: Maybe<Characters_Mutation_Response>;
   /** delete single row from the table: "characters" */
@@ -3216,13 +3216,6 @@ export type Mutation_Root = {
   update_users?: Maybe<Users_Mutation_Response>;
   /** update single row of the table: "users" */
   update_users_by_pk?: Maybe<Users>;
-};
-
-
-/** mutation root */
-export type Mutation_RootRegisterUserArgs = {
-  name: Scalars['String'];
-  uuid: Scalars['String'];
 };
 
 
@@ -3551,6 +3544,7 @@ export enum Order_By {
 
 export type Query_Root = {
   __typename?: 'query_root';
+  GetSelfUser?: Maybe<GetSelfUserOutput>;
   /** fetch data from the table: "characters" */
   characters: Array<Characters>;
   /** fetch aggregated fields from the table: "characters" */
@@ -3575,6 +3569,11 @@ export type Query_Root = {
   users_aggregate: Users_Aggregate;
   /** fetch data from the table: "users" using primary key columns */
   users_by_pk?: Maybe<Users>;
+};
+
+
+export type Query_RootGetSelfUserArgs = {
+  _eq?: Maybe<Scalars['String']>;
 };
 
 
@@ -3793,7 +3792,7 @@ export type Subscription_RootUsers_By_PkArgs = {
 export type Users = {
   __typename?: 'users';
   email?: Maybe<Scalars['String']>;
-  name: Scalars['String'];
+  name?: Maybe<Scalars['String']>;
   uuid: Scalars['String'];
 };
 
@@ -3941,7 +3940,7 @@ export type GetCharactersQuery = (
 );
 
 export type RegisterUserMutationVariables = Exact<{
-  uuid: Scalars['String'];
+  name: Scalars['String'];
   email: Scalars['String'];
 }>;
 
@@ -3950,7 +3949,20 @@ export type RegisterUserMutation = (
   { __typename?: 'mutation_root' }
   & { insert_users_one?: Maybe<(
     { __typename?: 'users' }
-    & Pick<Users, 'uuid' | 'email' | 'name'>
+    & Pick<Users, 'uuid' | 'name'>
+  )> }
+);
+
+export type GetSelfUserQueryVariables = Exact<{
+  uuid?: Maybe<Scalars['String']>;
+}>;
+
+
+export type GetSelfUserQuery = (
+  { __typename?: 'query_root' }
+  & { users_by_pk?: Maybe<(
+    { __typename?: 'users' }
+    & Pick<Users, 'name' | 'uuid'>
   )> }
 );
 
@@ -3975,10 +3987,9 @@ export const GetCharactersDocument = gql`
     }
   }
 export const RegisterUserDocument = gql`
-    mutation RegisterUser($uuid: String!, $email: String!) {
-  insert_users_one(object: {uuid: $uuid, email: $email}) {
+    mutation RegisterUser($name: String!, $email: String!) {
+  insert_users_one(object: {name: $name, email: $email}) {
     uuid
-    email
     name
   }
 }
@@ -3989,6 +4000,25 @@ export const RegisterUserDocument = gql`
   })
   export class RegisterUserGQL extends Apollo.Mutation<RegisterUserMutation, RegisterUserMutationVariables> {
     document = RegisterUserDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetSelfUserDocument = gql`
+    query GetSelfUser($uuid: String = "") {
+  users_by_pk(uuid: $uuid) {
+    name
+    uuid
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetSelfUserGQL extends Apollo.Query<GetSelfUserQuery, GetSelfUserQueryVariables> {
+    document = GetSelfUserDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

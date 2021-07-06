@@ -1,18 +1,30 @@
-import { Component, OnInit } from "@angular/core";
-import { AngularFireAuth } from "@angular/fire/auth";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { Subscription } from "rxjs";
+import { AuthService } from "../../auth.service";
+import { LoginRegisterBase } from "../login-register-base";
 
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
   styleUrls: ["../login-register.component.scss"],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent
+  extends LoginRegisterBase
+  implements OnInit, OnDestroy
+{
   loginForm: FormGroup;
+  loginUser$: Subscription;
 
-  constructor(private auth: AngularFireAuth) {
+  constructor(
+    private authservice: AuthService,
+    protected _snackBar: MatSnackBar
+  ) {
+    super(_snackBar);
+
     this.loginForm = new FormGroup({
-      username: new FormControl(""),
+      email: new FormControl(""),
       password: new FormControl(""),
       rememberMe: new FormControl(false),
     });
@@ -20,10 +32,11 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  async login() {
-    const { email, password } = this.loginForm.value;
-    const user = await this.auth.signInWithEmailAndPassword(email, password);
+  async loginRegister() {
+    await this.authservice.signIn(this.loginForm.value);
+  }
 
-    console.log(user);
+  ngOnDestroy(): void {
+    this.loginUser$?.unsubscribe();
   }
 }

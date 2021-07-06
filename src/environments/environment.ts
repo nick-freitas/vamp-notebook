@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  debugErrors: true,
   firebase: {
     apiKey: "AIzaSyDSQOUdKd11zcM4FtMznsQ-oMgjDlPFW44",
     authDomain: "indigobit-vamp.firebaseapp.com",

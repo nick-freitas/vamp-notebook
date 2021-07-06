@@ -1,7 +1,13 @@
-mutation RegisterUser($uuid: String!, $email: String!) {
-  insert_users_one(object: { uuid: $uuid, email: $email }) {
+mutation RegisterUser($name: String!, $email: String!) {
+  insert_users_one(object: { name: $name, email: $email }) {
     uuid
-    email
     name
+  }
+}
+
+query GetSelfUser($uuid: String = "") {
+  users_by_pk(uuid: $uuid) {
+    name
+    uuid
   }
 }
