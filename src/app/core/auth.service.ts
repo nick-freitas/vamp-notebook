@@ -3,8 +3,10 @@ import { AngularFireAuth } from "@angular/fire/auth";
 import { GetSelfUserGQL, RegisterUserGQL, Users } from "src/generated/graphql";
 import firebase from "firebase";
 import { switchMap } from "rxjs/operators";
-import { of } from "rxjs";
+import { BehaviorSubject, of } from "rxjs";
+import { Router } from "@angular/router";
 
+//https://www.positronx.io/full-angular-7-firebase-authentication-system/
 @Injectable({
   providedIn: "root",
 })
@@ -13,12 +15,15 @@ export class AuthService {
     uuid: string;
     name?: string;
   };
+  isSignedIn$: BehaviorSubject<boolean>;
 
   constructor(
     private auth: AngularFireAuth,
     private registerUserGql: RegisterUserGQL,
-    private getSelfUserGQL: GetSelfUserGQL
+    private getSelfUserGQL: GetSelfUserGQL,
+    public router: Router
   ) {
+    this.isSignedIn$ = new BehaviorSubject(null);
     this.auth.authState
       .pipe(
         switchMap((user: firebase.User) => {
@@ -37,15 +42,17 @@ export class AuthService {
           this.user = { ...this.user, ...resultUser };
           localStorage.setItem("user", JSON.stringify(this.user));
           console.log(this.user);
+          this.setIsSignedIn();
           return;
         }
 
         localStorage.removeItem("user");
+        this.setIsSignedIn();
       });
   }
 
-  get isSignedIn(): boolean {
-    return !!JSON.parse(localStorage.getItem("user"));
+  private setIsSignedIn() {
+    this.isSignedIn$.next(!!JSON.parse(localStorage.getItem("user")));
   }
 
   async signIn({
@@ -59,7 +66,15 @@ export class AuthService {
         : firebase.auth.Auth.Persistence.SESSION
     );
 
-    return this.auth.signInWithEmailAndPassword(email, password);
+    return new Promise((resolve, reject) => {
+      this.auth
+        .signInWithEmailAndPassword(email, password)
+        .then((res) => {
+          this.router.navigate(["/"]);
+          return resolve(res);
+        })
+        .catch((err) => reject(err));
+    });
   }
 
   signOut(): Promise<void> {

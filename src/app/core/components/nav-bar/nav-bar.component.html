@@ -36,10 +36,20 @@
   </div>
 
   <div id="user-actions-container">
-    <a mat-button routerLink="/login">Login</a>
-    <button mat-icon-button aria-label="User Account" [routerLink]="['/users']">
-      <mat-icon>account_circle</mat-icon>
-    </button>
+    <div *ngIf="this.auth.isSignedIn$ | async">
+      <button mat-button (click)="this.auth.signOut()">Sign Out</button>
+      <button
+        mat-icon-button
+        aria-label="User Account"
+        [routerLink]="['/users']"
+      >
+        <mat-icon>account_circle</mat-icon>
+      </button>
+    </div>
+    <div *ngIf="!(this.auth.isSignedIn$ | async)">
+      <a mat-button routerLink="/login"> Sign In </a>
+    </div>
+
     <button
       *ngIf="
         (state.isMobile$ | async) &&
