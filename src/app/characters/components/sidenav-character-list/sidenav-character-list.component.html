@@ -1,5 +1,10 @@
 <div class="existing-character-list">
   <ng-container
+    *ngFor="let chronicle of chronicles$ | async; let index = index"
+  >
+    <div>{{ chronicle.name }}</div>
+  </ng-container>
+  <ng-container
     *ngFor="
       let clan of (state.selectedChronicle$ | async)?.clans;
       let index = index
@@ -29,5 +34,18 @@
 <mat-nav-list>
   <mat-divider></mat-divider>
 
-  <a mat-list-item routerLinkActive="list-item-active"> (+) New Character </a>
+  <a
+    mat-list-item
+    routerLinkActive="list-item-active"
+    (click)="createNewChronicle()"
+  >
+    (+) New Chronicle
+  </a>
+  <a
+    mat-list-item
+    routerLinkActive="list-item-active"
+    (click)="createNewCharacter()"
+  >
+    (+) New Character
+  </a>
 </mat-nav-list>

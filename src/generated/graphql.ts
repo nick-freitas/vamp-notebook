@@ -129,8 +129,7 @@ export type Characters = {
   brawlprof?: Maybe<Scalars['String']>;
   charisma?: Maybe<Scalars['Int']>;
   charismaprof?: Maybe<Scalars['String']>;
-  chronicle?: Maybe<Scalars['String']>;
-  chronicledescription?: Maybe<Scalars['String']>;
+  chronicleid: Scalars['uuid'];
   clan?: Maybe<Scalars['String']>;
   combodisciplinename1?: Maybe<Scalars['String']>;
   combodisciplinepoints1?: Maybe<Scalars['Int']>;
@@ -441,8 +440,7 @@ export type Characters_Bool_Exp = {
   brawlprof?: Maybe<String_Comparison_Exp>;
   charisma?: Maybe<Int_Comparison_Exp>;
   charismaprof?: Maybe<String_Comparison_Exp>;
-  chronicle?: Maybe<String_Comparison_Exp>;
-  chronicledescription?: Maybe<String_Comparison_Exp>;
+  chronicleid?: Maybe<Uuid_Comparison_Exp>;
   clan?: Maybe<String_Comparison_Exp>;
   combodisciplinename1?: Maybe<String_Comparison_Exp>;
   combodisciplinepoints1?: Maybe<Int_Comparison_Exp>;
@@ -725,8 +723,7 @@ export type Characters_Insert_Input = {
   brawlprof?: Maybe<Scalars['String']>;
   charisma?: Maybe<Scalars['Int']>;
   charismaprof?: Maybe<Scalars['String']>;
-  chronicle?: Maybe<Scalars['String']>;
-  chronicledescription?: Maybe<Scalars['String']>;
+  chronicleid?: Maybe<Scalars['uuid']>;
   clan?: Maybe<Scalars['String']>;
   combodisciplinename1?: Maybe<Scalars['String']>;
   combodisciplinepoints1?: Maybe<Scalars['Int']>;
@@ -924,8 +921,7 @@ export type Characters_Max_Fields = {
   brawlprof?: Maybe<Scalars['String']>;
   charisma?: Maybe<Scalars['Int']>;
   charismaprof?: Maybe<Scalars['String']>;
-  chronicle?: Maybe<Scalars['String']>;
-  chronicledescription?: Maybe<Scalars['String']>;
+  chronicleid?: Maybe<Scalars['uuid']>;
   clan?: Maybe<Scalars['String']>;
   combodisciplinename1?: Maybe<Scalars['String']>;
   combodisciplinepoints1?: Maybe<Scalars['Int']>;
@@ -1120,8 +1116,7 @@ export type Characters_Min_Fields = {
   brawlprof?: Maybe<Scalars['String']>;
   charisma?: Maybe<Scalars['Int']>;
   charismaprof?: Maybe<Scalars['String']>;
-  chronicle?: Maybe<Scalars['String']>;
-  chronicledescription?: Maybe<Scalars['String']>;
+  chronicleid?: Maybe<Scalars['uuid']>;
   clan?: Maybe<Scalars['String']>;
   combodisciplinename1?: Maybe<Scalars['String']>;
   combodisciplinepoints1?: Maybe<Scalars['Int']>;
@@ -1331,8 +1326,7 @@ export type Characters_Order_By = {
   brawlprof?: Maybe<Order_By>;
   charisma?: Maybe<Order_By>;
   charismaprof?: Maybe<Order_By>;
-  chronicle?: Maybe<Order_By>;
-  chronicledescription?: Maybe<Order_By>;
+  chronicleid?: Maybe<Order_By>;
   clan?: Maybe<Order_By>;
   combodisciplinename1?: Maybe<Order_By>;
   combodisciplinepoints1?: Maybe<Order_By>;
@@ -1575,9 +1569,7 @@ export enum Characters_Select_Column {
   /** column name */
   Charismaprof = 'charismaprof',
   /** column name */
-  Chronicle = 'chronicle',
-  /** column name */
-  Chronicledescription = 'chronicledescription',
+  Chronicleid = 'chronicleid',
   /** column name */
   Clan = 'clan',
   /** column name */
@@ -1926,8 +1918,7 @@ export type Characters_Set_Input = {
   brawlprof?: Maybe<Scalars['String']>;
   charisma?: Maybe<Scalars['Int']>;
   charismaprof?: Maybe<Scalars['String']>;
-  chronicle?: Maybe<Scalars['String']>;
-  chronicledescription?: Maybe<Scalars['String']>;
+  chronicleid?: Maybe<Scalars['uuid']>;
   clan?: Maybe<Scalars['String']>;
   combodisciplinename1?: Maybe<Scalars['String']>;
   combodisciplinepoints1?: Maybe<Scalars['Int']>;
@@ -2489,9 +2480,7 @@ export enum Characters_Update_Column {
   /** column name */
   Charismaprof = 'charismaprof',
   /** column name */
-  Chronicle = 'chronicle',
-  /** column name */
-  Chronicledescription = 'chronicledescription',
+  Chronicleid = 'chronicleid',
   /** column name */
   Clan = 'clan',
   /** column name */
@@ -3926,6 +3915,17 @@ export type Uuid_Comparison_Exp = {
   _nin?: Maybe<Array<Scalars['uuid']>>;
 };
 
+export type GetChroniclesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetChroniclesQuery = (
+  { __typename?: 'query_root' }
+  & { chronicles: Array<(
+    { __typename?: 'chronicles' }
+    & Pick<Chronicles, 'name' | 'uuid'>
+  )> }
+);
+
 export type GetCharactersQueryVariables = Exact<{
   userId: Scalars['String'];
 }>;
@@ -3936,6 +3936,33 @@ export type GetCharactersQuery = (
   & { characters: Array<(
     { __typename?: 'characters' }
     & Pick<Characters, 'name' | 'uuid' | 'user_id'>
+  )> }
+);
+
+export type CreateChronicleMutationVariables = Exact<{
+  name?: Maybe<Scalars['String']>;
+}>;
+
+
+export type CreateChronicleMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_chronicles_one?: Maybe<(
+    { __typename?: 'chronicles' }
+    & Pick<Chronicles, 'name' | 'uuid'>
+  )> }
+);
+
+export type CreateCharacterMutationVariables = Exact<{
+  name?: Maybe<Scalars['String']>;
+  chronicleid?: Maybe<Scalars['uuid']>;
+}>;
+
+
+export type CreateCharacterMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_characters_one?: Maybe<(
+    { __typename?: 'characters' }
+    & Pick<Characters, 'name' | 'uuid'>
   )> }
 );
 
@@ -3966,6 +3993,25 @@ export type GetSelfUserQuery = (
   )> }
 );
 
+export const GetChroniclesDocument = gql`
+    query GetChronicles {
+  chronicles {
+    name
+    uuid
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetChroniclesGQL extends Apollo.Query<GetChroniclesQuery, GetChroniclesQueryVariables> {
+    document = GetChroniclesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetCharactersDocument = gql`
     query GetCharacters($userId: String!) {
   characters(where: {user_id: {_eq: $userId}}) {
@@ -3981,6 +4027,44 @@ export const GetCharactersDocument = gql`
   })
   export class GetCharactersGQL extends Apollo.Query<GetCharactersQuery, GetCharactersQueryVariables> {
     document = GetCharactersDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const CreateChronicleDocument = gql`
+    mutation CreateChronicle($name: String = "") {
+  insert_chronicles_one(object: {name: $name}) {
+    name
+    uuid
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class CreateChronicleGQL extends Apollo.Mutation<CreateChronicleMutation, CreateChronicleMutationVariables> {
+    document = CreateChronicleDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const CreateCharacterDocument = gql`
+    mutation CreateCharacter($name: String = "", $chronicleid: uuid = "") {
+  insert_characters_one(object: {name: $name, chronicleid: $chronicleid}) {
+    name
+    uuid
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class CreateCharacterGQL extends Apollo.Mutation<CreateCharacterMutation, CreateCharacterMutationVariables> {
+    document = CreateCharacterDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

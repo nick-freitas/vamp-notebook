@@ -19,6 +19,8 @@ import { PrintableCharacterSheetComponent } from "./components/printable-charact
 import { CharacterSheetFabComponent } from "./components/character-sheet-fab/character-sheet-fab.component";
 import { ConfirmChangeComponent } from "./components/confirm-change.component";
 import { SheetAttributesComponent } from "./components/sheet-attributes/sheet-attributes.component";
+import { CreateNewChronicleDialogComponent } from './components/create-new-chronicle-dialog/create-new-chronicle-dialog.component';
+import { CreateNewCharacterDialogComponent } from './components/create-new-character-dialog/create-new-character-dialog.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { SheetAttributesComponent } from "./components/sheet-attributes/sheet-at
     PrintableCharacterSheetComponent,
     CharacterSheetFabComponent,
     ConfirmChangeComponent,
+    CreateNewChronicleDialogComponent,
+    CreateNewCharacterDialogComponent,
   ],
   imports: [
     CommonModule,

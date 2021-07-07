@@ -1,7 +1,28 @@
+query GetChronicles {
+  chronicles {
+    name
+    uuid
+  }
+}
+
 query GetCharacters($userId: String!) {
   characters(where: { user_id: { _eq: $userId } }) {
     name
     uuid
     user_id
+  }
+}
+
+mutation CreateChronicle($name: String = "") {
+  insert_chronicles_one(object: { name: $name }) {
+    name
+    uuid
+  }
+}
+
+mutation CreateCharacter($name: String = "", $chronicleid: uuid = "") {
+  insert_characters_one(object: { name: $name, chronicleid: $chronicleid }) {
+    name
+    uuid
   }
 }

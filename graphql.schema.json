@@ -1112,25 +1112,17 @@
             "deprecationReason": null
           },
           {
-            "name": "chronicle",
+            "name": "chronicleid",
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "chronicledescription",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "uuid",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -4668,23 +4660,11 @@
             "deprecationReason": null
           },
           {
-            "name": "chronicle",
+            "name": "chronicleid",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "String_comparison_exp",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "chronicledescription",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "String_comparison_exp",
+              "name": "uuid_comparison_exp",
               "ofType": null
             },
             "defaultValue": null,
@@ -7947,23 +7927,11 @@
             "deprecationReason": null
           },
           {
-            "name": "chronicle",
+            "name": "chronicleid",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "chronicledescription",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
+              "name": "uuid",
               "ofType": null
             },
             "defaultValue": null,
@@ -10285,24 +10253,12 @@
             "deprecationReason": null
           },
           {
-            "name": "chronicle",
+            "name": "chronicleid",
             "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "chronicledescription",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
+              "name": "uuid",
               "ofType": null
             },
             "isDeprecated": false,
@@ -12588,24 +12544,12 @@
             "deprecationReason": null
           },
           {
-            "name": "chronicle",
+            "name": "chronicleid",
             "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "chronicledescription",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
+              "name": "uuid",
               "ofType": null
             },
             "isDeprecated": false,
@@ -15006,19 +14950,7 @@
             "deprecationReason": null
           },
           {
-            "name": "chronicle",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "chronicledescription",
+            "name": "chronicleid",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -17134,13 +17066,7 @@
             "deprecationReason": null
           },
           {
-            "name": "chronicle",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "chronicledescription",
+            "name": "chronicleid",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -18547,23 +18473,11 @@
             "deprecationReason": null
           },
           {
-            "name": "chronicle",
+            "name": "chronicleid",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "chronicledescription",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
+              "name": "uuid",
               "ofType": null
             },
             "defaultValue": null,
@@ -24340,13 +24254,7 @@
             "deprecationReason": null
           },
           {
-            "name": "chronicle",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "chronicledescription",
+            "name": "chronicleid",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
