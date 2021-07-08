@@ -5,11 +5,11 @@ query GetChronicles {
   }
 }
 
-query GetCharacters($userId: String!) {
-  characters(where: { user_id: { _eq: $userId } }) {
+query GetCharacters($chronicleid: uuid = "") {
+  characters(where: { chronicleid: { _eq: $chronicleid } }) {
     name
     uuid
-    user_id
+    chronicleid
   }
 }
 

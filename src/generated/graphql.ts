@@ -3927,7 +3927,7 @@ export type GetChroniclesQuery = (
 );
 
 export type GetCharactersQueryVariables = Exact<{
-  userId: Scalars['String'];
+  chronicleid?: Maybe<Scalars['uuid']>;
 }>;
 
 
@@ -3935,7 +3935,7 @@ export type GetCharactersQuery = (
   { __typename?: 'query_root' }
   & { characters: Array<(
     { __typename?: 'characters' }
-    & Pick<Characters, 'name' | 'uuid' | 'user_id'>
+    & Pick<Characters, 'name' | 'uuid' | 'chronicleid'>
   )> }
 );
 
@@ -4013,11 +4013,11 @@ export const GetChroniclesDocument = gql`
     }
   }
 export const GetCharactersDocument = gql`
-    query GetCharacters($userId: String!) {
-  characters(where: {user_id: {_eq: $userId}}) {
+    query GetCharacters($chronicleid: uuid = "") {
+  characters(where: {chronicleid: {_eq: $chronicleid}}) {
     name
     uuid
-    user_id
+    chronicleid
   }
 }
     `;

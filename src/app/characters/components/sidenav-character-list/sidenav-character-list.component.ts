@@ -3,19 +3,18 @@ import {
   ChangeDetectionStrategy,
   OnDestroy,
   OnInit,
+  ChangeDetectorRef,
 } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 
 import { Observable, Subscription } from "rxjs";
-import { map, switchMap } from "rxjs/operators";
-import { StateService } from "src/app/core/state/state.service";
-import {
-  CreateChronicleGQL,
-  CreateCharacterGQL,
-  GetChroniclesGQL,
-} from "../../../../generated/graphql";
+import { switchMap, tap } from "rxjs/operators";
+import { ChronicleService } from "../../chronicle.service";
+import { CharacterService } from "../../character.service";
+
 import { CreateNewCharacterDialogComponent } from "../create-new-character-dialog/create-new-character-dialog.component";
 import { CreateNewChronicleDialogComponent } from "../create-new-chronicle-dialog/create-new-chronicle-dialog.component";
+import { StateService } from "../../../core/state/state.service";
 
 @Component({
   selector: "app-sidenav-character-list",
@@ -25,20 +24,28 @@ import { CreateNewChronicleDialogComponent } from "../create-new-chronicle-dialo
 })
 export class SidenavCharacterListComponent implements OnInit, OnDestroy {
   chronicles$: Observable<any[]>;
+  characters$: Observable<any[]>;
   chronicleSubscription$: Subscription;
   characterSubscription$: Subscription;
+
   constructor(
-    public state: StateService,
     public dialog: MatDialog,
-    private createChronicleGQL: CreateChronicleGQL,
-    private createCharacterGQL: CreateCharacterGQL,
-    private getChroniclesGQL: GetChroniclesGQL
+    public state: StateService,
+    public chronicleService: ChronicleService,
+    private characterService: CharacterService,
+    private changeDetectorRef: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
-    this.chronicles$ = this.getChroniclesGQL
-      .watch()
-      .valueChanges.pipe(map((result) => result.data.chronicles));
+    this.chronicles$ = this.chronicleService.getChronicleList();
+  }
+
+  loadCharacterList(chronicleId) {
+    this.characters$ = this.characterService.getCharacterList(chronicleId);
+  }
+
+  selectChronicle(chronicle) {
+    this.chronicleService.selectChronicle(chronicle);
   }
 
   createNewChronicle() {
@@ -51,12 +58,18 @@ export class SidenavCharacterListComponent implements OnInit, OnDestroy {
     this.chronicleSubscription$ = dialogRef
       .afterClosed()
       .pipe(
-        switchMap((res) => this.createChronicleGQL.mutate({ name: res?.name }))
+        switchMap((res) =>
+          this.chronicleService.createChronicle({ name: res?.name })
+        )
       )
-      .subscribe();
+      .subscribe(() => {
+        this.chronicles$ = this.chronicleService.getChronicleList();
+        // resetting chronicles$ does not trigger the change detection, so trigger it manually
+        this.changeDetectorRef.detectChanges();
+      });
   }
 
-  createNewCharacter() {
+  createNewCharacter(chronicleId) {
     const dialogRef = this.dialog.open(CreateNewCharacterDialogComponent, {
       width: "250px",
       data: {},
@@ -66,7 +79,12 @@ export class SidenavCharacterListComponent implements OnInit, OnDestroy {
     this.characterSubscription$ = dialogRef
       .afterClosed()
       .pipe(
-        switchMap((res) => this.createCharacterGQL.mutate({ name: res?.name }))
+        switchMap((res) =>
+          this.characterService.createCharacter({
+            name: res?.name,
+            chronicleId,
+          })
+        )
       )
       .subscribe();
   }

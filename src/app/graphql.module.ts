@@ -32,6 +32,14 @@ export function createApollo(
   return {
     link: ApolloLink.from([authContext(auth), httpLink.create({ uri })]),
     cache: new InMemoryCache(),
+    defaultOptions: {
+      query: {
+        fetchPolicy: "no-cache",
+      },
+      watchQuery: {
+        fetchPolicy: "cache-and-network",
+      },
+    },
   };
 }
 
