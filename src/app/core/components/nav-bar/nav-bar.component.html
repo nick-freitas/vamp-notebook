@@ -17,17 +17,6 @@
       >
         <mat-icon>menu</mat-icon>
       </button>
-      <button
-        mat-flat-button
-        color="accent"
-        class="workspace-button"
-        (click)="openChorniclePicker()"
-      >
-        {{ ((state.selectedChronicle$ | async)?.name)[0] }}
-      </button>
-      <h2 class="workspace-name" *ngIf="!(state.isMobile$ | async)">
-        {{ (state.selectedChronicle$ | async)?.name }}
-      </h2>
     </ng-container>
   </div>
 
@@ -46,7 +35,9 @@
         <mat-icon>account_circle</mat-icon>
       </button>
     </div>
-    <div *ngIf="!(this.auth.isSignedIn$ | async)">
+    <div
+      *ngIf="(this.auth.isSignedIn$ | async) === (false || null || undefined)"
+    >
       <a mat-button routerLink="/login"> Sign In </a>
     </div>
 

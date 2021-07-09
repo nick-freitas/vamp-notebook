@@ -10,13 +10,13 @@ const routes: Routes = [
   { path: "", redirectTo: "/characters", pathMatch: "full" },
   {
     path: "users",
-    loadChildren: () =>
+    loadChildren: (): Promise<any> =>
       import("./users/users.module").then((m) => m.UsersModule),
     canActivate: [AuthGuard],
   },
   {
     path: "characters",
-    loadChildren: () =>
+    loadChildren: (): Promise<any> =>
       import("./characters/characters.module").then((m) => m.CharactersModule),
     canActivate: [AuthGuard],
   },

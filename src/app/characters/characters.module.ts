@@ -6,7 +6,7 @@ import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
 import { CommonMaterialModule } from "../core/common-material.module";
 import { SharedModule } from "../shared/shared.module";
 import { CharactersRoutingModule } from "./characters-routing.module";
-import { CharactersComponent } from "./characters.component";
+import { CharactersComponent } from "./components/characters/characters.component";
 import { SidenavCharacterListComponent } from "./components/sidenav-character-list/sidenav-character-list.component";
 import { SidenavNoteListComponent } from "./components/sidenav-note-list/sidenav-note-list.component";
 import { NoteEditorComponent } from "./components/note-editor/note-editor.component";
@@ -19,8 +19,9 @@ import { PrintableCharacterSheetComponent } from "./components/printable-charact
 import { CharacterSheetFabComponent } from "./components/character-sheet-fab/character-sheet-fab.component";
 import { ConfirmChangeComponent } from "./components/confirm-change.component";
 import { SheetAttributesComponent } from "./components/sheet-attributes/sheet-attributes.component";
-import { CreateNewChronicleDialogComponent } from './components/create-new-chronicle-dialog/create-new-chronicle-dialog.component';
-import { CreateNewCharacterDialogComponent } from './components/create-new-character-dialog/create-new-character-dialog.component';
+import { CreateNewChronicleDialogComponent } from "./components/create-new-chronicle-dialog/create-new-chronicle-dialog.component";
+import { CreateNewCharacterDialogComponent } from "./components/create-new-character-dialog/create-new-character-dialog.component";
+import { CreateNewNoteDialogComponent } from './components/create-new-note-dialog/create-new-note-dialog.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { CreateNewCharacterDialogComponent } from './components/create-new-chara
     ConfirmChangeComponent,
     CreateNewChronicleDialogComponent,
     CreateNewCharacterDialogComponent,
+    CreateNewNoteDialogComponent,
   ],
   imports: [
     CommonModule,

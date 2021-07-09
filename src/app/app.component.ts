@@ -15,7 +15,7 @@ export class AppComponent {
     );
   }
 
-  promptForUpdate() {
+  promptForUpdate(): void {
     const updateMessage = "There is a new version of the application available";
     const actionMessage = "Reload";
     const config = { duration: 60 * 1000 };

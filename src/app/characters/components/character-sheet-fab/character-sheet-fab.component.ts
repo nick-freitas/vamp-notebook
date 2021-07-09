@@ -24,21 +24,21 @@ export class CharacterSheetFabComponent {
 
   constructor() {}
 
-  showItems() {
+  showItems(): void {
     this.fabTogglerState = "active";
     this.buttons = this.fabButtons;
   }
 
-  hideItems() {
+  hideItems(): void {
     this.fabTogglerState = "inactive";
     this.buttons = [];
   }
 
-  onToggleFab() {
+  onToggleFab(): void {
     this.fabTogglerState === "active" ? this.hideItems() : this.showItems();
   }
 
-  printSheet() {
+  printSheet(): void {
     console.log("Trying to print");
 
     const element = document.getElementById("printable-character-sheet");

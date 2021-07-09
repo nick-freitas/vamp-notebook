@@ -5,11 +5,216 @@ query GetChronicles {
   }
 }
 
+query GetNotes($character_id: uuid = "") {
+  notes(where: { character_id: { _eq: $character_id } }) {
+    name
+    character_id
+    uuid
+  }
+}
+
 query GetCharacters($chronicleid: uuid = "") {
   characters(where: { chronicleid: { _eq: $chronicleid } }) {
     name
     uuid
     chronicleid
+  }
+}
+
+query GetFullCharacter($uuid: uuid = "") {
+  characters_by_pk(uuid: $uuid) {
+    academics
+    academicsprof
+    agecategory
+    alertness
+    alertnessprof
+    animalken
+    animalkenprof
+    appearance
+    appearanceprof
+    athletics
+    athleticsprof
+    awareness
+    awarenessprof
+    backgroundname1
+    backgroundname3
+    backgroundname2
+    backgroundname4
+    backgroundname5
+    backgroundname6
+    backgroundnote
+    backgroundpoints1
+    backgroundpoints2
+    backgroundpoints3
+    backgroundpoints4
+    backgroundpoints5
+    backgroundpoints6
+    backgroundprof1
+    backgroundprof2
+    backgroundprof3
+    backgroundprof4
+    backgroundprof5
+    backgroundprof6
+    bearing
+    bearingmodifier
+    bloodperturn
+    bloodpool
+    brawl
+    brawlprof
+    charisma
+    charismaprof
+    chronicleid
+    clan
+    combodisciplinename1
+    combodisciplinepoints1
+    combodisciplineprof1
+    computer
+    computerprof
+    concept
+    conscience
+    courage
+    crafts
+    demeanor
+    demeanordescription
+    descriptionnote
+    dexterity
+    dexterityprof
+    disciplinename1
+    disciplinename2
+    disciplinename3
+    disciplinename4
+    disciplinename5
+    disciplinename6
+    disciplinepoints1
+    disciplinepoints2
+    disciplinepoints3
+    disciplinepoints4
+    disciplinepoints5
+    disciplinepoints6
+    disciplineprof1
+    disciplineprof2
+    disciplineprof3
+    disciplineprof4
+    disciplineprof5
+    disciplineprof6
+    drive
+    driveprof
+    empathy
+    empathyprof
+    etiquette
+    etiquetteprof
+    experience
+    expression
+    expressionprof
+    extraknowledgename
+    extraknowledgepoints
+    extraknowledgeprof
+    extraskillname
+    extraskillpoints
+    extraskillprof
+    extratalentname
+    extratalentpoints
+    extratalentprof
+    finance
+    financeprof
+    firearms
+    firearmsprof
+    flawname1
+    flawname2
+    flawname3
+    flawname4
+    flawname5
+    flawpoints1
+    flawpoints2
+    flawpoints3
+    flawpoints4
+    flawpoints5
+    flawprof1
+    flawprof2
+    flawprof3
+    flawprof4
+    generation
+    flawprof5
+    generationdescription
+    health
+    humanity
+    intelligence
+    intelligenceprof
+    intimidation
+    intimidationprof
+    investigation
+    investigationprof
+    larceny
+    larcenyprof
+    law
+    lawprof
+    leadership
+    leadershipprof
+    manipulation
+    manipulationprof
+    maxwillpower
+    medicine
+    medicineprof
+    melee
+    meleeprof
+    meritname1
+    meritname2
+    meritname3
+    meritname4
+    meritname5
+    meritpoints1
+    meritpoints2
+    meritpoints3
+    meritpoints4
+    meritpoints5
+    meritprof1
+    meritprof2
+    meritprof3
+    meritprof5
+    meritprof4
+    name
+    nature
+    natureregain
+    occult
+    naturedescription
+    occultprof
+    othernotes
+    path
+    perception
+    perceptionprof
+    performance
+    performanceprof
+    politics
+    politicsprof
+    roleplayinghints
+    science
+    scienceprof
+    sect
+    selfcontrol
+    sheettype
+    sire
+    stamina
+    staminaprof
+    stealth
+    stealthprof
+    streetwise
+    strength
+    streetwiseprof
+    strengthprof
+    subterfuge
+    subterfugeprof
+    survival
+    survivalprof
+    technology
+    technologyprof
+    useconviction
+    useinstinct
+    usepath
+    uuid
+    weakness
+    willpower
+    wits
+    witsprof
   }
 }
 
@@ -24,5 +229,228 @@ mutation CreateCharacter($name: String = "", $chronicleid: uuid = "") {
   insert_characters_one(object: { name: $name, chronicleid: $chronicleid }) {
     name
     uuid
+  }
+}
+
+mutation CreateNote($character_id: uuid = "", $name: String = "") {
+  insert_notes_one(object: { name: $name, character_id: $character_id }) {
+    uuid
+    name
+    character_id
+  }
+}
+
+mutation UpdateCharacterSheetHeader(
+  $uuid: uuid = ""
+  $nature: String = ""
+  $name: String = ""
+  $generation: Int = 10
+  $demeanor: String = ""
+  $clan: String = ""
+  $sire: String = ""
+) {
+  update_characters_by_pk(
+    pk_columns: { uuid: $uuid }
+    _set: {
+      clan: $clan
+      demeanor: $demeanor
+      generation: $generation
+      name: $name
+      nature: $nature
+      sire: $sire
+    }
+  ) {
+    academics
+    academicsprof
+    agecategory
+    alertness
+    alertnessprof
+    animalken
+    animalkenprof
+    appearance
+    appearanceprof
+    athletics
+    athleticsprof
+    awareness
+    awarenessprof
+    backgroundname1
+    backgroundname3
+    backgroundname2
+    backgroundname4
+    backgroundname5
+    backgroundname6
+    backgroundnote
+    backgroundpoints1
+    backgroundpoints2
+    backgroundpoints3
+    backgroundpoints4
+    backgroundpoints5
+    backgroundpoints6
+    backgroundprof1
+    backgroundprof2
+    backgroundprof3
+    backgroundprof4
+    backgroundprof5
+    backgroundprof6
+    bearing
+    bearingmodifier
+    bloodperturn
+    bloodpool
+    brawl
+    brawlprof
+    charisma
+    charismaprof
+    chronicleid
+    clan
+    combodisciplinename1
+    combodisciplinepoints1
+    combodisciplineprof1
+    computer
+    computerprof
+    concept
+    conscience
+    courage
+    crafts
+    demeanor
+    demeanordescription
+    descriptionnote
+    dexterity
+    dexterityprof
+    disciplinename1
+    disciplinename2
+    disciplinename3
+    disciplinename4
+    disciplinename5
+    disciplinename6
+    disciplinepoints1
+    disciplinepoints2
+    disciplinepoints3
+    disciplinepoints4
+    disciplinepoints5
+    disciplinepoints6
+    disciplineprof1
+    disciplineprof2
+    disciplineprof3
+    disciplineprof4
+    disciplineprof5
+    disciplineprof6
+    drive
+    driveprof
+    empathy
+    empathyprof
+    etiquette
+    etiquetteprof
+    experience
+    expression
+    expressionprof
+    extraknowledgename
+    extraknowledgepoints
+    extraknowledgeprof
+    extraskillname
+    extraskillpoints
+    extraskillprof
+    extratalentname
+    extratalentpoints
+    extratalentprof
+    finance
+    financeprof
+    firearms
+    firearmsprof
+    flawname1
+    flawname2
+    flawname3
+    flawname4
+    flawname5
+    flawpoints1
+    flawpoints2
+    flawpoints3
+    flawpoints4
+    flawpoints5
+    flawprof1
+    flawprof2
+    flawprof3
+    flawprof4
+    generation
+    flawprof5
+    generationdescription
+    health
+    humanity
+    intelligence
+    intelligenceprof
+    intimidation
+    intimidationprof
+    investigation
+    investigationprof
+    larceny
+    larcenyprof
+    law
+    lawprof
+    leadership
+    leadershipprof
+    manipulation
+    manipulationprof
+    maxwillpower
+    medicine
+    medicineprof
+    melee
+    meleeprof
+    meritname1
+    meritname2
+    meritname3
+    meritname4
+    meritname5
+    meritpoints1
+    meritpoints2
+    meritpoints3
+    meritpoints4
+    meritpoints5
+    meritprof1
+    meritprof2
+    meritprof3
+    meritprof5
+    meritprof4
+    name
+    nature
+    natureregain
+    occult
+    naturedescription
+    occultprof
+    othernotes
+    path
+    perception
+    perceptionprof
+    performance
+    performanceprof
+    politics
+    politicsprof
+    roleplayinghints
+    science
+    scienceprof
+    sect
+    selfcontrol
+    sheettype
+    sire
+    stamina
+    staminaprof
+    stealth
+    stealthprof
+    streetwise
+    strength
+    streetwiseprof
+    strengthprof
+    subterfuge
+    subterfugeprof
+    survival
+    survivalprof
+    technology
+    technologyprof
+    useconviction
+    useinstinct
+    usepath
+    uuid
+    weakness
+    willpower
+    wits
+    witsprof
   }
 }

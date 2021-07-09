@@ -5,7 +5,7 @@ import {
   Output,
   EventEmitter,
   SimpleChanges,
-  OnChanges
+  OnChanges,
 } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
 
@@ -13,7 +13,7 @@ import { FormGroup, FormControl } from "@angular/forms";
   selector: "app-inline-input-editor",
   templateUrl: "./inline-input-editor.component.html",
   styleUrls: ["./inline-input-editor.component.scss"],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InlineInputEditorComponent implements OnChanges {
   @Input() editWarning: string;
@@ -39,23 +39,23 @@ export class InlineInputEditorComponent implements OnChanges {
     }
   }
 
-  public editField() {
+  public editField(): void {
     this.editMode = true;
   }
 
-  public saveChanges() {
+  public saveChanges(): void {
     this.editMode = false;
     this.valueChanged.emit(this.formGroup.value);
   }
 
-  public cancelChanges() {
+  public cancelChanges(): void {
     this.editMode = false;
     this.createFormGroup(this.name, this.value);
   }
 
-  private createFormGroup(fieldName: string, fieldValue: any) {
+  private createFormGroup(fieldName: string, fieldValue: any): void {
     this.formGroup = new FormGroup({
-      [fieldName]: new FormControl(fieldValue)
+      [fieldName]: new FormControl(fieldValue),
     });
   }
 }

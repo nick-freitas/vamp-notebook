@@ -10,10 +10,7 @@ import { LoginRegisterBase } from "../login-register-base";
   templateUrl: "./login.component.html",
   styleUrls: ["../login-register.component.scss"],
 })
-export class LoginComponent
-  extends LoginRegisterBase
-  implements OnInit, OnDestroy
-{
+export class LoginComponent extends LoginRegisterBase implements OnDestroy {
   loginForm: FormGroup;
   loginUser$: Subscription;
 
@@ -30,9 +27,7 @@ export class LoginComponent
     });
   }
 
-  ngOnInit(): void {}
-
-  async loginRegister() {
+  async loginRegister(): Promise<any> {
     await this.authservice.signIn(this.loginForm.value);
   }
 

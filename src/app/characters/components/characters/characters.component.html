@@ -18,7 +18,7 @@
   <mat-sidenav-content class="main-sidenav-content">
     <div class="content-block">
       <app-character-sheet
-        *ngIf="!(state.selectedNote$ | async)"
+        *ngIf="(state.selectedNote$ | async) === (false || null || undefined)"
       ></app-character-sheet>
       <app-note-editor *ngIf="state.selectedNote$ | async"></app-note-editor>
     </div>

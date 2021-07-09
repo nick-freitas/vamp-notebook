@@ -1,8 +1,13 @@
-:host {
+:host,
+.sidenav-note-list,
+.existing-notes-list {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   height: 100%;
+}
+
+.existing-notes-list {
+  justify-content: space-between;
 }
 
 .existing-notes-list > .mat-list-base {

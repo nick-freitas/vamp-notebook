@@ -12,7 +12,7 @@ export abstract class LoginRegisterBase {
 
   abstract loginRegister(): Promise<any>;
 
-  public async handleClick(cb?: (data: any) => any) {
+  public async handleClick(cb?: (data: any) => any): Promise<void> {
     this.currentError?.dismiss();
     this.loginRegister()
       .then((data) => cb?.(data))
@@ -24,7 +24,10 @@ export abstract class LoginRegisterBase {
       });
   }
 
-  openSnackBar(message: string, action: string) {
+  openSnackBar(
+    message: string,
+    action: string
+  ): MatSnackBarRef<TextOnlySnackBar> {
     return this._snackBar.open(message, action);
   }
 }

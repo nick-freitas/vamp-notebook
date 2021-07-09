@@ -12,10 +12,8 @@ import { SheetAbilitiesField } from "src/app/core/state/state.types";
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SheetAbilitiesComponent implements OnInit {
+export class SheetAbilitiesComponent {
   @Input() abilitiesFieldList: SheetAbilitiesField[];
 
   constructor() {}
-
-  ngOnInit() {}
 }

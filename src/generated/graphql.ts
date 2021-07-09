@@ -3373,7 +3373,7 @@ export type Mutation_RootUpdate_Users_By_PkArgs = {
 export type Notes = {
   __typename?: 'notes';
   character_id: Scalars['uuid'];
-  content: Scalars['String'];
+  content?: Maybe<Scalars['String']>;
   name: Scalars['String'];
   user_id: Scalars['String'];
   uuid: Scalars['uuid'];
@@ -3926,6 +3926,19 @@ export type GetChroniclesQuery = (
   )> }
 );
 
+export type GetNotesQueryVariables = Exact<{
+  character_id?: Maybe<Scalars['uuid']>;
+}>;
+
+
+export type GetNotesQuery = (
+  { __typename?: 'query_root' }
+  & { notes: Array<(
+    { __typename?: 'notes' }
+    & Pick<Notes, 'name' | 'character_id' | 'uuid'>
+  )> }
+);
+
 export type GetCharactersQueryVariables = Exact<{
   chronicleid?: Maybe<Scalars['uuid']>;
 }>;
@@ -3936,6 +3949,19 @@ export type GetCharactersQuery = (
   & { characters: Array<(
     { __typename?: 'characters' }
     & Pick<Characters, 'name' | 'uuid' | 'chronicleid'>
+  )> }
+);
+
+export type GetFullCharacterQueryVariables = Exact<{
+  uuid?: Maybe<Scalars['uuid']>;
+}>;
+
+
+export type GetFullCharacterQuery = (
+  { __typename?: 'query_root' }
+  & { characters_by_pk?: Maybe<(
+    { __typename?: 'characters' }
+    & Pick<Characters, 'academics' | 'academicsprof' | 'agecategory' | 'alertness' | 'alertnessprof' | 'animalken' | 'animalkenprof' | 'appearance' | 'appearanceprof' | 'athletics' | 'athleticsprof' | 'awareness' | 'awarenessprof' | 'backgroundname1' | 'backgroundname3' | 'backgroundname2' | 'backgroundname4' | 'backgroundname5' | 'backgroundname6' | 'backgroundnote' | 'backgroundpoints1' | 'backgroundpoints2' | 'backgroundpoints3' | 'backgroundpoints4' | 'backgroundpoints5' | 'backgroundpoints6' | 'backgroundprof1' | 'backgroundprof2' | 'backgroundprof3' | 'backgroundprof4' | 'backgroundprof5' | 'backgroundprof6' | 'bearing' | 'bearingmodifier' | 'bloodperturn' | 'bloodpool' | 'brawl' | 'brawlprof' | 'charisma' | 'charismaprof' | 'chronicleid' | 'clan' | 'combodisciplinename1' | 'combodisciplinepoints1' | 'combodisciplineprof1' | 'computer' | 'computerprof' | 'concept' | 'conscience' | 'courage' | 'crafts' | 'demeanor' | 'demeanordescription' | 'descriptionnote' | 'dexterity' | 'dexterityprof' | 'disciplinename1' | 'disciplinename2' | 'disciplinename3' | 'disciplinename4' | 'disciplinename5' | 'disciplinename6' | 'disciplinepoints1' | 'disciplinepoints2' | 'disciplinepoints3' | 'disciplinepoints4' | 'disciplinepoints5' | 'disciplinepoints6' | 'disciplineprof1' | 'disciplineprof2' | 'disciplineprof3' | 'disciplineprof4' | 'disciplineprof5' | 'disciplineprof6' | 'drive' | 'driveprof' | 'empathy' | 'empathyprof' | 'etiquette' | 'etiquetteprof' | 'experience' | 'expression' | 'expressionprof' | 'extraknowledgename' | 'extraknowledgepoints' | 'extraknowledgeprof' | 'extraskillname' | 'extraskillpoints' | 'extraskillprof' | 'extratalentname' | 'extratalentpoints' | 'extratalentprof' | 'finance' | 'financeprof' | 'firearms' | 'firearmsprof' | 'flawname1' | 'flawname2' | 'flawname3' | 'flawname4' | 'flawname5' | 'flawpoints1' | 'flawpoints2' | 'flawpoints3' | 'flawpoints4' | 'flawpoints5' | 'flawprof1' | 'flawprof2' | 'flawprof3' | 'flawprof4' | 'generation' | 'flawprof5' | 'generationdescription' | 'health' | 'humanity' | 'intelligence' | 'intelligenceprof' | 'intimidation' | 'intimidationprof' | 'investigation' | 'investigationprof' | 'larceny' | 'larcenyprof' | 'law' | 'lawprof' | 'leadership' | 'leadershipprof' | 'manipulation' | 'manipulationprof' | 'maxwillpower' | 'medicine' | 'medicineprof' | 'melee' | 'meleeprof' | 'meritname1' | 'meritname2' | 'meritname3' | 'meritname4' | 'meritname5' | 'meritpoints1' | 'meritpoints2' | 'meritpoints3' | 'meritpoints4' | 'meritpoints5' | 'meritprof1' | 'meritprof2' | 'meritprof3' | 'meritprof5' | 'meritprof4' | 'name' | 'nature' | 'natureregain' | 'occult' | 'naturedescription' | 'occultprof' | 'othernotes' | 'path' | 'perception' | 'perceptionprof' | 'performance' | 'performanceprof' | 'politics' | 'politicsprof' | 'roleplayinghints' | 'science' | 'scienceprof' | 'sect' | 'selfcontrol' | 'sheettype' | 'sire' | 'stamina' | 'staminaprof' | 'stealth' | 'stealthprof' | 'streetwise' | 'strength' | 'streetwiseprof' | 'strengthprof' | 'subterfuge' | 'subterfugeprof' | 'survival' | 'survivalprof' | 'technology' | 'technologyprof' | 'useconviction' | 'useinstinct' | 'usepath' | 'uuid' | 'weakness' | 'willpower' | 'wits' | 'witsprof'>
   )> }
 );
 
@@ -3963,6 +3989,39 @@ export type CreateCharacterMutation = (
   & { insert_characters_one?: Maybe<(
     { __typename?: 'characters' }
     & Pick<Characters, 'name' | 'uuid'>
+  )> }
+);
+
+export type CreateNoteMutationVariables = Exact<{
+  character_id?: Maybe<Scalars['uuid']>;
+  name?: Maybe<Scalars['String']>;
+}>;
+
+
+export type CreateNoteMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_notes_one?: Maybe<(
+    { __typename?: 'notes' }
+    & Pick<Notes, 'uuid' | 'name' | 'character_id'>
+  )> }
+);
+
+export type UpdateCharacterSheetHeaderMutationVariables = Exact<{
+  uuid?: Maybe<Scalars['uuid']>;
+  nature?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  generation?: Maybe<Scalars['Int']>;
+  demeanor?: Maybe<Scalars['String']>;
+  clan?: Maybe<Scalars['String']>;
+  sire?: Maybe<Scalars['String']>;
+}>;
+
+
+export type UpdateCharacterSheetHeaderMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_characters_by_pk?: Maybe<(
+    { __typename?: 'characters' }
+    & Pick<Characters, 'uuid'>
   )> }
 );
 
@@ -4012,6 +4071,26 @@ export const GetChroniclesDocument = gql`
       super(apollo);
     }
   }
+export const GetNotesDocument = gql`
+    query GetNotes($character_id: uuid = "") {
+  notes(where: {character_id: {_eq: $character_id}}) {
+    name
+    character_id
+    uuid
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetNotesGQL extends Apollo.Query<GetNotesQuery, GetNotesQueryVariables> {
+    document = GetNotesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetCharactersDocument = gql`
     query GetCharacters($chronicleid: uuid = "") {
   characters(where: {chronicleid: {_eq: $chronicleid}}) {
@@ -4027,6 +4106,215 @@ export const GetCharactersDocument = gql`
   })
   export class GetCharactersGQL extends Apollo.Query<GetCharactersQuery, GetCharactersQueryVariables> {
     document = GetCharactersDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetFullCharacterDocument = gql`
+    query GetFullCharacter($uuid: uuid = "") {
+  characters_by_pk(uuid: $uuid) {
+    academics
+    academicsprof
+    agecategory
+    alertness
+    alertnessprof
+    animalken
+    animalkenprof
+    appearance
+    appearanceprof
+    athletics
+    athleticsprof
+    awareness
+    awarenessprof
+    backgroundname1
+    backgroundname3
+    backgroundname2
+    backgroundname4
+    backgroundname5
+    backgroundname6
+    backgroundnote
+    backgroundpoints1
+    backgroundpoints2
+    backgroundpoints3
+    backgroundpoints4
+    backgroundpoints5
+    backgroundpoints6
+    backgroundprof1
+    backgroundprof2
+    backgroundprof3
+    backgroundprof4
+    backgroundprof5
+    backgroundprof6
+    bearing
+    bearingmodifier
+    bloodperturn
+    bloodpool
+    brawl
+    brawlprof
+    charisma
+    charismaprof
+    chronicleid
+    clan
+    combodisciplinename1
+    combodisciplinepoints1
+    combodisciplineprof1
+    computer
+    computerprof
+    concept
+    conscience
+    courage
+    crafts
+    demeanor
+    demeanordescription
+    descriptionnote
+    dexterity
+    dexterityprof
+    disciplinename1
+    disciplinename2
+    disciplinename3
+    disciplinename4
+    disciplinename5
+    disciplinename6
+    disciplinepoints1
+    disciplinepoints2
+    disciplinepoints3
+    disciplinepoints4
+    disciplinepoints5
+    disciplinepoints6
+    disciplineprof1
+    disciplineprof2
+    disciplineprof3
+    disciplineprof4
+    disciplineprof5
+    disciplineprof6
+    drive
+    driveprof
+    empathy
+    empathyprof
+    etiquette
+    etiquetteprof
+    experience
+    expression
+    expressionprof
+    extraknowledgename
+    extraknowledgepoints
+    extraknowledgeprof
+    extraskillname
+    extraskillpoints
+    extraskillprof
+    extratalentname
+    extratalentpoints
+    extratalentprof
+    finance
+    financeprof
+    firearms
+    firearmsprof
+    flawname1
+    flawname2
+    flawname3
+    flawname4
+    flawname5
+    flawpoints1
+    flawpoints2
+    flawpoints3
+    flawpoints4
+    flawpoints5
+    flawprof1
+    flawprof2
+    flawprof3
+    flawprof4
+    generation
+    flawprof5
+    generationdescription
+    health
+    humanity
+    intelligence
+    intelligenceprof
+    intimidation
+    intimidationprof
+    investigation
+    investigationprof
+    larceny
+    larcenyprof
+    law
+    lawprof
+    leadership
+    leadershipprof
+    manipulation
+    manipulationprof
+    maxwillpower
+    medicine
+    medicineprof
+    melee
+    meleeprof
+    meritname1
+    meritname2
+    meritname3
+    meritname4
+    meritname5
+    meritpoints1
+    meritpoints2
+    meritpoints3
+    meritpoints4
+    meritpoints5
+    meritprof1
+    meritprof2
+    meritprof3
+    meritprof5
+    meritprof4
+    name
+    nature
+    natureregain
+    occult
+    naturedescription
+    occultprof
+    othernotes
+    path
+    perception
+    perceptionprof
+    performance
+    performanceprof
+    politics
+    politicsprof
+    roleplayinghints
+    science
+    scienceprof
+    sect
+    selfcontrol
+    sheettype
+    sire
+    stamina
+    staminaprof
+    stealth
+    stealthprof
+    streetwise
+    strength
+    streetwiseprof
+    strengthprof
+    subterfuge
+    subterfugeprof
+    survival
+    survivalprof
+    technology
+    technologyprof
+    useconviction
+    useinstinct
+    usepath
+    uuid
+    weakness
+    willpower
+    wits
+    witsprof
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetFullCharacterGQL extends Apollo.Query<GetFullCharacterQuery, GetFullCharacterQueryVariables> {
+    document = GetFullCharacterDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
@@ -4065,6 +4353,47 @@ export const CreateCharacterDocument = gql`
   })
   export class CreateCharacterGQL extends Apollo.Mutation<CreateCharacterMutation, CreateCharacterMutationVariables> {
     document = CreateCharacterDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const CreateNoteDocument = gql`
+    mutation CreateNote($character_id: uuid = "", $name: String = "") {
+  insert_notes_one(object: {name: $name, character_id: $character_id}) {
+    uuid
+    name
+    character_id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class CreateNoteGQL extends Apollo.Mutation<CreateNoteMutation, CreateNoteMutationVariables> {
+    document = CreateNoteDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateCharacterSheetHeaderDocument = gql`
+    mutation UpdateCharacterSheetHeader($uuid: uuid = "", $nature: String = "", $name: String = "", $generation: Int = 10, $demeanor: String = "", $clan: String = "", $sire: String = "") {
+  update_characters_by_pk(
+    pk_columns: {uuid: $uuid}
+    _set: {clan: $clan, demeanor: $demeanor, generation: $generation, name: $name, nature: $nature, sire: $sire}
+  ) {
+    uuid
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateCharacterSheetHeaderGQL extends Apollo.Mutation<UpdateCharacterSheetHeaderMutation, UpdateCharacterSheetHeaderMutationVariables> {
+    document = UpdateCharacterSheetHeaderDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

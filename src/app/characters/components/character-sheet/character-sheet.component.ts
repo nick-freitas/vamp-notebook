@@ -1,10 +1,9 @@
 import { Component, ChangeDetectionStrategy, OnDestroy } from "@angular/core";
-import { StateService } from "src/app/core/state/state.service";
 import { FormGroup, FormControl } from "@angular/forms";
-import { ConfirmChangeComponent } from "../confirm-change.component";
 import { MatDialog } from "@angular/material/dialog";
-import { Subscription } from "rxjs";
 import { SubSink } from "subsink";
+import { CharacterService } from "../../character.service";
+import _configJSON from "../../../../assets/config.json";
 
 const _generations = [
   { text: "Second Generation", value: 2 },
@@ -38,6 +37,12 @@ const _clans = [
   { text: "Clan Tremere", value: "Clan Tremere" },
   { text: "Clan Tzimisce", value: "Clan Tzimisce" },
   { text: "Clan Ventrue", value: "Clan Ventrue" },
+];
+
+const _physicalAttributes = [
+  { name: "strength", text: "Strength" },
+  { name: "dexterity", text: "Dexterity" },
+  { name: "stamina", text: "Stamina" },
 ];
 
 const _archetypes = [
@@ -128,68 +133,75 @@ export class CharacterSheetComponent implements OnDestroy {
   isFormDirty: boolean;
   isGenerationDirty: boolean;
   isClanDirty: boolean;
-  selectedCharacterSub: Subscription;
+  configJSON = _configJSON;
 
   generations = _generations;
   clans = _clans;
   archetypes = _archetypes;
+  physicalAttributes = _physicalAttributes;
 
-  physicalAttributes: { name: string; text: string }[];
-
-  constructor(public state: StateService, public dialog: MatDialog) {
+  constructor(
+    public dialog: MatDialog,
+    public characterService: CharacterService
+  ) {
     this.subs = new SubSink();
+    this.initFormGroup(null);
     this.resetFormGroup();
+  }
 
-    this.physicalAttributes = [
-      { name: "strength", text: "Strength" },
-      { name: "dexterity", text: "Dexterity" },
-      { name: "stamina", text: "Stamina" },
-    ];
+  initFormGroup(character): void {
+    this.formGroup = new FormGroup({
+      name: new FormControl(character?.name),
+      generation: new FormControl(character?.generation),
+      clan: new FormControl(character?.clan),
+      demeanor: new FormControl(character?.demeanor),
+      nature: new FormControl(character?.nature),
+      sire: new FormControl(character?.sire),
+      stats: new FormGroup({
+        strength: new FormControl(character?.stats?.strength),
+      }),
+    });
+  }
+
+  cancelChanges(): void {
+    this.resetFormGroup();
+  }
+
+  saveChanges(): void {
+    this.characterService.updateCharacter(this.formGroup.value);
+  }
+
+  resetFormGroup(): void {
+    this.subs.unsubscribe();
+
+    this.subs.sink = this.characterService.selectedCharacter$?.subscribe(
+      (character) => {
+        if (!character) {
+          return;
+        }
+
+        this.isFormDirty = false;
+        // this.isGenerationDirty = false;
+        // this.isClanDirty = false;
+
+        this.initFormGroup(character);
+
+        this.subs.sink = this.formGroup.valueChanges.subscribe((_) => {
+          this.isFormDirty = true;
+        });
+
+        // this.subs.sink = this.formGroup
+        //   .get("generation")
+        //   .valueChanges.subscribe((_) => (this.isGenerationDirty = true));
+
+        // this.subs.sink = this.formGroup
+        //   .get("clan")
+        //   .valueChanges.subscribe((_) => (this.isClanDirty = true));
+      }
+    );
   }
 
   ngOnDestroy(): void {
     this.subs.unsubscribe();
-  }
-
-  cancelChanges() {
-    this.resetFormGroup();
-  }
-
-  saveChanges() {
-    this.state.updateCharacterSheet(this.formGroup.value);
-  }
-
-  resetFormGroup() {
-    this.subs.unsubscribe();
-
-    this.subs.sink = this.state.selectedCharacter$.subscribe((character) => {
-      this.isFormDirty = false;
-      this.isGenerationDirty = false;
-      this.isClanDirty = false;
-
-      this.formGroup = new FormGroup({
-        name: new FormControl(character.name),
-        generation: new FormControl(character.generation),
-        clan: new FormControl(character.clan),
-        demeanor: new FormControl(character.demeanor),
-        nature: new FormControl(character.nature),
-        sire: new FormControl(character.sire),
-        stats: new FormGroup({
-          strength: new FormControl(character.stats.strength),
-        }),
-      });
-
-      this.subs.sink = this.formGroup.valueChanges.subscribe((_) => {
-        this.isFormDirty = true;
-      });
-
-      this.subs.sink = this.formGroup
-        .get("generation")
-        .valueChanges.subscribe((_) => (this.isGenerationDirty = true));
-
-      this.subs.sink = this.formGroup
-        .get("clan")
-        .valueChanges.subscribe((_) => (this.isClanDirty = true));
-    });
   }
 }

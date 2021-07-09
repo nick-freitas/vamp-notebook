@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from "@angular/core";
+import { Component, ChangeDetectionStrategy, Input } from "@angular/core";
 import { StateService } from "../../../core/state/state.service";
 import * as BalloonBlockEditor from "@ckeditor/ckeditor5-build-balloon-block";
 
@@ -9,6 +9,8 @@ import * as BalloonBlockEditor from "@ckeditor/ckeditor5-build-balloon-block";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NoteEditorComponent {
+  @Input() note;
   public Editor = BalloonBlockEditor;
+
   constructor(public state: StateService) {}
 }

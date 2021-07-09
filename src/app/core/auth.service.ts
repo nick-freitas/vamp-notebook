@@ -58,7 +58,7 @@ export class AuthService {
       });
   }
 
-  private setIsSignedIn() {
+  private setIsSignedIn(): void {
     this.isSignedIn$.next(!!JSON.parse(localStorage.getItem("user")));
   }
 

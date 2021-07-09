@@ -75,7 +75,7 @@ export class StateService {
     this.initializeSubscriptions();
   }
 
-  private initializeSubscriptions() {
+  private initializeSubscriptions(): void {
     this.configs$.next(initialState.configs);
     this.defaults$.next(initialState.defaults);
 
@@ -203,7 +203,7 @@ export class StateService {
     }
   }
 
-  updateUserState() {
+  updateUserState(): void {
     // * Notes
     if (this.selectedNote) {
       this.selectedCharacter.notes = this.selectedCharacter.notes.map(
@@ -245,28 +245,28 @@ export class StateService {
     this.selectedChronicle$.next(this.selectedChronicle);
   }
 
-  changeSelectedNote(note: StateTypes.Note) {
+  changeSelectedNote(note: StateTypes.Note): void {
     this.selectedNote = note;
     this.updateUserState();
   }
 
-  changeSelectedCharacter(character: StateTypes.Character) {
+  changeSelectedCharacter(character: StateTypes.Character): void {
     this.selectedCharacter = character;
     this.updateUserState();
   }
 
-  changeSelectedChronicle(chronicle: StateTypes.Chronicle) {
+  changeSelectedChronicle(chronicle: StateTypes.Chronicle): void {
     this.selectedChronicle = chronicle;
     this.updateUserState();
   }
 
-  changeCharacterStats(characterStats) {
+  changeCharacterStats(characterStats): void {
     this.changeSelectedCharacter(
       Object.assign({}, this.selectedCharacter, characterStats)
     );
   }
 
-  changeStatDots(statName: string, dots: number) {
+  changeStatDots(statName: string, dots: number): void {
     const oldStat = this.selectedCharacter.stats[statName] || {};
     const newStat = Object.assign({}, oldStat, {
       value: oldStat.value === dots ? 0 : dots,
@@ -281,16 +281,16 @@ export class StateService {
     );
   }
 
-  changeNoteFields(noteFields) {
+  changeNoteFields(noteFields): void {
     this.changeSelectedNote(Object.assign({}, this.selectedNote, noteFields));
   }
 
-  openCharacterListSidenav() {
+  openCharacterListSidenav(): void {
     this.isCharacterListSidenavOpen = true;
     this.isCharacterListSidenavOpen$.next(this.isCharacterListSidenavOpen);
   }
 
-  closeCharacterListSidenav(mobileOnly: boolean = false) {
+  closeCharacterListSidenav(mobileOnly: boolean = false): void {
     if (mobileOnly && this.isMobile && this.isCharacterListSidenavOpen) {
       this.isCharacterListSidenavOpen = false;
     }
@@ -298,17 +298,17 @@ export class StateService {
     this.isCharacterListSidenavOpen$.next(this.isCharacterListSidenavOpen);
   }
 
-  toggleCharacterListSidenav() {
+  toggleCharacterListSidenav(): void {
     this.isCharacterListSidenavOpen = !this.isCharacterListSidenavOpen;
     this.isCharacterListSidenavOpen$.next(this.isCharacterListSidenavOpen);
   }
 
-  openNoteListSidenav() {
+  openNoteListSidenav(): void {
     this.isNoteListSidenavOpen = true;
     this.isNoteListSidenavOpen$.next(this.isNoteListSidenavOpen);
   }
 
-  closeNoteListSidenav(mobileOnly: boolean = false) {
+  closeNoteListSidenav(mobileOnly: boolean = false): void {
     if (mobileOnly && this.isMobile && this.isNoteListSidenavOpen) {
       this.isNoteListSidenavOpen = false;
     }
@@ -316,16 +316,16 @@ export class StateService {
     this.isNoteListSidenavOpen$.next(this.isNoteListSidenavOpen);
   }
 
-  toggleNoteListSidenav() {
+  toggleNoteListSidenav(): void {
     this.isNoteListSidenavOpen = !this.isNoteListSidenavOpen;
     this.isNoteListSidenavOpen$.next(this.isNoteListSidenavOpen);
   }
 
-  updateApplication() {
+  updateApplication(): void {
     this.updates.activateUpdate().then(() => document.location.reload());
   }
 
-  updateCharacterSheet(formGroup) {
+  updateCharacterSheet(formGroup): void {
     this.changeSelectedCharacter(
       Object.assign({}, this.selectedCharacter, formGroup)
     );

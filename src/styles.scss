@@ -19,11 +19,29 @@ mat-card.mat-card {
 .selected-menu-item {
   &,
   &.mat-list-item {
-    background: #c60055;
+    background-color: #c60055;
     color: white;
 
     &:hover {
-      background: #ff79b0;
+      background-color: #ff79b0;
+      color: black;
+    }
+  }
+
+  + div mat-nav-list {
+    padding-top: 0;
+    background-color: #424242;
+
+    .mat-list-item {
+      color: white;
+      &:hover {
+        background-color: #9e9e9e;
+        color: black;
+      }
+    }
+
+    .selected-character {
+      background-color: #9e9e9e;
       color: black;
     }
   }

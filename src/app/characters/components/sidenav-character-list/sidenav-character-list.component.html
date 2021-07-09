@@ -9,27 +9,45 @@
             chronicle?.uuid ===
             (this.chronicleService.selectedChronicle$ | async)?.uuid
           "
-          (click)="
-            this.chronicleService.selectChronicle(chronicle);
-            state.closeCharacterListSidenav(true);
-            this.loadCharacterList(chronicle?.uuid)
-          "
+          (click)="onSelectChronicle(chronicle)"
         >
           {{ chronicle.name }}
         </a>
-        <mat-nav-list
+        <div
           *ngIf="
             chronicle?.uuid ===
             (this.chronicleService.selectedChronicle$ | async)?.uuid
           "
         >
-          <a
-            *ngFor="let character of characters$ | async; let index = index"
-            mat-list-item
+          <mat-nav-list
+            *ngIf="(characters$ | async)?.length; else noCharacters"
           >
-            {{ character.name }}
-          </a>
-        </mat-nav-list>
+            <a
+              *ngFor="let character of characters$ | async; let index = index"
+              mat-list-item
+              (click)="onSelectCharacter(character.uuid)"
+              [class.selected-character]="
+                character?.uuid ===
+                (this.characterService.selectedCharacter$ | async)?.uuid
+              "
+            >
+              {{ character.name }}
+            </a>
+          </mat-nav-list>
+          <ng-template #noCharacters>
+            <mat-nav-list>
+              <a
+                mat-list-item
+                (click)="createNewCharacter(selectedChronicle?.uuid)"
+                *ngIf="
+                  this.chronicleService.selectedChronicle$
+                    | async as selectedChronicle
+                "
+                >No Characters</a
+              >
+            </mat-nav-list>
+          </ng-template>
+        </div>
       </div>
     </mat-nav-list>
   </ng-container>

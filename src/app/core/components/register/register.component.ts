@@ -10,10 +10,7 @@ import { AuthService } from "../../auth.service";
   templateUrl: "./register.component.html",
   styleUrls: ["../login-register.component.scss"],
 })
-export class RegisterComponent
-  extends LoginRegisterBase
-  implements OnInit, OnDestroy
-{
+export class RegisterComponent extends LoginRegisterBase implements OnDestroy {
   registerForm: FormGroup;
   registerUser$: Subscription;
 
@@ -30,13 +27,11 @@ export class RegisterComponent
     });
   }
 
-  ngOnInit(): void {}
-
-  async loginRegister() {
+  async loginRegister(): Promise<any> {
     await this.authservice.register(this.registerForm.value);
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.registerUser$?.unsubscribe();
   }
 }

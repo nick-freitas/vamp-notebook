@@ -2,14 +2,10 @@ import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 
 @Component({
   selector: "app-confirm-change",
-  template: `
-    <p [mat-dialog-close]="'true'">CLOSE</p>
-  `,
+  template: ` <p [mat-dialog-close]="'true'">CLOSE</p> `,
   styles: [],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ConfirmChangeComponent implements OnInit {
+export class ConfirmChangeComponent {
   constructor() {}
-
-  ngOnInit() {}
 }
