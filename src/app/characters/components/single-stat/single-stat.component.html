@@ -2,7 +2,7 @@
   {{ stat.text }}
 </div>
 <div class="dot-group">
-  <button
+  <!-- <button
     mat-icon-button
     *ngFor="let dot of [].constructor(stat.maxDots || 5); let i = index"
     (click)="state.changeStatDots(stat.name, i + 1)"
@@ -20,7 +20,7 @@
     <ng-template #blank>
       <mat-icon>star_border</mat-icon>
     </ng-template>
-  </button>
+  </button> -->
 </div>
 <mat-form-field>
   <input matInput [placeholder]="stat.text + ' Profiency'" />

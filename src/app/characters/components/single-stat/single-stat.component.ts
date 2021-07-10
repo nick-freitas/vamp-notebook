@@ -1,6 +1,4 @@
 import { Component, ChangeDetectionStrategy, Input } from "@angular/core";
-import { StateService } from "src/app/core/state/state.service";
-import { StatField } from "src/app/core/state/state.types";
 
 @Component({
   selector: "app-single-stat",
@@ -9,8 +7,8 @@ import { StatField } from "src/app/core/state/state.types";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SingleStatComponent {
-  @Input() stat: StatField;
+  @Input() stat: any; //StatField;
   public dots: number[];
 
-  constructor(public state: StateService) {}
+  constructor() {}
 }

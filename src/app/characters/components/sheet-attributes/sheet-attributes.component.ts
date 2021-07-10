@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input } from "@angular/core";
-import { SheetAttributesField } from "src/app/core/state/state.types";
+
 @Component({
   selector: "app-sheet-attributes",
   templateUrl: "./sheet-atributes.component.html",
@@ -7,6 +7,6 @@ import { SheetAttributesField } from "src/app/core/state/state.types";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SheetAttributesComponent {
-  @Input() attributesFieldList: SheetAttributesField[];
+  @Input() attributesFieldList: any[]; //SheetAttributesField[];
   constructor() {}
 }

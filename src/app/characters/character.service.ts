@@ -30,7 +30,6 @@ export class CharacterService {
     character: Characters
   ): Observable<Partial<Characters>> {
     if (!characterId || !character) {
-      console.log("ret null");
       return of(null);
     }
 

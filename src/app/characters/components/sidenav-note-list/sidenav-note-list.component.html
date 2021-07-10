@@ -7,10 +7,12 @@
       <a
         mat-list-item
         [class.selected-menu-item]="
-          (state.selectedNote$ | async) === (false || null || undefined)
+          (this.noteService.selectedNote$ | async) === null
         "
         (click)="
-          this.noteService.selectNote(null); state.closeNoteListSidenav(true)
+          this.noteService.selectNote(null);
+          mobileService.closeNoteListSidenav(true);
+          this.selectedViewService.leaveNoteView()
         "
       >
         Character Sheet
@@ -19,10 +21,12 @@
         *ngFor="let note of this.noteService.notes$ | async"
         mat-list-item
         [class.selected-menu-item]="
-          note?.id === (this.noteService.selectedNote$ | async)?.uuid
+          note?.uuid === (this.noteService.selectedNote$ | async)?.uuid
         "
         (click)="
-          this.noteService.selectNote(note); state.closeNoteListSidenav(true)
+          this.noteService.selectNote(note);
+          mobileService.closeNoteListSidenav(true);
+          this.selectedViewService.enterNoteView()
         "
       >
         {{ note.name }}

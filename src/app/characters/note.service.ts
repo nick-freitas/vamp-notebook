@@ -1,7 +1,14 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, of } from "rxjs";
 import { map, tap } from "rxjs/operators";
-import { CreateNoteGQL, GetNotesGQL, Notes } from "../../generated/graphql";
+import {
+  CreateNoteGQL,
+  GetNotesGQL,
+  Notes,
+  UpdateNoteGQL,
+  DeleteNoteGQL,
+  UpdateNoteMutationVariables,
+} from "../../generated/graphql";
 
 @Injectable({
   providedIn: "root",
@@ -12,7 +19,9 @@ export class NoteService {
 
   constructor(
     private createNoteGQL: CreateNoteGQL,
-    private getNotesGQL: GetNotesGQL
+    private getNotesGQL: GetNotesGQL,
+    private updateNotesGQL: UpdateNoteGQL,
+    private deleteNoteGQL: DeleteNoteGQL
   ) {
     this.selectedNote$ = new BehaviorSubject(null);
     this.notes$ = new BehaviorSubject(null);
@@ -20,6 +29,32 @@ export class NoteService {
 
   selectNote(note: Notes): void {
     this.selectedNote$.next(note);
+  }
+
+  updateNote(
+    noteId: string,
+    note: UpdateNoteMutationVariables
+  ): Observable<Partial<Notes>> {
+    if (!noteId || !note) {
+      return of(null);
+    }
+
+    const newNote: UpdateNoteMutationVariables = {
+      ...note,
+      uuid: noteId,
+    };
+
+    return this.updateNotesGQL
+      .mutate(newNote)
+      .pipe(map((res) => res?.data?.update_notes_by_pk));
+  }
+
+  deleteNote(noteId: string): Observable<Partial<Notes>> {
+    if (!noteId) return of(null);
+
+    return this.deleteNoteGQL
+      .mutate({ uuid: noteId })
+      .pipe(map((res) => res?.data?.delete_notes_by_pk));
   }
 
   createNote({

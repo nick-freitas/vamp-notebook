@@ -6,9 +6,10 @@ import {
 import { MatDialog } from "@angular/material/dialog";
 import { Subscription } from "rxjs";
 import { switchMap } from "rxjs/operators";
-import { StateService } from "src/app/core/state/state.service";
+import { MobileService } from "../../../core/mobile.service";
 import { CharacterService } from "../../character.service";
 import { NoteService } from "../../note.service";
+import { SelectedViewService } from "../../selected-view.service";
 import { CreateNewNoteDialogComponent } from "../create-new-note-dialog/create-new-note-dialog.component";
 
 @Component({
@@ -21,10 +22,11 @@ export class SidenavNoteListComponent {
   noteSubscription$: Subscription;
 
   constructor(
-    public state: StateService,
+    public mobileService: MobileService,
     public characterService: CharacterService,
     public noteService: NoteService,
     public dialog: MatDialog,
+    public selectedViewService: SelectedViewService,
     private changeDetectorRef: ChangeDetectorRef
   ) {}
 

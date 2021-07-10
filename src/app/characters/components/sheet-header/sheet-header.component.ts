@@ -1,5 +1,4 @@
 import { Component, ChangeDetectionStrategy } from "@angular/core";
-import { StateService } from "src/app/core/state/state.service";
 import { MatDialog } from "@angular/material/dialog";
 
 @Component({
@@ -9,5 +8,5 @@ import { MatDialog } from "@angular/material/dialog";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SheetHeaderComponent {
-  constructor(public state: StateService, public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog) {}
 }

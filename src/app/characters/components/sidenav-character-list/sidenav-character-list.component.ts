@@ -12,10 +12,9 @@ import { ChronicleService } from "../../chronicle.service";
 import { CharacterService } from "../../character.service";
 import { CreateNewCharacterDialogComponent } from "../create-new-character-dialog/create-new-character-dialog.component";
 import { CreateNewChronicleDialogComponent } from "../create-new-chronicle-dialog/create-new-chronicle-dialog.component";
-import { StateService } from "../../../core/state/state.service";
 import { NoteService } from "../../note.service";
-import { Characters, Chronicles } from "../../../../generated/graphql";
-import { SubSink } from "subsink";
+import { Chronicles } from "../../../../generated/graphql";
+import { MobileService } from "../../../core/mobile.service";
 
 @Component({
   selector: "app-sidenav-character-list",
@@ -33,7 +32,7 @@ export class SidenavCharacterListComponent implements OnInit, OnDestroy {
 
   constructor(
     public dialog: MatDialog,
-    public state: StateService,
+    public mobileService: MobileService,
     public chronicleService: ChronicleService,
     public characterService: CharacterService,
     private changeDetectorRef: ChangeDetectorRef,
@@ -42,16 +41,21 @@ export class SidenavCharacterListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loadChronicleList();
+    this.onSelectChronicle({
+      uuid: "b88e2209-759e-4441-b0d6-4f54ce6d8b1f",
+      name: "G4",
+    });
+    this.onSelectCharacter("93349e3e-fb6b-4c0d-9844-64f3740467d7");
   }
 
   onSelectChronicle(chronicle: Chronicles): void {
     this.chronicleService.selectChronicle(chronicle);
-    this.state.closeCharacterListSidenav(true);
+    this.mobileService.closeCharacterListSidenav(true);
     this.loadCharacterList(chronicle?.uuid);
   }
 
   onSelectCharacter(characterId: string): void {
-    this.state.closeCharacterListSidenav(true);
+    this.mobileService.closeCharacterListSidenav(true);
     this.characterAndNotesRefreshSubscription$?.unsubscribe();
 
     this.characterAndNotesRefreshSubscription$ = this.characterService

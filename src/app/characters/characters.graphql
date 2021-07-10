@@ -454,3 +454,31 @@ mutation UpdateCharacterSheetHeader(
     witsprof
   }
 }
+
+mutation UpdateNote(
+  $uuid: uuid = ""
+  $content: String = ""
+  $name: String = ""
+) {
+  update_notes_by_pk(
+    pk_columns: { uuid: $uuid }
+    _set: { name: $name, content: $content }
+  ) {
+    uuid
+    content
+    name
+    character_id
+  }
+}
+
+mutation DeleteNote($uuid: uuid = "") {
+  delete_notes_by_pk(uuid: $uuid) {
+    uuid
+  }
+}
+
+mutation DeleteCharacter($uuid: uuid = "") {
+  delete_characters_by_pk(uuid: $uuid) {
+    uuid
+  }
+}

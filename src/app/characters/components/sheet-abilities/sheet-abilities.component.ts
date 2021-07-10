@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ChangeDetectionStrategy,
-  Input,
-} from "@angular/core";
-import { SheetAbilitiesField } from "src/app/core/state/state.types";
+import { Component, ChangeDetectionStrategy, Input } from "@angular/core";
 
 @Component({
   selector: "app-sheet-abilities",
@@ -13,7 +7,7 @@ import { SheetAbilitiesField } from "src/app/core/state/state.types";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SheetAbilitiesComponent {
-  @Input() abilitiesFieldList: SheetAbilitiesField[];
+  @Input() abilitiesFieldList: any[]; //SheetAbilitiesField[];
 
   constructor() {}
 }

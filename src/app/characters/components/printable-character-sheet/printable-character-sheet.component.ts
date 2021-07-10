@@ -1,5 +1,4 @@
 import { Component, ChangeDetectionStrategy } from "@angular/core";
-import { StateService } from "src/app/core/state/state.service";
 
 @Component({
   selector: "app-printable-character-sheet",
@@ -21,5 +20,5 @@ export class PrintableCharacterSheetComponent {
     { name: "intelligence", row: 1, column: 2 },
     { name: "wits", row: 2, column: 2 },
   ];
-  constructor(public state: StateService) {}
+  constructor() {}
 }

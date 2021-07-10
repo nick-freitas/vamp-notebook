@@ -4021,6 +4021,47 @@ export type UpdateCharacterSheetHeaderMutation = (
   { __typename?: 'mutation_root' }
   & { update_characters_by_pk?: Maybe<(
     { __typename?: 'characters' }
+    & Pick<Characters, 'academics' | 'academicsprof' | 'agecategory' | 'alertness' | 'alertnessprof' | 'animalken' | 'animalkenprof' | 'appearance' | 'appearanceprof' | 'athletics' | 'athleticsprof' | 'awareness' | 'awarenessprof' | 'backgroundname1' | 'backgroundname3' | 'backgroundname2' | 'backgroundname4' | 'backgroundname5' | 'backgroundname6' | 'backgroundnote' | 'backgroundpoints1' | 'backgroundpoints2' | 'backgroundpoints3' | 'backgroundpoints4' | 'backgroundpoints5' | 'backgroundpoints6' | 'backgroundprof1' | 'backgroundprof2' | 'backgroundprof3' | 'backgroundprof4' | 'backgroundprof5' | 'backgroundprof6' | 'bearing' | 'bearingmodifier' | 'bloodperturn' | 'bloodpool' | 'brawl' | 'brawlprof' | 'charisma' | 'charismaprof' | 'chronicleid' | 'clan' | 'combodisciplinename1' | 'combodisciplinepoints1' | 'combodisciplineprof1' | 'computer' | 'computerprof' | 'concept' | 'conscience' | 'courage' | 'crafts' | 'demeanor' | 'demeanordescription' | 'descriptionnote' | 'dexterity' | 'dexterityprof' | 'disciplinename1' | 'disciplinename2' | 'disciplinename3' | 'disciplinename4' | 'disciplinename5' | 'disciplinename6' | 'disciplinepoints1' | 'disciplinepoints2' | 'disciplinepoints3' | 'disciplinepoints4' | 'disciplinepoints5' | 'disciplinepoints6' | 'disciplineprof1' | 'disciplineprof2' | 'disciplineprof3' | 'disciplineprof4' | 'disciplineprof5' | 'disciplineprof6' | 'drive' | 'driveprof' | 'empathy' | 'empathyprof' | 'etiquette' | 'etiquetteprof' | 'experience' | 'expression' | 'expressionprof' | 'extraknowledgename' | 'extraknowledgepoints' | 'extraknowledgeprof' | 'extraskillname' | 'extraskillpoints' | 'extraskillprof' | 'extratalentname' | 'extratalentpoints' | 'extratalentprof' | 'finance' | 'financeprof' | 'firearms' | 'firearmsprof' | 'flawname1' | 'flawname2' | 'flawname3' | 'flawname4' | 'flawname5' | 'flawpoints1' | 'flawpoints2' | 'flawpoints3' | 'flawpoints4' | 'flawpoints5' | 'flawprof1' | 'flawprof2' | 'flawprof3' | 'flawprof4' | 'generation' | 'flawprof5' | 'generationdescription' | 'health' | 'humanity' | 'intelligence' | 'intelligenceprof' | 'intimidation' | 'intimidationprof' | 'investigation' | 'investigationprof' | 'larceny' | 'larcenyprof' | 'law' | 'lawprof' | 'leadership' | 'leadershipprof' | 'manipulation' | 'manipulationprof' | 'maxwillpower' | 'medicine' | 'medicineprof' | 'melee' | 'meleeprof' | 'meritname1' | 'meritname2' | 'meritname3' | 'meritname4' | 'meritname5' | 'meritpoints1' | 'meritpoints2' | 'meritpoints3' | 'meritpoints4' | 'meritpoints5' | 'meritprof1' | 'meritprof2' | 'meritprof3' | 'meritprof5' | 'meritprof4' | 'name' | 'nature' | 'natureregain' | 'occult' | 'naturedescription' | 'occultprof' | 'othernotes' | 'path' | 'perception' | 'perceptionprof' | 'performance' | 'performanceprof' | 'politics' | 'politicsprof' | 'roleplayinghints' | 'science' | 'scienceprof' | 'sect' | 'selfcontrol' | 'sheettype' | 'sire' | 'stamina' | 'staminaprof' | 'stealth' | 'stealthprof' | 'streetwise' | 'strength' | 'streetwiseprof' | 'strengthprof' | 'subterfuge' | 'subterfugeprof' | 'survival' | 'survivalprof' | 'technology' | 'technologyprof' | 'useconviction' | 'useinstinct' | 'usepath' | 'uuid' | 'weakness' | 'willpower' | 'wits' | 'witsprof'>
+  )> }
+);
+
+export type UpdateNoteMutationVariables = Exact<{
+  uuid?: Maybe<Scalars['uuid']>;
+  content?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+}>;
+
+
+export type UpdateNoteMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_notes_by_pk?: Maybe<(
+    { __typename?: 'notes' }
+    & Pick<Notes, 'uuid' | 'content' | 'name' | 'character_id'>
+  )> }
+);
+
+export type DeleteNoteMutationVariables = Exact<{
+  uuid?: Maybe<Scalars['uuid']>;
+}>;
+
+
+export type DeleteNoteMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_notes_by_pk?: Maybe<(
+    { __typename?: 'notes' }
+    & Pick<Notes, 'uuid'>
+  )> }
+);
+
+export type DeleteCharacterMutationVariables = Exact<{
+  uuid?: Maybe<Scalars['uuid']>;
+}>;
+
+
+export type DeleteCharacterMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_characters_by_pk?: Maybe<(
+    { __typename?: 'characters' }
     & Pick<Characters, 'uuid'>
   )> }
 );
@@ -4384,7 +4425,198 @@ export const UpdateCharacterSheetHeaderDocument = gql`
     pk_columns: {uuid: $uuid}
     _set: {clan: $clan, demeanor: $demeanor, generation: $generation, name: $name, nature: $nature, sire: $sire}
   ) {
+    academics
+    academicsprof
+    agecategory
+    alertness
+    alertnessprof
+    animalken
+    animalkenprof
+    appearance
+    appearanceprof
+    athletics
+    athleticsprof
+    awareness
+    awarenessprof
+    backgroundname1
+    backgroundname3
+    backgroundname2
+    backgroundname4
+    backgroundname5
+    backgroundname6
+    backgroundnote
+    backgroundpoints1
+    backgroundpoints2
+    backgroundpoints3
+    backgroundpoints4
+    backgroundpoints5
+    backgroundpoints6
+    backgroundprof1
+    backgroundprof2
+    backgroundprof3
+    backgroundprof4
+    backgroundprof5
+    backgroundprof6
+    bearing
+    bearingmodifier
+    bloodperturn
+    bloodpool
+    brawl
+    brawlprof
+    charisma
+    charismaprof
+    chronicleid
+    clan
+    combodisciplinename1
+    combodisciplinepoints1
+    combodisciplineprof1
+    computer
+    computerprof
+    concept
+    conscience
+    courage
+    crafts
+    demeanor
+    demeanordescription
+    descriptionnote
+    dexterity
+    dexterityprof
+    disciplinename1
+    disciplinename2
+    disciplinename3
+    disciplinename4
+    disciplinename5
+    disciplinename6
+    disciplinepoints1
+    disciplinepoints2
+    disciplinepoints3
+    disciplinepoints4
+    disciplinepoints5
+    disciplinepoints6
+    disciplineprof1
+    disciplineprof2
+    disciplineprof3
+    disciplineprof4
+    disciplineprof5
+    disciplineprof6
+    drive
+    driveprof
+    empathy
+    empathyprof
+    etiquette
+    etiquetteprof
+    experience
+    expression
+    expressionprof
+    extraknowledgename
+    extraknowledgepoints
+    extraknowledgeprof
+    extraskillname
+    extraskillpoints
+    extraskillprof
+    extratalentname
+    extratalentpoints
+    extratalentprof
+    finance
+    financeprof
+    firearms
+    firearmsprof
+    flawname1
+    flawname2
+    flawname3
+    flawname4
+    flawname5
+    flawpoints1
+    flawpoints2
+    flawpoints3
+    flawpoints4
+    flawpoints5
+    flawprof1
+    flawprof2
+    flawprof3
+    flawprof4
+    generation
+    flawprof5
+    generationdescription
+    health
+    humanity
+    intelligence
+    intelligenceprof
+    intimidation
+    intimidationprof
+    investigation
+    investigationprof
+    larceny
+    larcenyprof
+    law
+    lawprof
+    leadership
+    leadershipprof
+    manipulation
+    manipulationprof
+    maxwillpower
+    medicine
+    medicineprof
+    melee
+    meleeprof
+    meritname1
+    meritname2
+    meritname3
+    meritname4
+    meritname5
+    meritpoints1
+    meritpoints2
+    meritpoints3
+    meritpoints4
+    meritpoints5
+    meritprof1
+    meritprof2
+    meritprof3
+    meritprof5
+    meritprof4
+    name
+    nature
+    natureregain
+    occult
+    naturedescription
+    occultprof
+    othernotes
+    path
+    perception
+    perceptionprof
+    performance
+    performanceprof
+    politics
+    politicsprof
+    roleplayinghints
+    science
+    scienceprof
+    sect
+    selfcontrol
+    sheettype
+    sire
+    stamina
+    staminaprof
+    stealth
+    stealthprof
+    streetwise
+    strength
+    streetwiseprof
+    strengthprof
+    subterfuge
+    subterfugeprof
+    survival
+    survivalprof
+    technology
+    technologyprof
+    useconviction
+    useinstinct
+    usepath
     uuid
+    weakness
+    willpower
+    wits
+    witsprof
   }
 }
     `;
@@ -4394,6 +4626,66 @@ export const UpdateCharacterSheetHeaderDocument = gql`
   })
   export class UpdateCharacterSheetHeaderGQL extends Apollo.Mutation<UpdateCharacterSheetHeaderMutation, UpdateCharacterSheetHeaderMutationVariables> {
     document = UpdateCharacterSheetHeaderDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateNoteDocument = gql`
+    mutation UpdateNote($uuid: uuid = "", $content: String = "", $name: String = "") {
+  update_notes_by_pk(
+    pk_columns: {uuid: $uuid}
+    _set: {name: $name, content: $content}
+  ) {
+    uuid
+    content
+    name
+    character_id
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateNoteGQL extends Apollo.Mutation<UpdateNoteMutation, UpdateNoteMutationVariables> {
+    document = UpdateNoteDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteNoteDocument = gql`
+    mutation DeleteNote($uuid: uuid = "") {
+  delete_notes_by_pk(uuid: $uuid) {
+    uuid
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteNoteGQL extends Apollo.Mutation<DeleteNoteMutation, DeleteNoteMutationVariables> {
+    document = DeleteNoteDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteCharacterDocument = gql`
+    mutation DeleteCharacter($uuid: uuid = "") {
+  delete_characters_by_pk(uuid: $uuid) {
+    uuid
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteCharacterGQL extends Apollo.Mutation<DeleteCharacterMutation, DeleteCharacterMutationVariables> {
+    document = DeleteCharacterDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
