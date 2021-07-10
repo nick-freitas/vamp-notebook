@@ -1,26 +1,35 @@
 <mat-sidenav-container autosize>
   <mat-sidenav
-    [mode]="(state.isMobile$ | async) ? 'over' : 'side'"
-    [opened]="state.isCharacterListSidenavOpen$ | async"
-    (closed)="state.closeCharacterListSidenav()"
+    [mode]="(mobileService.isMobile$ | async) ? 'over' : 'side'"
+    [opened]="mobileService.isCharacterListSidenavOpen$ | async"
+    (closed)="mobileService.closeCharacterListSidenav()"
   >
     <app-sidenav-character-list></app-sidenav-character-list>
   </mat-sidenav>
-  <mat-sidenav
-    [mode]="(state.isMobile$ | async) ? 'over' : 'side'"
-    [opened]="state.isNoteListSidenavOpen$ | async"
-    (closed)="state.closeNoteListSidenav()"
+  <!-- <mat-sidenav
+    [mode]="(mobileService.isMobile$ | async) ? 'over' : 'side'"
+    [opened]="mobileService.isNoteListSidenavOpen$ | async"
+    (closed)="mobileService.closeNoteListSidenav()"
     position="end"
   >
     <app-sidenav-note-list></app-sidenav-note-list>
-  </mat-sidenav>
+  </mat-sidenav> -->
 
   <mat-sidenav-content class="main-sidenav-content">
     <div class="content-block">
-      <app-character-sheet></app-character-sheet>
-      <app-note-editor
-        *ngIf="this.noteService.selectedNote$ | async"
-      ></app-note-editor>
+      <ng-container
+        *ngIf="
+          this.selectedViewService.selectedViewIsNoteView$ | async;
+          then noteViewMode;
+          else characterSheetViewMode
+        "
+      ></ng-container>
+      <ng-template #noteViewMode>
+        <app-note-editor></app-note-editor>
+      </ng-template>
+      <ng-template #characterSheetViewMode>
+        <app-character-sheet></app-character-sheet>
+      </ng-template>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
