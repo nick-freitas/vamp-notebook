@@ -1,8 +1,8 @@
-import { Component, ChangeDetectionStrategy } from "@angular/core";
+import { Component, ChangeDetectionStrategy, Input } from "@angular/core";
 import { speedDialFabAnimations } from "./character-sheet-fab.animation.component";
-
 import * as jsPDF from "jspdf";
 import * as html2pdf from "html2pdf.js";
+import { Characters } from "../../../../generated/graphql";
 
 @Component({
   selector: "app-character-sheet-fab",
@@ -12,12 +12,18 @@ import * as html2pdf from "html2pdf.js";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CharacterSheetFabComponent {
+  @Input() selectedCharacter: Partial<Characters>;
   fabButtons = [
     {
-      icon: "picture_as_pdf",
-      tooltip: "Export as PDF",
-      click: this.printSheet,
+      icon: "file_download",
+      tooltip: "Export as JSON",
+      click: this.exportAsJSON.bind(this),
     },
+    // {
+    //   icon: "picture_as_pdf",
+    //   tooltip: "Export as PDF",
+    //   click: this.printSheet,
+    // },
   ];
   buttons = [];
   fabTogglerState = "inactive";
@@ -36,6 +42,16 @@ export class CharacterSheetFabComponent {
 
   onToggleFab(): void {
     this.fabTogglerState === "active" ? this.hideItems() : this.showItems();
+  }
+
+  exportAsJSON(): void {
+    console.log("Trying to export");
+
+    const blob = new Blob([JSON.stringify(this.selectedCharacter)], {
+      type: "application/json",
+    });
+    const url = window.URL.createObjectURL(blob);
+    window.open(url);
   }
 
   printSheet(): void {

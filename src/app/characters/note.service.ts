@@ -7,8 +7,8 @@ import { CreateNoteGQL, GetNotesGQL, Notes } from "../../generated/graphql";
   providedIn: "root",
 })
 export class NoteService {
-  selectedNote$: BehaviorSubject<Notes>;
-  notes$: BehaviorSubject<Partial<Notes>[]>;
+  public readonly selectedNote$: BehaviorSubject<Notes>;
+  public readonly notes$: BehaviorSubject<Partial<Notes>[]>;
 
   constructor(
     private createNoteGQL: CreateNoteGQL,

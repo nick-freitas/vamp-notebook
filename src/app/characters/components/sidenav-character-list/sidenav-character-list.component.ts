@@ -59,7 +59,7 @@ export class SidenavCharacterListComponent implements OnInit, OnDestroy {
       .pipe(switchMap(() => this.noteService.refreshNoteList(characterId)))
       .subscribe(() => {
         // resetting chronicles$ does not trigger the change detection, so trigger it manually
-        this.changeDetectorRef.detectChanges();
+        this.changeDetectorRef.markForCheck();
       });
   }
 
@@ -93,7 +93,7 @@ export class SidenavCharacterListComponent implements OnInit, OnDestroy {
         this.loadChronicleList();
 
         // resetting chronicles$ does not trigger the change detection, so trigger it manually
-        this.changeDetectorRef.detectChanges();
+        this.changeDetectorRef.markForCheck();
       });
   }
 
@@ -118,7 +118,7 @@ export class SidenavCharacterListComponent implements OnInit, OnDestroy {
         this.loadCharacterList(chronicleId);
 
         // resetting chronicles$ does not trigger the change detection, so trigger it manually
-        this.changeDetectorRef.detectChanges();
+        this.changeDetectorRef.markForCheck();
       });
   }
 

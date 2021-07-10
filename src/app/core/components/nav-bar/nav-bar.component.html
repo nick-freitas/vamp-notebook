@@ -27,13 +27,13 @@
   <div id="user-actions-container">
     <div *ngIf="this.auth.isSignedIn$ | async">
       <button mat-button (click)="this.auth.signOut()">Sign Out</button>
-      <button
+      <!-- <button
         mat-icon-button
         aria-label="User Account"
         [routerLink]="['/users']"
       >
         <mat-icon>account_circle</mat-icon>
-      </button>
+      </button> -->
     </div>
     <div
       *ngIf="(this.auth.isSignedIn$ | async) === (false || null || undefined)"

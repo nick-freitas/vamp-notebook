@@ -1,6 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { ChangeDetectionStrategy } from "@angular/core";
-import { StateService } from "src/app/core/state/state.service";
 
 @Component({
   selector: "app-defaults-tab",
@@ -9,5 +8,5 @@ import { StateService } from "src/app/core/state/state.service";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DefaultsTabComponent {
-  constructor(public state: StateService) {}
+  constructor() {}
 }

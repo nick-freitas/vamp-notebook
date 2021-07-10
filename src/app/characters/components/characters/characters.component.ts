@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, OnInit } from "@angular/core";
 import { StateService } from "../../../core/state/state.service";
+import { NoteService } from "../../note.service";
 
 @Component({
   templateUrl: "./characters.component.html",
@@ -8,21 +9,5 @@ import { StateService } from "../../../core/state/state.service";
 })
 export class CharactersComponent {
   public characterListOpened: boolean;
-  constructor(public state: StateService) {}
-
-  // componentPortal: ComponentPortal<PrintableCharacterSheetComponent>;
-
-  // ngOnInit() {
-  // Create a portalHost from a DOM element
-  // const portalHost = new DomPortalOutlet(
-  //   document.querySelector("#printableSpace"),
-  //   this.componentFactoryResolver,
-  //   this.appRef,
-  //   this.injector
-  // );
-  // // Locate the component factory for the HeaderComponent
-  // const portal = new ComponentPortal(PrintableCharacterSheetComponent);
-  // // Attach portal to host
-  // portalHost.attach(portal);
-  // }
+  constructor(public state: StateService, public noteService: NoteService) {}
 }

@@ -12,7 +12,8 @@ import { CharacterService } from "./character.service";
   providedIn: "root",
 })
 export class ChronicleService {
-  selectedChronicle$: BehaviorSubject<Chronicles>;
+  public readonly selectedChronicle$: BehaviorSubject<Chronicles>;
+
   constructor(
     private createChronicleGQL: CreateChronicleGQL,
     private getChroniclesGQL: GetChroniclesGQL,

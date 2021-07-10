@@ -1,11 +1,10 @@
 <!-- <app-printable-character-sheet id="printable-character-sheet">
 </app-printable-character-sheet> -->
-
 <div
   class="main-sheet-container"
   *ngIf="
-    this.characterService.selectedCharacter$ | async as selectedCharacter;
-    else noCharacterSheet
+    this.characterService?.selectedCharacter$ | async as selectedCharacter;
+    else noCharacterSelected
   "
 >
   <div class="header-portrait-container">
@@ -74,7 +73,11 @@
         <div class="alert-box warning-box" *ngIf="isFormDirty">
           <span>Save pending changes?</span>
           <div class="button-group">
-            <button mat-button (click)="saveChanges()" i18n="@@cs-save">
+            <button
+              mat-button
+              (click)="saveChanges(selectedCharacter.uuid)"
+              i18n="@@cs-save"
+            >
               Save
             </button>
             <button mat-button (click)="cancelChanges()" i18n="@@cs-undo">
@@ -91,7 +94,7 @@
       </mat-card-footer>
     </mat-card>
   </div>
-  <app-sheet-attributes
+  <!-- <app-sheet-attributes
     [attributesFieldList]="
       this.configJSON.characterSheetFields.attributesFieldList
     "
@@ -100,11 +103,13 @@
     [abilitiesFieldList]="
       this.configJSON.characterSheetFields.abilitiesFieldList
     "
-  ></app-sheet-abilities>
+  ></app-sheet-abilities> -->
 
-  <app-character-sheet-fab></app-character-sheet-fab>
+  <app-character-sheet-fab
+    [selectedCharacter]="selectedCharacter"
+  ></app-character-sheet-fab>
 </div>
 
-<ng-template #noCharacterSheet>
+<ng-template #noCharacterSelected>
   <mat-card> Please select a character or create a new one </mat-card>
 </ng-template>

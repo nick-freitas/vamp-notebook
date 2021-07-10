@@ -1,4 +1,4 @@
-<mat-card *ngIf="state.selectedNote$ | async as selectedNote">
+<mat-card *ngIf="this.noteService.selectedNote$ | async as selectedNote">
   <mat-card-content>
     <app-inline-input-editor
       text="Title"

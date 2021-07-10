@@ -1,8 +1,8 @@
 <mat-card class="upload-character-portrait-card">
   <mat-card-content>
-    <ng-container
+    <!-- <ng-container
       *ngIf="
-        (state.selectedCharacter$ | async)?.imageUrl?.length;
+        this.selectedCharacter?.imageUrl?.length;
         then hasImageLoaded;
         else needToUploadImage
       "
@@ -10,18 +10,14 @@
     <ng-template #hasImageLoaded>
       <img
         class="character-portrait"
-        [src]="(state.selectedCharacter$ | async)?.imageUrl"
+        [src]="this.selectedCharacter?.imageUrl"
         alt="Character Portrait"
       />
     </ng-template>
-    <ng-template #needToUploadImage> UPLOAD CHARACTER PORTRAIT </ng-template>
+    <ng-template #needToUploadImage> UPLOAD CHARACTER PORTRAIT </ng-template> -->
   </mat-card-content>
   <mat-action-list>
-    <button mat-button i18n="@@cs-upload">
-      UPLOAD
-    </button>
-    <button mat-button color="warn" i18n="@@cs-remove">
-      REMOVE
-    </button>
+    <button mat-button i18n="@@cs-upload">UPLOAD</button>
+    <button mat-button color="warn" i18n="@@cs-remove">REMOVE</button>
   </mat-action-list>
 </mat-card>

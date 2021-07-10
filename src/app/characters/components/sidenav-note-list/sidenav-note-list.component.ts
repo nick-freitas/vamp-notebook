@@ -48,7 +48,7 @@ export class SidenavNoteListComponent {
       )
       .subscribe(() => {
         // resetting chronicles$ does not trigger the change detection, so trigger it manually
-        this.changeDetectorRef.detectChanges();
+        this.changeDetectorRef.markForCheck();
       });
   }
 }

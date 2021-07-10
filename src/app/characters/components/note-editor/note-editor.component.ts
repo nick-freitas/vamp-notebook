@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy, Input } from "@angular/core";
 import { StateService } from "../../../core/state/state.service";
 import * as BalloonBlockEditor from "@ckeditor/ckeditor5-build-balloon-block";
+import { NoteService } from "../../note.service";
 
 @Component({
   selector: "app-note-editor",
@@ -12,5 +13,5 @@ export class NoteEditorComponent {
   @Input() note;
   public Editor = BalloonBlockEditor;
 
-  constructor(public state: StateService) {}
+  constructor(public state: StateService, public noteService: NoteService) {}
 }

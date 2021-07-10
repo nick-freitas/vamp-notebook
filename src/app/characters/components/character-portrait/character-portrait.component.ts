@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
-import { StateService } from "src/app/core/state/state.service";
+import { Component, ChangeDetectionStrategy, Input } from "@angular/core";
+import { Characters } from "../../../../generated/graphql";
 
 @Component({
   selector: "app-character-portrait",
@@ -8,5 +8,6 @@ import { StateService } from "src/app/core/state/state.service";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CharacterPortraitComponent {
-  constructor(public state: StateService) {}
+  @Input() selectedCharacter: Partial<Characters>;
+  constructor() {}
 }

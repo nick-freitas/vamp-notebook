@@ -7,13 +7,15 @@ import {
   GetCharactersGQL,
   GetFullCharacterGQL,
   UpdateCharacterSheetHeaderGQL,
+  UpdateCharacterSheetHeaderMutationVariables,
 } from "../../generated/graphql";
 
 @Injectable({
   providedIn: "root",
 })
 export class CharacterService {
-  selectedCharacter$: BehaviorSubject<any>;
+  public readonly selectedCharacter$: BehaviorSubject<any>;
+
   constructor(
     private createCharacterGQL: CreateCharacterGQL,
     private getCharactersGQL: GetCharactersGQL,
@@ -23,13 +25,22 @@ export class CharacterService {
     this.selectedCharacter$ = new BehaviorSubject(null);
   }
 
-  updateCharacter(character: Characters): Observable<Partial<Characters>> {
-    if (!character) {
+  updateCharacter(
+    characterId: string,
+    character: Characters
+  ): Observable<Partial<Characters>> {
+    if (!characterId || !character) {
+      console.log("ret null");
       return of(null);
     }
 
+    const newCharacter: UpdateCharacterSheetHeaderMutationVariables = {
+      ...character,
+      uuid: characterId,
+    };
+
     return this.updateCharacterSheetHeaderGQL
-      .mutate(character)
+      .mutate(newCharacter)
       .pipe(map((res) => res?.data?.update_characters_by_pk));
   }
 
