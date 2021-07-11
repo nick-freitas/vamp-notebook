@@ -42,7 +42,7 @@ export class AuthService {
         if (resultUser) {
           this.user = { ...this.user, ...resultUser };
           localStorage.setItem("user", JSON.stringify(this.user));
-          console.log(this.user);
+
           this.setIsSignedIn();
 
           //if we just authenticated and we are currently in the login page,

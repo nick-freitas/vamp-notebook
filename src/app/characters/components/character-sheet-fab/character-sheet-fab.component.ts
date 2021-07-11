@@ -45,8 +45,6 @@ export class CharacterSheetFabComponent {
   }
 
   exportAsJSON(): void {
-    console.log("Trying to export");
-
     const blob = new Blob([JSON.stringify(this.selectedCharacter)], {
       type: "application/json",
     });
@@ -55,8 +53,6 @@ export class CharacterSheetFabComponent {
   }
 
   printSheet(): void {
-    console.log("Trying to print");
-
     const element = document.getElementById("printable-character-sheet");
     const opt = {
       margin: 0,

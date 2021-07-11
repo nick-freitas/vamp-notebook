@@ -60,7 +60,6 @@ export class CharacterSheetComponent implements OnDestroy {
   }
 
   saveChanges(characterId): void {
-    console.log("updating");
     const formGroupValues = this.formGroup.value;
     const _updateCharacters: Pick<typeof formGroupValues, keyof Characters> =
       formGroupValues;
