@@ -1,0 +1,1 @@
+(self.webpackChunkvamp_notebook=self.webpackChunkvamp_notebook||[]).push([[592],{4466:function(n,e,t){"use strict";t.d(e,{m:function(){return s}});var o=t(8583),u=t(3679),c=t(9903),r=t(7716);let s=(()=>{class n{}return n.\u0275fac=function(e){return new(e||n)},n.\u0275mod=r.oAB({type:n}),n.\u0275inj=r.cJS({imports:[[o.ez,u.UX,c.V]]}),n})()}}]);
