@@ -127,6 +127,10 @@
               "devServerTarget": "vamp-notebook:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
     }

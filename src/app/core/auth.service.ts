@@ -2,9 +2,11 @@ import { Injectable, NgZone } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { Router } from "@angular/router";
 import { switchMap } from "rxjs/operators";
+import { Observable} from "rxjs";
 import { BehaviorSubject, of } from "rxjs";
 import firebase from "firebase";
-import { GetSelfUserGQL, RegisterUserGQL, Users } from "src/generated/graphql";
+import { GetSelfUserGQL, RegisterUserGQL,  } from "src/generated/graphql";
+
 
 //https://www.positronx.io/full-angular-7-firebase-authentication-system/
 @Injectable({
@@ -45,11 +47,12 @@ export class AuthService {
 
           this.setIsSignedIn();
 
-          //if we just authenticated and we are currently in the login page,
+          // if we just authenticated and we are currently in the login page or the register page,
           // then bring them to the main page since the sign in method itself is inconsistent
-          if (this.router.url === "/login") {
+          if (this.router.url === "/login" || this.router.url === '/register') {
             return this.router.navigate(["/characters"]);
           }
+
           return;
         }
 
@@ -85,17 +88,14 @@ export class AuthService {
     });
   }
 
-  async register({ name, email, password }): Promise<Users> {
-    const { user } = await this.auth.createUserWithEmailAndPassword(
+  async register({ name, email, password }): Promise<firebase.auth.UserCredential> {
+    await this.auth.createUserWithEmailAndPassword(
       email,
       password
     );
 
-    const id = await user.uid;
+    await this.registerUserGql.mutate({ email, name }).toPromise();
 
-    return {
-      ...(await this.registerUserGql.mutate({ email, name }).toPromise()),
-      uuid: id,
-    };
+    return this.signIn({email, password, rememberMe: true});
   }
 }

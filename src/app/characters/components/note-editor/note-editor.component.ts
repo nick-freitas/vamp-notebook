@@ -11,8 +11,10 @@ import { FormControl, FormGroup } from "@angular/forms";
 import { Notes } from "../../../../generated/graphql";
 import { SubSink } from "subsink";
 import { ChangeEvent } from "@ckeditor/ckeditor5-angular";
-import { switchMap } from "rxjs/operators";
+import { switchMap, switchMapTo, take, takeLast, takeUntil } from "rxjs/operators";
 import { SelectedViewService } from "../../selected-view.service";
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { CharacterService } from '../../character.service';
 
 @Component({
   selector: "app-note-editor",
@@ -28,9 +30,11 @@ export class NoteEditorComponent implements OnInit, OnDestroy {
   private subs: SubSink;
 
   constructor(
-    public noteService: NoteService,
+    private noteService: NoteService,
+    private characterService:CharacterService,
     private selectedViewService: SelectedViewService,
-    private changeDetectionRef: ChangeDetectorRef
+    private changeDetectionRef: ChangeDetectorRef,
+    private snackBar: MatSnackBar
   ) {
     this.subs = new SubSink();
     this.loadNote(null);
@@ -53,15 +57,27 @@ export class NoteEditorComponent implements OnInit, OnDestroy {
     this.internalEditorContent = data;
   }
 
-  public onSaveNote(): void {
+   public async onSaveNote(): Promise<void> {
+     this.subs.unsubscribe();
     const updatedNote = {
       name: this.noteForm.value.name,
       content: this.internalEditorContent,
     };
 
-    this.noteService
+    this.noteForm.disable();
+    this.subs.add(this.noteService
       .updateNote(this.selectedNote.uuid, updatedNote)
-      .toPromise();
+      .pipe(
+        switchMap(() => this.characterService.selectedCharacter$.asObservable()),
+        switchMap((selectedCharacter) => this.noteService.refreshNoteList(selectedCharacter?.uuid)),
+        takeLast(1),
+      )
+      .subscribe(() => {
+        console.log('we');
+        this.noteForm.enable();
+        this.snackBar.open("Saved Notes", 'Close', {duration:3000});
+        this.changeDetectionRef.markForCheck();
+      }));
   }
 
   public onDeleteNote(): void {

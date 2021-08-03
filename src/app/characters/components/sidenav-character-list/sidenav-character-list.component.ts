@@ -41,11 +41,13 @@ export class SidenavCharacterListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loadChronicleList();
-    this.onSelectChronicle({
-      uuid: "b88e2209-759e-4441-b0d6-4f54ce6d8b1f",
-      name: "G4",
-    });
-    this.onSelectCharacter("93349e3e-fb6b-4c0d-9844-64f3740467d7");
+
+    //dev defaults
+    // this.onSelectChronicle({
+    //   uuid: "b88e2209-759e-4441-b0d6-4f54ce6d8b1f",
+    //   name: "G4",
+    // });
+    // this.onSelectCharacter("93349e3e-fb6b-4c0d-9844-64f3740467d7");
   }
 
   onSelectChronicle(chronicle: Chronicles): void {
@@ -71,11 +73,11 @@ export class SidenavCharacterListComponent implements OnInit, OnDestroy {
     this.chronicles$ = this.chronicleService.getChronicleList();
   }
 
-  loadCharacterList(chronicleId): void {
+  loadCharacterList(chronicleId: string): void {
     this.characters$ = this.characterService.getCharacterList(chronicleId);
   }
 
-  selectChronicle(chronicle): void {
+  selectChronicle(chronicle:Chronicles): void {
     this.chronicleService.selectChronicle(chronicle);
   }
 

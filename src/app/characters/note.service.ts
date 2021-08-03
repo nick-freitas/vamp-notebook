@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, of } from "rxjs";
-import { map, tap } from "rxjs/operators";
+import { map, take, takeUntil, tap } from "rxjs/operators";
 import {
   CreateNoteGQL,
   GetNotesGQL,
@@ -77,6 +77,7 @@ export class NoteService {
   }
 
   refreshNoteList(characterId: string): Observable<Partial<Notes>[]> {
+    console.log(characterId);
     if (!characterId) {
       this.notes$.next(null);
       return null;
@@ -86,7 +87,9 @@ export class NoteService {
       .watch({ character_id: characterId })
       .valueChanges.pipe(
         map((result) => result?.data?.notes),
-        tap((notes) => this.notes$.next(notes))
+        tap(() => console.log('updating things')),
+        tap((notes) => this.notes$.next(notes)),
+        take(1)
       );
   }
 }

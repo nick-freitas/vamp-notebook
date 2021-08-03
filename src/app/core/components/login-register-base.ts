@@ -1,3 +1,4 @@
+import { FormGroup } from '@angular/forms';
 import {
   MatSnackBar,
   MatSnackBarRef,
@@ -6,7 +7,9 @@ import {
 import { environment } from "src/environments/environment";
 
 export abstract class LoginRegisterBase {
+  loginRegisterForm: FormGroup;
   currentError: MatSnackBarRef<TextOnlySnackBar>;
+  lockScreen: boolean;
 
   constructor(protected _snackBar: MatSnackBar) {}
 
@@ -14,6 +17,8 @@ export abstract class LoginRegisterBase {
 
   public async handleClick(cb?: (data: any) => any): Promise<void> {
     this.currentError?.dismiss();
+    this.lockScreen = true;
+    this.loginRegisterForm.disable();
     this.loginRegister()
       .then((data) => cb?.(data))
       .catch((err) => {
@@ -21,7 +26,11 @@ export abstract class LoginRegisterBase {
         if (environment.debugErrors) {
           console.error(err);
         }
-      });
+      })
+      .finally(() => {
+        this.lockScreen = false;
+        this.loginRegisterForm.enable();
+      })
   }
 
   openSnackBar(

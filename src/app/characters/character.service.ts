@@ -14,7 +14,7 @@ import {
   providedIn: "root",
 })
 export class CharacterService {
-  public readonly selectedCharacter$: BehaviorSubject<any>;
+  public readonly selectedCharacter$: BehaviorSubject<Partial<Characters> | null>;
 
   constructor(
     private createCharacterGQL: CreateCharacterGQL,

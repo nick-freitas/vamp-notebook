@@ -1,6 +1,5 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { Subscription } from "rxjs";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { LoginRegisterBase } from "../login-register-base";
 import { AuthService } from "../../auth.service";
@@ -10,9 +9,9 @@ import { AuthService } from "../../auth.service";
   templateUrl: "./register.component.html",
   styleUrls: ["../login-register.component.scss"],
 })
-export class RegisterComponent extends LoginRegisterBase implements OnDestroy {
-  registerForm: FormGroup;
-  registerUser$: Subscription;
+export class RegisterComponent extends LoginRegisterBase  {
+  loginRegisterForm: FormGroup;
+  
 
   constructor(
     private authservice: AuthService,
@@ -20,7 +19,7 @@ export class RegisterComponent extends LoginRegisterBase implements OnDestroy {
   ) {
     super(_snackBar);
 
-    this.registerForm = new FormGroup({
+    this.loginRegisterForm = new FormGroup({
       name: new FormControl("", Validators.required),
       email: new FormControl("", Validators.required),
       password: new FormControl("", Validators.required),
@@ -28,10 +27,6 @@ export class RegisterComponent extends LoginRegisterBase implements OnDestroy {
   }
 
   async loginRegister(): Promise<any> {
-    await this.authservice.register(this.registerForm.value);
-  }
-
-  ngOnDestroy(): void {
-    this.registerUser$?.unsubscribe();
-  }
+    await this.authservice.register(this.loginRegisterForm.value);
+  }  
 }

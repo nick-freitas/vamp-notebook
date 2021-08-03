@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { Subscription } from "rxjs";
 import { AuthService } from "../../auth.service";
 import { LoginRegisterBase } from "../login-register-base";
 
@@ -10,9 +9,8 @@ import { LoginRegisterBase } from "../login-register-base";
   templateUrl: "./login.component.html",
   styleUrls: ["../login-register.component.scss"],
 })
-export class LoginComponent extends LoginRegisterBase implements OnDestroy {
-  loginForm: FormGroup;
-  loginUser$: Subscription;
+export class LoginComponent extends LoginRegisterBase  {
+  
 
   constructor(
     private authservice: AuthService,
@@ -20,7 +18,7 @@ export class LoginComponent extends LoginRegisterBase implements OnDestroy {
   ) {
     super(_snackBar);
 
-    this.loginForm = new FormGroup({
+    this.loginRegisterForm = new FormGroup({
       email: new FormControl(""),
       password: new FormControl(""),
       rememberMe: new FormControl(false),
@@ -28,10 +26,8 @@ export class LoginComponent extends LoginRegisterBase implements OnDestroy {
   }
 
   async loginRegister(): Promise<any> {
-    await this.authservice.signIn(this.loginForm.value);
+    await this.authservice.signIn(this.loginRegisterForm.value);
   }
 
-  ngOnDestroy(): void {
-    this.loginUser$?.unsubscribe();
-  }
+  
 }
